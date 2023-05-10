@@ -40,8 +40,8 @@ public class GridManagerScript : MonoBehaviour
             for(int j = 0; j < size.x; j++){
                 auxCoordsMatrix[i,j] = currentCoords;
                 currentCoords.x += blockPixelSize;
-                string msg = "fila: "+i.ToString()+" columna: " +j.ToString()+ " x="+ currentCoords.x.ToString()+" y="+currentCoords.y.ToString();
-                print(msg);
+                // string msg = "fila: "+i.ToString()+" columna: " +j.ToString()+ " x="+ currentCoords.x.ToString()+" y="+currentCoords.y.ToString();
+                // print(msg);
             }
             currentCoords.y += blockPixelSize;
             currentCoords.x = originalCoords.x;
@@ -84,6 +84,13 @@ public class GridManagerScript : MonoBehaviour
 
     public Vector2Int[,] getCoordsMatrix(){
         return this.coordsMatrix;
+    }
+    public int[,] getIsPaintedMatrix(){
+        return this.isPaintedMatrix;
+    }
+
+    public void updateIsPaintedMatrix(int xindex, int yindex, int isPainted) {
+        this.isPaintedMatrix[yindex,xindex] = isPainted;
     }
 
  

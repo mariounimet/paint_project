@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PainManagerScript : MonoBehaviour
+public class PaintManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     private Texture2D currentMask;
@@ -10,6 +10,8 @@ public class PainManagerScript : MonoBehaviour
     public Texture2D backgroundImage;
     private Renderer crenderer;
     private SpriteRenderer spriteRenderer;
+    private float progressPercent;
+    private float progressPerBlock;
     public int xOffset;
     public int yOffset;
 
@@ -20,6 +22,7 @@ public class PainManagerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMask = (Texture2D) crenderer.material.GetTexture("_PaintMask");
         newMask = currentMask;
+        setInitialProgress(this.grid.getMatrixDimensions(this.grid.canvasSize,this.grid.blockPixelSize));
         ResetCanvas();
 
         // Camera camera = Camera.main;
@@ -39,33 +42,45 @@ public class PainManagerScript : MonoBehaviour
     }
 
     public void detectPaint(){
+        //enemy defeated
         if(Input.GetMouseButtonDown(0)) {
-            //Vector2 mousePos = GetImageMousePositionOnImage();
+
             Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 pos = worldCoordsToImageCoords(clickPos.x, clickPos.y);
-            // for now
-            //pos = GetImageMousePositionOnImage();
-            // for now
+           
 
             int xIndex = closestDownMultiple((pos.x-xOffset),this.grid.blockPixelSize, true);
             int yIndex = closestDownMultiple((pos.y-yOffset),this.grid.blockPixelSize, false);
-            // no esta funcionando el closest
+          
            // string msg = "la posicion en y es "+pos.y.ToString()+" y su yIndex es "+yIndex.ToString();
            // print(msg);
             Vector2Int maxMatrixSize = this.grid.getMatrixDimensions(this.grid.canvasSize, this.grid.blockPixelSize);
-            bool areIndexesValid = (xIndex >= 0) && (yIndex >= 0) && (xIndex <maxMatrixSize.x && (yIndex < maxMatrixSize.y));
+            bool areIndexesValid = (xIndex >= 0) && (yIndex >= 0) && (xIndex <maxMatrixSize.x) && (yIndex < maxMatrixSize.y);
             if(areIndexesValid) {
-                Vector2Int finalPos =  mapIndexToCoord(xIndex,yIndex);
-                PaintMask(finalPos.x,finalPos.y,this.grid.blockPixelSize,this.grid.blockPixelSize );
+
+                TryPaintGridSquare(xIndex, yIndex);
+
+                
             } else {
                 
                 print("Se intentó pintar fuera del grid en x="+pos.x.ToString() + " y=" +pos.y.ToString());
             }
            
-           //PaintMask(0,0,256,256,Color.red);
-           //PaintMask(getLowerLeftCoords().x,getLowerLeftCoords().y,128,128);
+           
            
         }
+    }
+
+    public void TryPaintGridSquare(int xIndex, int yIndex){
+        if(this.grid.getIsPaintedMatrix()[yIndex,xIndex] == 0) {
+            Vector2Int finalPos =  mapIndexToCoord(xIndex,yIndex);
+            PaintMask(finalPos.x,finalPos.y,this.grid.blockPixelSize,this.grid.blockPixelSize );
+            this.grid.updateIsPaintedMatrix(xIndex,yIndex, 1);
+            this.progressPercent += this.progressPerBlock;
+            // print(progressPerBlock.ToString());
+            print("El progreso es: "+this.progressPercent.ToString()+"%");
+        } 
+        
     }
 
     public void PaintMask(int x, int y, int width, int height){
@@ -181,7 +196,8 @@ public class PainManagerScript : MonoBehaviour
                 if (isX){
                     return i;
                 } else {
-                    return maxIteration-i+1;
+                    
+                    return (i==0) ? maxIteration: maxIteration-i;
                 }
                
             }
@@ -192,6 +208,12 @@ public class PainManagerScript : MonoBehaviour
 
     public Vector2Int mapIndexToCoord(int Xindex, int YIndex){
         return this.grid.getCoordsMatrix()[YIndex, Xindex];
+    }
+
+    public void setInitialProgress(Vector2Int matrixSize){
+        this.progressPercent = 0;
+        this.progressPerBlock = 100f/(matrixSize.x*matrixSize.y);
+       // print((100f/(matrixSize.x*matrixSize.y)).ToString());
     }
 
 
