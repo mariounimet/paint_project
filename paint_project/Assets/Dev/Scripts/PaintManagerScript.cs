@@ -21,6 +21,8 @@ public class PaintManagerScript : MonoBehaviour
     private bool isPainting = false;
     private int[] PaintReaminingIndexes = new int[4]; // [startX, startY, endX, endY]
     private Vector2Int currentPaintingRemainingIndexes;
+    private float timer = 0;
+    public float delay;
    
 
     public GridManagerScript grid;
@@ -33,11 +35,6 @@ public class PaintManagerScript : MonoBehaviour
         mainCamera = Camera.main;
         setInitialProgress(this.grid.getMatrixDimensions(this.grid.canvasSize,this.grid.blockPixelSize));
         ResetCanvas();
-
-        // Camera camera = Camera.main;
-        // print(camera.pixelWidth);    
-        //print(closestDownMultiple(330.5f, grid.blockPixelSize));
-       
 
     
 
@@ -53,9 +50,10 @@ public class PaintManagerScript : MonoBehaviour
        }
 
 
-
-       if (isPainting) {
+        timer += Time.deltaTime;
+       if (isPainting && (timer > delay)) {
             PaintRemainingInSector();
+            timer = 0;
        }
     }
 
