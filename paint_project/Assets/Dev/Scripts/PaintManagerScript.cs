@@ -181,7 +181,20 @@ public class PaintManagerScript : MonoBehaviour
                 }
                 
                 
-            } 
+            } else if ((currentSector.x == 0) && (currentSector.y == 1)) {
+                  this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y-cameraStepY,this.mainCamera.transform.position.z);
+                  if ( this.mainCamera.transform.position.x > 0f) {
+                    this.mainCamera.transform.position = new Vector3(0,0-cameraStepY,this.mainCamera.transform.position.z);
+                    this.cameraStepX=0;
+                    this.cameraStepY=0;
+                  }
+
+                  this.mainCamera.orthographicSize += 0.01f;
+                  if (this.mainCamera.orthographicSize >= 8.9f) {
+                     this.mainCamera.orthographicSize = 8.9f;
+                     this.isMovingCamera= false;
+                  }
+            }
     }
 
     public void PaintRemainingInSector(){
