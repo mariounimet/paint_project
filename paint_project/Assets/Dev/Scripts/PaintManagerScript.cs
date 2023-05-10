@@ -13,10 +13,14 @@ public class PaintManagerScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float progressPercent;
     private float progressPerBlock;
-    private Vector2Int currentSector; //0 for left, 1 for right
+    private Vector2Int currentSector; //0 for negative, 1 for positive
     public int xOffset;
     public int yOffset;
-    [Range(15, 24)] public int completeSectorThreshold; // 20 is good
+    [Range(5, 24)] public int completeSectorThreshold; // 20 is good
+    private bool isMovingCamera = false;
+    private bool isPainting = false;
+    private int[] PaintReaminingIndexes = new int[4]; // [startX, startY, endX, endY]
+    private Vector2Int currentPaintingRemainingIndexes;
    
 
     public GridManagerScript grid;
@@ -44,6 +48,15 @@ public class PaintManagerScript : MonoBehaviour
     void Update()
     {
        detectPaint();
+       if (isMovingCamera) {
+            CompleteMoveSector(this.currentSector);
+       }
+
+
+
+       if (isPainting) {
+            PaintRemainingInSector();
+       }
     }
 
     public void detectPaint(){
@@ -82,7 +95,10 @@ public class PaintManagerScript : MonoBehaviour
             PaintMask(finalPos.x,finalPos.y,this.grid.blockPixelSize,this.grid.blockPixelSize );
             this.grid.updateIsPaintedMatrix(xIndex,yIndex, 1);
             this.progressPercent += this.progressPerBlock;
-            TryMoveSector(this.progressPercent, this.currentSector);
+            if (!this.isPainting) {
+                TryMoveSector(this.progressPercent, this.currentSector);
+            }
+         
             // print(progressPerBlock.ToString());
             print("El progreso es: "+this.progressPercent.ToString()+"%");
         } 
@@ -91,10 +107,13 @@ public class PaintManagerScript : MonoBehaviour
 
     public void TryMoveSector(float progressPercent, Vector2Int currentSector){
         if((progressPercent%25) >= completeSectorThreshold) {
+            Vector2Int gridSize = this.grid.getMatrixDimensions(this.grid.canvasSize, this.grid.blockPixelSize);
            
             if ((currentSector.x == 0) && (currentSector.y == 0)) {
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                 this.currentSector.x = 1;
+                
+                
             } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y*-1,this.mainCamera.transform.position.z);
                 this.currentSector.y = 1;
@@ -102,12 +121,44 @@ public class PaintManagerScript : MonoBehaviour
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                 this.currentSector.x = 0;
             }
+
+            if (currentSector.x==0) {
+                this.PaintReaminingIndexes[0] = 0 ;  //[startX, startY, endX, endY]
+                this.PaintReaminingIndexes[2] = (gridSize.x/2)-1; 
+            } else {
+                this.PaintReaminingIndexes[0] = (gridSize.x/2) ;  //[startX, startY, endX, endY]
+                this.PaintReaminingIndexes[2] = gridSize.x-1; 
+            }
+            if (currentSector.y==0) {
+                this.PaintReaminingIndexes[1] = (gridSize.y/2);  //[startX, startY, endX, endY]
+                this.PaintReaminingIndexes[3] = (gridSize.y)-1;
+            } else {
+                this.PaintReaminingIndexes[1] =  0;  //[startX, startY, endX, endY]
+                this.PaintReaminingIndexes[3] = (gridSize.y/2)-1;
+            }
+
+            this.currentPaintingRemainingIndexes = new Vector2Int(this.PaintReaminingIndexes[0], this.PaintReaminingIndexes[1]);
+            this.isPainting = true;
            
         }
     }
 
     public void CompleteMoveSector(Vector2Int currentSector){
-        // pintar todos los cuadros y al final sumar 0,01
+       
+    }
+
+    public void PaintRemainingInSector(){
+        TryPaintGridSquare(this.currentPaintingRemainingIndexes.x, this.currentPaintingRemainingIndexes.y);
+        this.currentPaintingRemainingIndexes.x += 1;
+        if (this.currentPaintingRemainingIndexes.x > this.PaintReaminingIndexes[2]) { //endX
+            this.currentPaintingRemainingIndexes.x = this.PaintReaminingIndexes[0]; //startx
+           
+            this.currentPaintingRemainingIndexes.y +=1;
+            if (this.currentPaintingRemainingIndexes.y > this.PaintReaminingIndexes[3]) {
+                this.isPainting = false;
+                this.isMovingCamera = true;
+            }
+        }
     }
 
     public void PaintMask(int x, int y, int width, int height){
@@ -137,6 +188,8 @@ public class PaintManagerScript : MonoBehaviour
       
     
     }
+
+
 
     public void ResetCanvas(){
       
