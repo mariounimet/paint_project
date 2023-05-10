@@ -159,6 +159,7 @@ MonoBehaviour:
   yOffset: 98
   completeSectorThreshold: 16
   delay: 0.1
+  initialCamaraCoords: {x: -2.61, y: -4.55}
   grid: {fileID: 158723475}
 --- !u!114 &158723475
 MonoBehaviour:

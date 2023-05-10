@@ -21,8 +21,14 @@ public class PaintManagerScript : MonoBehaviour
     private bool isPainting = false;
     private int[] PaintReaminingIndexes = new int[4]; // [startX, startY, endX, endY]
     private Vector2Int currentPaintingRemainingIndexes;
-    private float timer = 0;
-    public float delay;
+    private float Painttimer = 0;
+    private float CameraTimer = 0;
+    public float Paintdelay;
+    public float CameraMoveDelay;
+    public float CameraTransitionMaxDuration;
+    private float cameraStepX;
+    private float cameraStepY;
+    public Vector2 initialCamaraCoords;
    
 
     public GridManagerScript grid;
@@ -44,21 +50,25 @@ public class PaintManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
        detectPaint();
-       if (isMovingCamera) {
-            CompleteMoveSector(this.currentSector);
+
+        CameraTimer += Time.deltaTime;
+       if (isMovingCamera && (CameraTimer > CameraMoveDelay)) {
+            CompleteMoveSector();
+            CameraTimer = 0;
        }
 
-
-        timer += Time.deltaTime;
-       if (isPainting && (timer > delay)) {
+        Painttimer += Time.deltaTime;
+       
+       if (isPainting && (Painttimer > Paintdelay)) {
             PaintRemainingInSector();
-            timer = 0;
+            Painttimer = 0;
        }
     }
 
     public void detectPaint(){
-        //enemy defeated
+        //TODO enemy defeated
         if(Input.GetMouseButtonDown(0)) {
 
             Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -107,18 +117,18 @@ public class PaintManagerScript : MonoBehaviour
         if((progressPercent%25) >= completeSectorThreshold) {
             Vector2Int gridSize = this.grid.getMatrixDimensions(this.grid.canvasSize, this.grid.blockPixelSize);
            
-            if ((currentSector.x == 0) && (currentSector.y == 0)) {
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
-                this.currentSector.x = 1;
+            // if ((currentSector.x == 0) && (currentSector.y == 0)) {
+            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+            //     this.currentSector.x = 1;
                 
                 
-            } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y*-1,this.mainCamera.transform.position.z);
-                this.currentSector.y = 1;
-            } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
-                this.currentSector.x = 0;
-            }
+            // } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
+            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y*-1,this.mainCamera.transform.position.z);
+            //     this.currentSector.y = 1;
+            // } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
+            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+            //     this.currentSector.x = 0;
+            // }
 
             if (currentSector.x==0) {
                 this.PaintReaminingIndexes[0] = 0 ;  //[startX, startY, endX, endY]
@@ -141,8 +151,37 @@ public class PaintManagerScript : MonoBehaviour
         }
     }
 
-    public void CompleteMoveSector(Vector2Int currentSector){
-       
+    public void CompleteMoveSector(){
+           if ((currentSector.x == 0) && (currentSector.y == 0)) {
+                //this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+               
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                if (this.mainCamera.transform.position.x> Mathf.Abs(this.initialCamaraCoords.x)) {
+                    this.mainCamera.transform.position = new Vector3(Mathf.Abs(this.initialCamaraCoords.x),this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                    this.currentSector.x = 1;
+                    this.isMovingCamera = false;
+                }
+                
+                
+            } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y+cameraStepY,this.mainCamera.transform.position.z);
+                if (this.mainCamera.transform.position.y> Mathf.Abs(this.initialCamaraCoords.y)) {
+                    this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.mainCamera.transform.position.z);
+                    this.currentSector.y = 1;
+                    this.isMovingCamera = false;
+                }
+            
+            } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x-cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+               
+               if (this.mainCamera.transform.position.x< this.initialCamaraCoords.x) {
+                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                    this.currentSector.x = 0;
+                    this.isMovingCamera = false;
+                }
+                
+                
+            } 
     }
 
     public void PaintRemainingInSector(){
@@ -292,6 +331,8 @@ public class PaintManagerScript : MonoBehaviour
         this.progressPercent = 0;
         this.progressPerBlock = (100f/(matrixSize.x*matrixSize.y))+0.001f;
         this.currentSector = new Vector2Int(0,0);
+        this.cameraStepX = Mathf.Abs(this.initialCamaraCoords.x*2)/(this.CameraTransitionMaxDuration/this.CameraMoveDelay);
+        this.cameraStepY = Mathf.Abs(this.initialCamaraCoords.y*2)/(this.CameraTransitionMaxDuration/this.CameraMoveDelay);
        // print((100f/(matrixSize.x*matrixSize.y)).ToString());
     }
 
