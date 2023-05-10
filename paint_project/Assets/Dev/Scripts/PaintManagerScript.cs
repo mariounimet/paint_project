@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaintManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    private Camera mainCamera;
     private Texture2D currentMask;
     private Texture2D newMask;
     public Texture2D backgroundImage;
@@ -12,8 +13,11 @@ public class PaintManagerScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float progressPercent;
     private float progressPerBlock;
+    private Vector2Int currentSector; //0 for left, 1 for right
     public int xOffset;
     public int yOffset;
+    [Range(15, 24)] public int completeSectorThreshold; // 20 is good
+   
 
     public GridManagerScript grid;
     void Start()
@@ -22,6 +26,7 @@ public class PaintManagerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMask = (Texture2D) crenderer.material.GetTexture("_PaintMask");
         newMask = currentMask;
+        mainCamera = Camera.main;
         setInitialProgress(this.grid.getMatrixDimensions(this.grid.canvasSize,this.grid.blockPixelSize));
         ResetCanvas();
 
@@ -77,10 +82,32 @@ public class PaintManagerScript : MonoBehaviour
             PaintMask(finalPos.x,finalPos.y,this.grid.blockPixelSize,this.grid.blockPixelSize );
             this.grid.updateIsPaintedMatrix(xIndex,yIndex, 1);
             this.progressPercent += this.progressPerBlock;
+            TryMoveSector(this.progressPercent, this.currentSector);
             // print(progressPerBlock.ToString());
             print("El progreso es: "+this.progressPercent.ToString()+"%");
         } 
         
+    }
+
+    public void TryMoveSector(float progressPercent, Vector2Int currentSector){
+        if((progressPercent%25) >= completeSectorThreshold) {
+           
+            if ((currentSector.x == 0) && (currentSector.y == 0)) {
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                this.currentSector.x = 1;
+            } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y*-1,this.mainCamera.transform.position.z);
+                this.currentSector.y = 1;
+            } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
+                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                this.currentSector.x = 0;
+            }
+           
+        }
+    }
+
+    public void CompleteMoveSector(Vector2Int currentSector){
+        // pintar todos los cuadros y al final sumar 0,01
     }
 
     public void PaintMask(int x, int y, int width, int height){
@@ -212,7 +239,8 @@ public class PaintManagerScript : MonoBehaviour
 
     public void setInitialProgress(Vector2Int matrixSize){
         this.progressPercent = 0;
-        this.progressPerBlock = 100f/(matrixSize.x*matrixSize.y);
+        this.progressPerBlock = (100f/(matrixSize.x*matrixSize.y))+0.001f;
+        this.currentSector = new Vector2Int(0,0);
        // print((100f/(matrixSize.x*matrixSize.y)).ToString());
     }
 
