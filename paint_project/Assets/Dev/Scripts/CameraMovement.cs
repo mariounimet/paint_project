@@ -15,14 +15,14 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Vector3 cameraPosition = transform.position;
+        Vector3 cameraPosition = transform.position;
 
-        // if (Input.GetKey(KeyCode.W)) {
+        if (Input.GetKey(KeyCode.UpArrow)) {
 
-        //     cameraPosition.y +=  moveSpeed * Time.deltaTime;
+            cameraPosition.y +=  moveSpeed * Time.deltaTime;
 
-        // }
+        }
 
-        // transform.position = cameraPosition;
+        transform.position = cameraPosition;
     }
 }
