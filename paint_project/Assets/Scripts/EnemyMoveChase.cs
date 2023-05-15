@@ -35,7 +35,6 @@ public class EnemyMoveChase : MonoBehaviour
                 acelerate = true;
             }
         }
-        Debug.Log(speed);
     }
 
     private void FixedUpdate()
