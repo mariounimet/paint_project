@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace DesignPatterns.Factory
 {
+public class RandSpawner : MonoBehaviour
+{
+    //[SerializeField] private LayerMask layerToCreate;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] Factory[] factories;
     [SerializeField] private float spawnRate = 1f;
 
-    [SerializeField] private GameObject[] enemyPrefabs;
+    private bool canSpawn;
+    private Factory factory;
 
-    [SerializeField] private bool canSpawn = true;
-
-    private void Start() {
-        StartCoroutine(Spawner());
+    private void Update()
+    {
+        GetProductAtRand();
     }
 
-    private IEnumerator Spawner () {
+    private void GetProductAtRand() 
+    {
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
 
         while (canSpawn) {
@@ -26,4 +32,5 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
         }
     }
+}
 }
