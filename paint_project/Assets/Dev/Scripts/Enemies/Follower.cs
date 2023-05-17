@@ -10,7 +10,7 @@ public class Follower : MonoBehaviour, IProduct
     [SerializeField] private string productName = "Follower";
     public string ProductName { get => productName; set => productName = value ;}
 
-    private ParticleSystem particleSystem;
+    private new ParticleSystem particleSystem;
 
     public void Initialize()
     {

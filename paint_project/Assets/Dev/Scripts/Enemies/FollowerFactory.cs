@@ -9,7 +9,7 @@ public class FollowerFactory : Factory
     //used to create a Prefab
     [SerializeField] private Follower productPrefab;
 
-    public override IProduct GetProduct(Vector3 position)
+    public override IProduct GetProduct(Vector2 position)
     {
         //create a Prefab instance and get the product component
         GameObject instance = Instantiate(productPrefab.gameObject, position, Quaternion.identity);
