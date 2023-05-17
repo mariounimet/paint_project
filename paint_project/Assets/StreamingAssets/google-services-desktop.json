@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900757394878",
+    "project_id": "space-painters",
+    "storage_bucket": "space-painters.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900757394878:android:875c1a38bb9e3f1fdd95ef",
+        "android_client_info": {
+          "package_name": "com.google.firebase.space_painters"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900757394878-9ia54bepal5ls12r79e4p9bi4eb7esjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjxRmgpqHVVliYrBCr1oAoGxEMk_CbEvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900757394878-9ia54bepal5ls12r79e4p9bi4eb7esjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
