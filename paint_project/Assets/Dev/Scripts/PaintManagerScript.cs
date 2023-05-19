@@ -175,7 +175,7 @@ public class PaintManagerScript : MonoBehaviour
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x-cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
                if (this.mainCamera.transform.position.x< this.initialCamaraCoords.x) {
-                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x+0.18f,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                     this.currentSector.x = 0;
                     this.isMovingCamera = false;
                 }
