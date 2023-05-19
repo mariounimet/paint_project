@@ -189,7 +189,7 @@ public class PaintManagerScript : MonoBehaviour
                     this.cameraStepY=0;
                   }
 
-                  this.mainCamera.orthographicSize += 0.01f;
+                  this.mainCamera.orthographicSize += 0.03f;
                   if (this.mainCamera.orthographicSize >= 8.9f) {
                      this.mainCamera.orthographicSize = 8.9f;
                      this.isMovingCamera= false;
