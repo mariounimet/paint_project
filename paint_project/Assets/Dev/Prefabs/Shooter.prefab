@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4545051042056429118}
   - component: {fileID: 4545051042056429119}
-  - component: {fileID: 4545051042056429112}
   - component: {fileID: 4545051042056429116}
   - component: {fileID: 4545051042056429117}
+  - component: {fileID: 623166372726660342}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -87,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4545051042056429112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4545051042056429113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03993a09bc339b14e891379bc8a0b769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  player: {fileID: 0}
 --- !u!50 &4545051042056429116
 Rigidbody2D:
   serializedVersion: 4
@@ -1064,3 +1050,18 @@ PolygonCollider2D:
       - {x: -1.5180169, y: -15.768302}
       - {x: -3.6480093, y: -15.768302}
       - {x: -3.632114, y: -15.768302}
+--- !u!114 &623166372726660342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545051042056429113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2248ba52c8937d14293b9f0dfa552ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 2268189177320122543, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
+  cam: {fileID: 0}
+  player: {fileID: 0}
