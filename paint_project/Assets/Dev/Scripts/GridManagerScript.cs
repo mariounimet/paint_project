@@ -11,6 +11,8 @@ public class GridManagerScript : MonoBehaviour
     public int blockPixelSize;//potencia de 2
     private SpriteRenderer spriteRenderer;
     private Camera mainCamera;
+    public float ratioThreshold;
+    public int resolutionOffset;
     void Start()
     {
         mainCamera = Camera.main;
@@ -35,6 +37,13 @@ public class GridManagerScript : MonoBehaviour
         // y determina las filas, x las columnas
         Vector2Int[,] auxCoordsMatrix = new Vector2Int[size.y,size.x];
         Vector2Int originalCoords = getLowerLeftCoords();
+
+        float ratio = (float) Screen.width/Screen.height;
+        if (ratio < this.ratioThreshold) {
+            originalCoords.x -= this.resolutionOffset;
+        }
+
+
         Vector2Int currentCoords = originalCoords;
         for(int i = size.y-1; i >=0; i--){
             for(int j = 0; j < size.x; j++){

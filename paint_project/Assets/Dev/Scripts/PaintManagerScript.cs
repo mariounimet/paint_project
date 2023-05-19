@@ -257,44 +257,7 @@ public class PaintManagerScript : MonoBehaviour
         ResetCanvas();
     }
 
-// se borrara GetImageMousePositionOnImage
-    private Vector2 GetImageMousePositionOnImage(){
-        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Sprite sprite = spriteRenderer.sprite;
-        Rect rect =  sprite.textureRect;
-        float x = pos.x-gameObject.transform.position.x;
-        float y = pos.y-gameObject.transform.position.y;
-        x *= sprite.pixelsPerUnit;
-        y *= sprite.pixelsPerUnit;
-        // x*= currentMask.width;
-        // y*= currentMask.height;
-        x+= rect.width/2;
-        y+= rect.height/2;
-        x += rect.x;
-        y += rect.y;
-        int realX = Mathf.FloorToInt(x);
-        int realY = Mathf.FloorToInt(y);    
-        return(new Vector2(x,y));
-    }
 
-    public Vector2Int getLowerLeftCoords(){
-        Camera camera = Camera.main;
-        Vector3 pos = camera.ViewportToWorldPoint(new Vector3(0,0,camera.nearClipPlane));
-        Sprite sprite = spriteRenderer.sprite;
-        Rect rect =  sprite.textureRect;
-        float x = pos.x-gameObject.transform.position.x;
-        float y = pos.y-gameObject.transform.position.y;
-        x *= sprite.pixelsPerUnit;
-        y *= sprite.pixelsPerUnit;
-        x+= rect.width/2;
-        y+= rect.height/2;
-        x += rect.x;
-        y += rect.y;
-        int realX = Mathf.FloorToInt(x);
-        int realY = Mathf.FloorToInt(y); 
-
-        return new Vector2Int(realX, realY);
-    }
 
     public Vector2 worldCoordsToImageCoords(float worldX,float worldY) {
         Sprite sprite = spriteRenderer.sprite;
@@ -349,6 +312,43 @@ public class PaintManagerScript : MonoBehaviour
        // print((100f/(matrixSize.x*matrixSize.y)).ToString());
     }
 
+// se borrara GetImageMousePositionOnImage
+    // private Vector2 GetImageMousePositionOnImage(){
+    //     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     Sprite sprite = spriteRenderer.sprite;
+    //     Rect rect =  sprite.textureRect;
+    //     float x = pos.x-gameObject.transform.position.x;
+    //     float y = pos.y-gameObject.transform.position.y;
+    //     x *= sprite.pixelsPerUnit;
+    //     y *= sprite.pixelsPerUnit;
+    //     // x*= currentMask.width;
+    //     // y*= currentMask.height;
+    //     x+= rect.width/2;
+    //     y+= rect.height/2;
+    //     x += rect.x;
+    //     y += rect.y;
+    //     int realX = Mathf.FloorToInt(x);
+    //     int realY = Mathf.FloorToInt(y);    
+    //     return(new Vector2(x,y));
+    // }
 
+    // public Vector2Int getLowerLeftCoords(){
+    //     Camera camera = Camera.main;
+    //     Vector3 pos = camera.ViewportToWorldPoint(new Vector3(0,0,camera.nearClipPlane));
+    //     Sprite sprite = spriteRenderer.sprite;
+    //     Rect rect =  sprite.textureRect;
+    //     float x = pos.x-gameObject.transform.position.x;
+    //     float y = pos.y-gameObject.transform.position.y;
+    //     x *= sprite.pixelsPerUnit;
+    //     y *= sprite.pixelsPerUnit;
+    //     x+= rect.width/2;
+    //     y+= rect.height/2;
+    //     x += rect.x;
+    //     y += rect.y;
+    //     int realX = Mathf.FloorToInt(x);
+    //     int realY = Mathf.FloorToInt(y); 
+
+    //     return new Vector2Int(realX, realY);
+    // }
 
 }
