@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveChase : MonoBehaviour
+public class EnemyMoveChase : MonoBehaviour, IPooledObject
 {
 
     private Rigidbody2D Rigidbody2D;
@@ -11,7 +11,7 @@ public class EnemyMoveChase : MonoBehaviour
     private bool acelerate;
 
     // Start is called before the first frame update
-    void Start()
+    public void OnObjectSpawn()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Rigidbody2D.angularVelocity = 300;
