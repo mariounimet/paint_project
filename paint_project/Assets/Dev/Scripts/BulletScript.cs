@@ -29,7 +29,7 @@ public class BulletScript : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             destroyBullet();
-            other.GetComponent<Player>().HitBullet(); 
+            other.GetComponent<Player>().Hit(); 
         } else if (other.CompareTag("Boundary")) {
             destroyBullet();
         }
