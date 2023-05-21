@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaintManagerScript : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class PaintManagerScript : MonoBehaviour
     private float cameraStepX;
     private float cameraStepY;
     public Vector2 initialCamaraCoords;
+
+    public string textValue;
+    public Text textElement;
+
+
    
 
     public GridManagerScript grid;
@@ -67,12 +73,12 @@ public class PaintManagerScript : MonoBehaviour
        }
     }
 
-    public void detectPaint(){
+    public void detectPaint(float xDie, float yDie){
         //TODO enemy defeated
         if(Input.GetMouseButtonDown(0)) {
 
             Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 pos = worldCoordsToImageCoords(clickPos.x, clickPos.y);
+            Vector2 pos = worldCoordsToImageCoords(xDie, yDie);
            
 
             int xIndex = closestDownMultiple((pos.x-xOffset),this.grid.blockPixelSize, true);
@@ -108,7 +114,9 @@ public class PaintManagerScript : MonoBehaviour
             }
          
             // print(progressPerBlock.ToString());
-            print("El progreso es: "+this.progressPercent.ToString()+"%");
+            print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
+            this.textValue = this.progressPercent.ToString()+"%";
+            this.textElement.text = textValue;
         } 
         
     }
