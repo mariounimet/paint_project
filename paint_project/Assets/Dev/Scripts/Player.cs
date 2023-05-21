@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void Hit() {
+    public void HitBullet() {
         health--;
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,7 +31,14 @@ public class Player : MonoBehaviour
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
-            Destroy(gameObject);
-            }
+            Application.Quit();
+            Debug.Log("EndGame");
+        }
     }
+
+    public void HitShip() {
+        Debug.Log("EndGame");
+        Application.Quit();
+    }
+
 }

@@ -93,4 +93,15 @@ class ShooterScript : Enemy
     {
 
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit");
+        if(other.CompareTag("Player"))
+        {
+            Debug.Log("Hit PLayer");
+            other.GetComponent<Player>().HitShip(); 
+        }
+
+    }
 }

@@ -28,8 +28,12 @@ public class BulletScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            destroyBullet(); 
+            destroyBullet();
+            other.GetComponent<Player>().HitBullet(); 
+        } else if (other.CompareTag("Boundary")) {
+            destroyBullet();
         }
+
     }
 
     public void destroyBullet()
