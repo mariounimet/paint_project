@@ -33,6 +33,7 @@ public class PaintManagerScript : MonoBehaviour
 
     public string textValue;
     public Text textElement;
+    private float textPercentage;
 
 
    
@@ -73,12 +74,12 @@ public class PaintManagerScript : MonoBehaviour
        }
     }
 
-    public void detectPaint(float xDie, float yDie){
+    public void detectPaint(){
         //TODO enemy defeated
         if(Input.GetMouseButtonDown(0)) {
 
             Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 pos = worldCoordsToImageCoords(xDie, yDie);
+            Vector2 pos = worldCoordsToImageCoords(clickPos.x, clickPos.y);
            
 
             int xIndex = closestDownMultiple((pos.x-xOffset),this.grid.blockPixelSize, true);
@@ -115,8 +116,9 @@ public class PaintManagerScript : MonoBehaviour
          
             // print(progressPerBlock.ToString());
             print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
-            this.textValue = this.progressPercent.ToString()+"%";
-            this.textElement.text = textValue;
+            this.textPercentage = Mathf.Round(this.progressPercent);
+            this.textValue = this.textPercentage.ToString()+"%";
+            textElement.text = textValue;
         } 
         
     }
