@@ -265,6 +265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 4545051042056429117, guid: c5326370011601e45ad3eb16c3977501, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4545051042056429118, guid: c5326370011601e45ad3eb16c3977501, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -323,7 +327,6 @@ GameObject:
   - component: {fileID: 1146907228}
   - component: {fileID: 1146907227}
   - component: {fileID: 1146907230}
-  - component: {fileID: 1146907232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -602,6 +605,7 @@ GameObject:
   - component: {fileID: 1816793676}
   - component: {fileID: 1816793675}
   - component: {fileID: 1816793677}
+  - component: {fileID: 1816793678}
   m_Layer: 3
   m_Name: Ship
   m_TagString: Player
@@ -704,7 +708,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816793672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1908,3 +1912,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848fc88dc9a91734b9f222d5c28177c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1816793678
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816793672}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06105006, y: 0.0000019868216}
+  serializedVersion: 2
+  m_Radius: 10.59123
