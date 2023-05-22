@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PaintManagerScript : MonoBehaviour
 {
@@ -33,12 +32,6 @@ public class PaintManagerScript : MonoBehaviour
     public GameObject player;
     public TouchManagerScript touchManager;
     public Texture2D originalBackground;    
-
-    public string textValue;
-    public Text textElement;
-    private float textPercentage;
-
-
    
 
     public GridManagerScript grid;
@@ -118,10 +111,7 @@ public class PaintManagerScript : MonoBehaviour
             }
          
             // print(progressPerBlock.ToString());
-            print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
-            this.textPercentage = Mathf.Round(this.progressPercent);
-            this.textValue = this.textPercentage.ToString()+"%";
-            textElement.text = textValue;
+            print("El progreso es: "+this.progressPercent.ToString()+"%");
         } 
         
     }
