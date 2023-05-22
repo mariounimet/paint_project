@@ -21,6 +21,7 @@ public class TouchManagerScript : MonoBehaviour
     private float moveForward;
     public float RotationSpeed;
     private float rotZ;
+    public float drag;
 
     private void Awake() {
       playerInput = GetComponent<PlayerInput>();
@@ -31,6 +32,10 @@ public class TouchManagerScript : MonoBehaviour
       
       middleOfScreen = Camera.main.transform.position.x;
       Debug.Log(middleOfScreen);
+    }
+
+    public void setMiddleOfScreen(float newX){
+      this.middleOfScreen = newX;
     }
 
     // private void OnEnable() {

@@ -29,6 +29,8 @@ public class PaintManagerScript : MonoBehaviour
     private float cameraStepX;
     private float cameraStepY;
     public Vector2 initialCamaraCoords;
+    public GameObject player;
+    public TouchManagerScript touchManager;
    
 
     public GridManagerScript grid;
@@ -155,29 +157,36 @@ public class PaintManagerScript : MonoBehaviour
            if ((currentSector.x == 0) && (currentSector.y == 0)) {
                 //this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
+                this.player.transform.position = new Vector3(this.player.transform.position.x+cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                 if (this.mainCamera.transform.position.x> Mathf.Abs(this.initialCamaraCoords.x)) {
                     this.mainCamera.transform.position = new Vector3(Mathf.Abs(this.initialCamaraCoords.x),this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                     this.currentSector.x = 1;
                     this.isMovingCamera = false;
+                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
                 }
                 
                 
             } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
+                this.player.transform.position = new Vector3(this.player.transform.position.x,this.player.transform.position.y +cameraStepY,this.player.transform.position.z);
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y+cameraStepY,this.mainCamera.transform.position.z);
                 if (this.mainCamera.transform.position.y> Mathf.Abs(this.initialCamaraCoords.y)) {
                     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.mainCamera.transform.position.z);
                     this.currentSector.y = 1;
                     this.isMovingCamera = false;
+
                 }
             
             } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
+                this.player.transform.position = new Vector3(this.player.transform.position.x-cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
+                
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x-cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
                if (this.mainCamera.transform.position.x< this.initialCamaraCoords.x) {
                     this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x+0.18f,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                     this.currentSector.x = 0;
                     this.isMovingCamera = false;
+                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
                 }
                 
                 

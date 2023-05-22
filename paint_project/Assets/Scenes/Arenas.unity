@@ -162,6 +162,8 @@ MonoBehaviour:
   CameraMoveDelay: 0.01
   CameraTransitionMaxDuration: 1
   initialCamaraCoords: {x: -2.65, y: -4.4}
+  player: {fileID: 1816793672}
+  touchManager: {fileID: 1767866068}
   grid: {fileID: 158723475}
 --- !u!114 &158723475
 MonoBehaviour:
@@ -590,8 +592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1816793672}
-  Speed: 10
-  RotationSpeed: 50
+  Speed: 3
+  RotationSpeed: 100
 --- !u!1 &1816793672
 GameObject:
   m_ObjectHideFlags: 0
