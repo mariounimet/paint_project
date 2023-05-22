@@ -31,6 +31,7 @@ public class PaintManagerScript : MonoBehaviour
     public Vector2 initialCamaraCoords;
     public GameObject player;
     public TouchManagerScript touchManager;
+    public Texture2D originalBackground;    
    
 
     public GridManagerScript grid;
@@ -253,10 +254,12 @@ public class PaintManagerScript : MonoBehaviour
     public void ResetCanvas(){
       
         Vector2 canvasSize = new Vector2(currentMask.width, currentMask.height);
-        Color[] cArray = new Color[(int)canvasSize.x*(int)canvasSize.y];
-        for(int i = 0; i < cArray.Length; i++) {
-            cArray[i]=Color.black;
-        }
+        // Color[] cArray = new Color[(int)canvasSize.x*(int)canvasSize.y];
+        // for(int i = 0; i < cArray.Length; i++) {
+        //     cArray[i]=Color.black;
+        // }
+        Color[] cArray = this.originalBackground.GetPixels(0,0,2048,2048);
+
         this.newMask.SetPixels(0,0,(int)canvasSize.x,(int)canvasSize.y,cArray, 0);
         this.newMask.Apply();
         this.crenderer.material.mainTexture = newMask;

@@ -164,6 +164,7 @@ MonoBehaviour:
   initialCamaraCoords: {x: -2.65, y: -4.4}
   player: {fileID: 1816793672}
   touchManager: {fileID: 1767866068}
+  originalBackground: {fileID: 2800000, guid: 008bff6dd1459bd4aa927fc75a2d7867, type: 3}
   grid: {fileID: 158723475}
 --- !u!114 &158723475
 MonoBehaviour:
@@ -223,7 +224,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8849aa5aa5e0b4942a891f10ccbd6758, type: 3}
-  m_Color: {r: 0.17478503, g: 0.8867924, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -342,6 +343,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &682252970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682252972}
+  - component: {fileID: 682252971}
+  m_Layer: 0
+  m_Name: PPVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &682252971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682252970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: ee3dc74b1cbd3bf4784b2c45dcb74af0, type: 2}
+--- !u!4 &682252972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682252970}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.67, y: -6.8599997, z: -4.268502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1146907226
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +501,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -684,8 +734,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5d220e595161697478dfad84c53b62a9, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2cb4c433a4630e248852de728a91624e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -704,7 +754,7 @@ Transform:
   m_GameObject: {fileID: 1816793672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.52, y: -6.68, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -727,7 +777,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 42.614445, y: 34}
+    oldSize: {x: 1.28, y: 1.02}
     newSize: {x: 42.614445, y: 34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1921,10 +1971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64242a84eab2d364c90321a9aed9fd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  bulletPrefab: {fileID: 1143012164119763823, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
-  firingPoint: {fileID: 1816793674}
-  fireRate: 0.5
 --- !u!58 &1816793678
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1938,9 +1984,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06105006, y: -1.241398}
+  m_Offset: {x: -0.010678172, y: -0.10589838}
   serializedVersion: 2
-  m_Radius: 10.501592
+  m_Radius: 0.4025154
 --- !u!50 &1816793679
 Rigidbody2D:
   serializedVersion: 4

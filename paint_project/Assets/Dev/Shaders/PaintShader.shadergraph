@@ -158,20 +158,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "726460ffcbf443959ce122e16726fdcd"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "b34d0175fb6d4fa596d7d3a781ace7e8"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "8737142ca8e3460c81750c14f8f4022b"
                 },
                 "m_SlotId": 0
@@ -2365,7 +2351,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"8849aa5aa5e0b4942a891f10ccbd6758\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"81cb1cf918dad304182ad0752d223ae2\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0

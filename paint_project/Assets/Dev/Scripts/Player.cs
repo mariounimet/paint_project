@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Color presetColor = new Color(207, 255, 0);
-    Color life2Color = new Color(255, 0, 255);
-    Color life1Color = new Color(0, 255, 255);
+    Color presetColor = new Color(0, 255, 0);
+    Color life2Color = new Color(207, 255, 0);
+    Color life1Color = new Color(255, 0, 0);
     private int health = 3;
 
         // [SerializeField] private float speed = 5f;
