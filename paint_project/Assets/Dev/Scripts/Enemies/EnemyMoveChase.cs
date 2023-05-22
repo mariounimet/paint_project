@@ -11,7 +11,7 @@ public class EnemyMoveChase : MonoBehaviour
     private bool acelerate;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Rigidbody2D.angularVelocity = 300;

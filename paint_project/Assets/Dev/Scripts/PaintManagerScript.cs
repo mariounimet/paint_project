@@ -29,6 +29,8 @@ public class PaintManagerScript : MonoBehaviour
     private float cameraStepX;
     private float cameraStepY;
     public Vector2 initialCamaraCoords;
+    public GameObject player;
+    public TouchManagerScript touchManager;
    
 
     public GridManagerScript grid;
@@ -155,29 +157,36 @@ public class PaintManagerScript : MonoBehaviour
            if ((currentSector.x == 0) && (currentSector.y == 0)) {
                 //this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
+                this.player.transform.position = new Vector3(this.player.transform.position.x+cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                 if (this.mainCamera.transform.position.x> Mathf.Abs(this.initialCamaraCoords.x)) {
                     this.mainCamera.transform.position = new Vector3(Mathf.Abs(this.initialCamaraCoords.x),this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                     this.currentSector.x = 1;
                     this.isMovingCamera = false;
+                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
                 }
                 
                 
             } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
+                this.player.transform.position = new Vector3(this.player.transform.position.x,this.player.transform.position.y +cameraStepY,this.player.transform.position.z);
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y+cameraStepY,this.mainCamera.transform.position.z);
                 if (this.mainCamera.transform.position.y> Mathf.Abs(this.initialCamaraCoords.y)) {
                     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.mainCamera.transform.position.z);
                     this.currentSector.y = 1;
                     this.isMovingCamera = false;
+
                 }
             
             } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
+                this.player.transform.position = new Vector3(this.player.transform.position.x-cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
+                
                 this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x-cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
                if (this.mainCamera.transform.position.x< this.initialCamaraCoords.x) {
-                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x+0.18f,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                     this.currentSector.x = 0;
                     this.isMovingCamera = false;
+                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
                 }
                 
                 
@@ -189,7 +198,7 @@ public class PaintManagerScript : MonoBehaviour
                     this.cameraStepY=0;
                   }
 
-                  this.mainCamera.orthographicSize += 0.01f;
+                  this.mainCamera.orthographicSize += 0.03f;
                   if (this.mainCamera.orthographicSize >= 8.9f) {
                      this.mainCamera.orthographicSize = 8.9f;
                      this.isMovingCamera= false;
@@ -257,44 +266,7 @@ public class PaintManagerScript : MonoBehaviour
         ResetCanvas();
     }
 
-// se borrara GetImageMousePositionOnImage
-    private Vector2 GetImageMousePositionOnImage(){
-        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Sprite sprite = spriteRenderer.sprite;
-        Rect rect =  sprite.textureRect;
-        float x = pos.x-gameObject.transform.position.x;
-        float y = pos.y-gameObject.transform.position.y;
-        x *= sprite.pixelsPerUnit;
-        y *= sprite.pixelsPerUnit;
-        // x*= currentMask.width;
-        // y*= currentMask.height;
-        x+= rect.width/2;
-        y+= rect.height/2;
-        x += rect.x;
-        y += rect.y;
-        int realX = Mathf.FloorToInt(x);
-        int realY = Mathf.FloorToInt(y);    
-        return(new Vector2(x,y));
-    }
 
-    public Vector2Int getLowerLeftCoords(){
-        Camera camera = Camera.main;
-        Vector3 pos = camera.ViewportToWorldPoint(new Vector3(0,0,camera.nearClipPlane));
-        Sprite sprite = spriteRenderer.sprite;
-        Rect rect =  sprite.textureRect;
-        float x = pos.x-gameObject.transform.position.x;
-        float y = pos.y-gameObject.transform.position.y;
-        x *= sprite.pixelsPerUnit;
-        y *= sprite.pixelsPerUnit;
-        x+= rect.width/2;
-        y+= rect.height/2;
-        x += rect.x;
-        y += rect.y;
-        int realX = Mathf.FloorToInt(x);
-        int realY = Mathf.FloorToInt(y); 
-
-        return new Vector2Int(realX, realY);
-    }
 
     public Vector2 worldCoordsToImageCoords(float worldX,float worldY) {
         Sprite sprite = spriteRenderer.sprite;
@@ -349,6 +321,43 @@ public class PaintManagerScript : MonoBehaviour
        // print((100f/(matrixSize.x*matrixSize.y)).ToString());
     }
 
+// se borrara GetImageMousePositionOnImage
+    // private Vector2 GetImageMousePositionOnImage(){
+    //     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     Sprite sprite = spriteRenderer.sprite;
+    //     Rect rect =  sprite.textureRect;
+    //     float x = pos.x-gameObject.transform.position.x;
+    //     float y = pos.y-gameObject.transform.position.y;
+    //     x *= sprite.pixelsPerUnit;
+    //     y *= sprite.pixelsPerUnit;
+    //     // x*= currentMask.width;
+    //     // y*= currentMask.height;
+    //     x+= rect.width/2;
+    //     y+= rect.height/2;
+    //     x += rect.x;
+    //     y += rect.y;
+    //     int realX = Mathf.FloorToInt(x);
+    //     int realY = Mathf.FloorToInt(y);    
+    //     return(new Vector2(x,y));
+    // }
 
+    // public Vector2Int getLowerLeftCoords(){
+    //     Camera camera = Camera.main;
+    //     Vector3 pos = camera.ViewportToWorldPoint(new Vector3(0,0,camera.nearClipPlane));
+    //     Sprite sprite = spriteRenderer.sprite;
+    //     Rect rect =  sprite.textureRect;
+    //     float x = pos.x-gameObject.transform.position.x;
+    //     float y = pos.y-gameObject.transform.position.y;
+    //     x *= sprite.pixelsPerUnit;
+    //     y *= sprite.pixelsPerUnit;
+    //     x+= rect.width/2;
+    //     y+= rect.height/2;
+    //     x += rect.x;
+    //     y += rect.y;
+    //     int realX = Mathf.FloorToInt(x);
+    //     int realY = Mathf.FloorToInt(y); 
+
+    //     return new Vector2Int(realX, realY);
+    // }
 
 }
