@@ -19,6 +19,6 @@ public class PlayerBullet : MonoBehaviour
 
     private void FixedUpdate(){
         rb.velocity = transform.up * speed;
-        
+
     }
 }
