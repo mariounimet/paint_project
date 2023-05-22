@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
     [Range(0.1f, 3f)]
-    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireRate = 0.8f;
     private float fireTimer;
     // Start is called before the first frame update
     void Start()
