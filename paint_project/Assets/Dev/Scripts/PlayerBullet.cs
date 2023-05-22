@@ -14,11 +14,25 @@ public class PlayerBullet : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, lifeTime);
     }
-
     private void FixedUpdate(){
         rb.velocity = transform.up * speed;
 
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("ShooterScript"))
+        {
+            destroyBulletPlayer();
+            other.GetComponent<ShooterScript>().Die(); 
+        } else if (other.CompareTag("Boundary")) {
+            destroyBulletPlayer();
+        }
+
+    }
+
+    public void destroyBulletPlayer()
+    {
+        Destroy(gameObject);
     }
 }
