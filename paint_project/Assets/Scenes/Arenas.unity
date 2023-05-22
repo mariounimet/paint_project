@@ -593,7 +593,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1816793672}
   Speed: 3
-  RotationSpeed: 100
+  RotationSpeed: 120
+  drag: 0.01
+  maxVel: {x: 0.1, y: 0.1, z: 20}
 --- !u!1 &1816793672
 GameObject:
   m_ObjectHideFlags: 0
