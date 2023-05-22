@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveGrid : MonoBehaviour
+public class EnemyMoveGrid : MonoBehaviour, IPooledObject
 {
     public GameObject cam;
     public GameObject player;
@@ -14,7 +14,7 @@ public class EnemyMoveGrid : MonoBehaviour
     private float rotationModifier;
 
     // Start is called before the first frame update
-    void Start()
+    public void OnObjectSpawn()
     {
         speed = 0;
         rotationModifier = 90;
@@ -69,5 +69,15 @@ public class EnemyMoveGrid : MonoBehaviour
     void delay()
     {
         print("aaaa");
+    }
+
+    public void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player")) {
+            Destroy(other.gameObject);
+            player = null;
+        } else if (other.gameObject.CompareTag("Bullet")) {
+            Destroy(other.gameObject);
+            gameObject.SetActive(false);
+        }
     }
 }

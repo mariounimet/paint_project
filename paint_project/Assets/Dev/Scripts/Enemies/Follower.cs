@@ -37,4 +37,14 @@ public class Follower : MonoBehaviour, IPooledObject
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player")) {
+            Destroy(other.gameObject);
+            target = null;
+        } else if (other.gameObject.CompareTag("Bullet")) {
+            Destroy(other.gameObject);
+            gameObject.SetActive(false);
+        }
+    }
 }
