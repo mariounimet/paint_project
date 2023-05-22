@@ -96,11 +96,10 @@ class ShooterScript : Enemy
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit");
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Hit PLayer");
-            other.GetComponent<Player>().HitShip(); 
+            other.GetComponent<Player>().Hit();
+            Destroy(gameObject); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }
 
     }

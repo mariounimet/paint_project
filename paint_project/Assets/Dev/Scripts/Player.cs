@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
  
 
-    public void HitBullet() {
+    public void Hit() {
         health--;
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
             Application.Quit();
-            Debug.Log("EndGame");
         }
     }
 

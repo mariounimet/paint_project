@@ -40,11 +40,21 @@ public class Follower : MonoBehaviour, IPooledObject
 
     public void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Player>().Hit();
             target = null;
         } else if (other.gameObject.CompareTag("Bullet")) {
             Destroy(other.gameObject);
-            gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponent<Player>().Hit();
+            gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
+        }
+
     }
 }
