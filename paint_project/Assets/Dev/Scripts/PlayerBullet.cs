@@ -21,13 +21,18 @@ public class PlayerBullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("ShooterScript"))
-        {
+        print("Choque");
+        // if(other.CompareTag("ShooterScript"))
+        // {
+        //     destroyBulletPlayer();
+        //     other.GetComponent<ShooterScript>().Die(); 
+        // } 
+
+        if (other.CompareTag("Boundary")) {
+            print("entro");
             destroyBulletPlayer();
-            other.GetComponent<ShooterScript>().Die(); 
-        } else if (other.CompareTag("Boundary")) {
-            destroyBulletPlayer();
-        }
+            
+            }
 
     }
 
