@@ -60,8 +60,10 @@ public class PaintManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
-       detectPaint();
+    //   if(Input.GetMouseButtonDown(0)){
+    //         detectPaint(Camera.main.ScreenToWorldPoint);
+    //   }
+       
 
         CameraTimer += Time.deltaTime;
        if (isMovingCamera && (CameraTimer > CameraMoveDelay)) {
@@ -77,12 +79,12 @@ public class PaintManagerScript : MonoBehaviour
        }
     }
 
-    public void detectPaint(){
+    public void detectPaint(Vector3 enemypos){
         //TODO enemy defeated
-        if(Input.GetMouseButtonDown(0)) {
-
-            Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 pos = worldCoordsToImageCoords(clickPos.x, clickPos.y);
+           
+            print(enemypos);
+            // Vector2 realEnemyPos = Camera.main.ScreenToWorldPoint(enemypos);
+            Vector2 pos = worldCoordsToImageCoords(enemypos.x, enemypos.y);
            
 
             int xIndex = closestDownMultiple((pos.x-xOffset),this.grid.blockPixelSize, true);
@@ -104,7 +106,7 @@ public class PaintManagerScript : MonoBehaviour
            
            
            
-        }
+        
     }
 
     public void TryPaintGridSquare(int xIndex, int yIndex){

@@ -8,6 +8,7 @@ class ShooterScript : Enemy
     public GameObject cam;
     public GameObject player;
     private Vector3 moveTo;
+    private PaintManagerScript PaintManager;
 
     private bool newMoveTo;
     private float speed;
@@ -23,7 +24,7 @@ class ShooterScript : Enemy
 
     void Start()
     {
-
+        PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         player =  GameObject.Find("Ship");
         cam = GameObject.Find("Main Camera");
         MoveToSpawnPoint();
@@ -94,7 +95,8 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
-        print("muere");
+        PaintManager.detectPaint(transform.position);
+        gameObject.SetActive(false);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -102,7 +104,8 @@ class ShooterScript : Enemy
         if(other.CompareTag("Player"))
         {
             other.GetComponent<Player>().HitBullet();
-            Destroy(gameObject); //Este destroy realmente va a ser una llamada a la funcion de object pool
+            PaintManager.detectPaint(transform.position);
+            gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }
 
     }

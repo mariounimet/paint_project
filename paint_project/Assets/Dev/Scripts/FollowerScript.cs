@@ -9,10 +9,12 @@ class FollowerScript : Enemy
     public GameObject player;
     private float speed;
     private bool acelerate;
+    private PaintManagerScript PaintManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         player =  GameObject.Find("Ship");
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Rigidbody2D.angularVelocity = 300;
@@ -57,7 +59,8 @@ class FollowerScript : Enemy
     }
     public override void Die()
     {
-        print("Mori");
+         PaintManager.detectPaint(transform.position);
+         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -66,6 +69,7 @@ class FollowerScript : Enemy
         {
              print("enemigo vs jugador");
             other.GetComponent<Player>().HitBullet();
+            PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }
     }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    [Range(1, 10)]
-    [SerializeField] private float speed = 10f;
+    [Range(1, 20)]
+    [SerializeField] public float speed = 10f;
 
     [Range(1, 10)]
     [SerializeField] private float lifeTime = 1f;

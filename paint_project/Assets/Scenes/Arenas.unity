@@ -225,7 +225,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 2800000, guid: 1f565c2115bdd3a498af11877c996e4a, type: 3}
   xOffset: 518
   yOffset: 98
-  completeSectorThreshold: 16
+  completeSectorThreshold: 14
   Paintdelay: 0.01
   CameraMoveDelay: 0.01
   CameraTransitionMaxDuration: 1
@@ -997,6 +997,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5506111697679817545, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
+      propertyPath: fireRate
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5506111697679817545, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
       propertyPath: firingPoint
       value: 
