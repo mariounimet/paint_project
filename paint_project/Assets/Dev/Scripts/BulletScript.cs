@@ -29,11 +29,22 @@ public class BulletScript : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             destroyBullet();
-            other.GetComponent<Player>().Hit(); 
-        } else if (other.CompareTag("Boundary")) {
-            destroyBullet();
-        }
+            other.GetComponent<Player>().HitBullet(); 
+        } 
+// else if (other.CompareTag("Boundary")) {
+//             destroyBullet();
+//         }
+    }
 
+     private void OnCollisionEnter2D(Collision2D other) {
+   
+
+        bool boundaryColission = (other.gameObject.name == "TopBoundary") || (other.gameObject.name == "BottomBoundary") ||(other.gameObject.name == "RightBoundary") ||(other.gameObject.name == "LeftBoundary"); 
+
+        if (boundaryColission) {
+          
+            destroyBullet();  
+            }
     }
 
     public void destroyBullet()

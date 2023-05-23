@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5520874712786567289}
   m_Layer: 0
   m_Name: Shooter
-  m_TagString: Untagged
+  m_TagString: ShooterScript
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4545051042056429113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.281, y: -2.41, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7665cf909bf952f4d8d65a2852d3a759, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5850e33c869a014da6c5603e0feaf26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,20 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4545051042056429112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4545051042056429113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03993a09bc339b14e891379bc8a0b769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 2351922140606499068, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
-  player: {fileID: 7964970742043009840, guid: 2d403ac81325e0c4fa6efce03c7fcb32, type: 3}
 --- !u!50 &4545051042056429116
 Rigidbody2D:
   serializedVersion: 4
@@ -140,7 +126,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.68, y: 32.553913}
+    oldSize: {x: 4.4100003, y: 6.640941}
     newSize: {x: 20.68, y: 32.553913}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1077,9 +1063,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2248ba52c8937d14293b9f0dfa552ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2268189177320122543, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
-  cam: {fileID: 0}
-  player: {fileID: 0}
+  bullet: {fileID: 1143012164119763823, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
+  cam: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
+  player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
 --- !u!58 &5520874712786567289
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1093,6 +1079,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.38743615, y: -4.494214}
+  m_Offset: {x: -0.025911331, y: -0.5174291}
   serializedVersion: 2
-  m_Radius: 11.7052555
+  m_Radius: 2.3959613

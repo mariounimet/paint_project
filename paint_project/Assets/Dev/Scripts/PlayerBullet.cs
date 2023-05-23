@@ -23,11 +23,22 @@ public class PlayerBullet : MonoBehaviour
     {
         // print("Choque");
         // destroyBulletPlayer();
-        if(other.CompareTag("ShooterScript"))
-        {
+        // if(other.CompareTag("FollowerScript")) //TODO nombre correcto
+        // {
+        //     destroyBulletPlayer();
+        //     other.GetComponent<ShooterScript>().Die(); 
+        // } 
+        if(other.CompareTag("ShooterScript")) {
             destroyBulletPlayer();
             other.GetComponent<ShooterScript>().Die(); 
-        } 
+            }
+
+            if(other.CompareTag("Follower")) {
+            destroyBulletPlayer();
+            other.GetComponent<FollowerScript>().Die(); 
+            }
+    
+       
 
         // if (other.CompareTag("Boundary")) {
         //     print("entro");

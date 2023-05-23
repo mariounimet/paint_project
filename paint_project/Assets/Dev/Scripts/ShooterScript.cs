@@ -98,7 +98,7 @@ class ShooterScript : Enemy
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().Hit();
+            other.GetComponent<Player>().HitBullet();
             Destroy(gameObject); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }
 

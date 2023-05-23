@@ -56,6 +56,16 @@ class FollowerScript : Enemy
     }
     public override void Die()
     {
+        print("Mori");
+    }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+       
+        if(other.CompareTag("Player"))
+        {
+             print("enemigo vs jugador");
+            other.GetComponent<Player>().HitBullet();
+            gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
+        }
     }
 }
