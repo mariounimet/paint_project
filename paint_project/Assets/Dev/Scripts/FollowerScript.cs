@@ -13,6 +13,7 @@ class FollowerScript : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        player =  GameObject.Find("Ship");
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Rigidbody2D.angularVelocity = 300;
 

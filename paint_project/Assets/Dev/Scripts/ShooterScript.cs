@@ -23,6 +23,9 @@ class ShooterScript : Enemy
 
     void Start()
     {
+
+        player =  GameObject.Find("Ship");
+        cam = GameObject.Find("Main Camera");
         MoveToSpawnPoint();
         speed = 0;
         rotationModifier = 90;
