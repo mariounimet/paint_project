@@ -91,7 +91,7 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
-        
+        print("muere");
     }
     
     private void OnTriggerEnter2D(Collider2D other)

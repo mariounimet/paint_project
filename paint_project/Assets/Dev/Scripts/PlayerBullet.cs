@@ -21,19 +21,32 @@ public class PlayerBullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("Choque");
-        // if(other.CompareTag("ShooterScript"))
-        // {
-        //     destroyBulletPlayer();
-        //     other.GetComponent<ShooterScript>().Die(); 
-        // } 
+        // print("Choque");
+        // destroyBulletPlayer();
+        if(other.CompareTag("ShooterScript"))
+        {
+            destroyBulletPlayer();
+            other.GetComponent<ShooterScript>().Die(); 
+        } 
 
-        if (other.CompareTag("Boundary")) {
-            print("entro");
+        // if (other.CompareTag("Boundary")) {
+        //     print("entro");
+        //     destroyBulletPlayer();
+            
+        //     }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+   
+
+        bool boundaryColission = (other.gameObject.name == "TopBoundary") || (other.gameObject.name == "BottomBoundary") ||(other.gameObject.name == "RightBoundary") ||(other.gameObject.name == "LeftBoundary"); 
+
+        if (boundaryColission) {
+          
             destroyBulletPlayer();
             
             }
-
     }
 
     public void destroyBulletPlayer()
