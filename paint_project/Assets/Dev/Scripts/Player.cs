@@ -67,13 +67,13 @@ public class Player : MonoBehaviour
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
-            Application.Quit();
+            // Application.Quit();
         }
     }
 
     public void HitShip() {
         Debug.Log("EndGame");
-        Application.Quit();
+        // Application.Quit();
     }
 
 

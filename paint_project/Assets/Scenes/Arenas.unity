@@ -351,10 +351,10 @@ MonoBehaviour:
   pools:
   - tag: Enemy
     prefab: {fileID: 1461882140268713235, guid: 2e85e97db833fde4dbceb60877ba6095, type: 3}
-    size: 3
+    size: 10
   - tag: Shooter
     prefab: {fileID: 4545051042056429113, guid: c5326370011601e45ad3eb16c3977501, type: 3}
-    size: 5
+    size: 10
 --- !u!4 &531103036
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5506111697679817545, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
       propertyPath: fireRate
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5506111697679817545, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
       propertyPath: firingPoint
@@ -1077,6 +1077,10 @@ PrefabInstance:
     - target: {fileID: 5515288668906139737, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
       propertyPath: offSetY
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515288668906139737, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
+      propertyPath: spawnRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5515288669650007456, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
       propertyPath: m_RootOrder
