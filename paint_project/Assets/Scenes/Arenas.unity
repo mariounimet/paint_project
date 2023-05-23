@@ -351,6 +351,9 @@ MonoBehaviour:
   pools:
   - tag: Enemy
     prefab: {fileID: 1461882140268713235, guid: 2e85e97db833fde4dbceb60877ba6095, type: 3}
+    size: 3
+  - tag: Shooter
+    prefab: {fileID: 4545051042056429113, guid: c5326370011601e45ad3eb16c3977501, type: 3}
     size: 5
 --- !u!4 &531103036
 Transform:
