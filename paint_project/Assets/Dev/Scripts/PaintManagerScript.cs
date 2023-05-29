@@ -17,7 +17,7 @@ public class PaintManagerScript : MonoBehaviour
     private Vector2Int currentSector; //0 for negative, 1 for positive
     public int xOffset;
     public int yOffset;
-    [Range(5, 24)] public int completeSectorThreshold; // 20 is good
+    [Range(1, 24)] public int completeSectorThreshold; // 20 is good
     private bool isMovingCamera = false;
     private bool isPainting = false;
     private int[] PaintReaminingIndexes = new int[4]; // [startX, startY, endX, endY]
@@ -37,6 +37,7 @@ public class PaintManagerScript : MonoBehaviour
     public string textValue;
     public Text textElement;
     private float textPercentage;
+    public AudioManagerScript AudioManager;
 
 
    
@@ -80,9 +81,9 @@ public class PaintManagerScript : MonoBehaviour
     }
 
     public void detectPaint(Vector3 enemypos){
-        //TODO enemy defeated
+
            
-            print(enemypos);
+       
             // Vector2 realEnemyPos = Camera.main.ScreenToWorldPoint(enemypos);
             Vector2 pos = worldCoordsToImageCoords(enemypos.x, enemypos.y);
            
@@ -132,18 +133,6 @@ public class PaintManagerScript : MonoBehaviour
         if((progressPercent%25) >= completeSectorThreshold) {
             Vector2Int gridSize = this.grid.getMatrixDimensions(this.grid.canvasSize, this.grid.blockPixelSize);
            
-            // if ((currentSector.x == 0) && (currentSector.y == 0)) {
-            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
-            //     this.currentSector.x = 1;
-                
-                
-            // } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
-            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y*-1,this.mainCamera.transform.position.z);
-            //     this.currentSector.y = 1;
-            // } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
-            //     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
-            //     this.currentSector.x = 0;
-            // }
 
             if (currentSector.x==0) {
                 this.PaintReaminingIndexes[0] = 0 ;  //[startX, startY, endX, endY]
@@ -177,6 +166,7 @@ public class PaintManagerScript : MonoBehaviour
                     this.currentSector.x = 1;
                     this.isMovingCamera = false;
                     this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
+                    this.AudioManager.PlayNextLayer();
                 }
                 
                 
@@ -187,6 +177,7 @@ public class PaintManagerScript : MonoBehaviour
                     this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.mainCamera.transform.position.z);
                     this.currentSector.y = 1;
                     this.isMovingCamera = false;
+                    this.AudioManager.PlayNextLayer();
 
                 }
             
@@ -200,6 +191,7 @@ public class PaintManagerScript : MonoBehaviour
                     this.currentSector.x = 0;
                     this.isMovingCamera = false;
                     this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
+                    this.AudioManager.PlayNextLayer();
                 }
                 
                 
