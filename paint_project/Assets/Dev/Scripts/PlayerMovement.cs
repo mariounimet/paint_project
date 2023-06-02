@@ -25,22 +25,22 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("vertical: " + _joystick.Vertical);
 
         if (_joystick.Horizontal > 0 && _joystick.Vertical > 0) {
-          angle = Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI + 90;
+          angle = Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI + 270;
         } 
         
           else if (_joystick.Horizontal < 0 && _joystick.Vertical > 0) {
-          angle = (Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI + 180;
+          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI);
         } 
         
           else if (_joystick.Horizontal < 0 && _joystick.Vertical < 0){
-          angle = (Math.Atan(_joystick.Vertical / _joystick.Horizontal))  * 180/Math.PI + 270;
+          angle = (Math.Atan(_joystick.Vertical / _joystick.Horizontal))  * 180/Math.PI + 90;
         } 
         
           else {
-          angle = (Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI;
+          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI) + 180;
         }
 
-        player.rotation = (float) angle + 180;
+        player.rotation = (float) angle;
         // Debug.Log("angulo: " + angle * 180 / Math.PI);
         Debug.Log("angulo: " + angle);
         // player.transform.rotation = Quaternion.Euler(0, 0, _joystick.);
