@@ -11,6 +11,7 @@ class ShooterScript : Enemy
     private PaintManagerScript PaintManager;
 
     private bool newMoveTo;
+    private bool shotActive;
     private float speed;
     private float distanceToNew;
     private float rotationModifier;
@@ -35,6 +36,7 @@ class ShooterScript : Enemy
         speed = 0;
         rotationModifier = 90;
         newMoveTo = true;
+        shotActive = true;
         moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
     }
     void Update() {
@@ -79,6 +81,7 @@ class ShooterScript : Enemy
     }
     private void move()
     {
+        shotActive = true;
         moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
         distanceToNew = Vector3.Distance(moveTo, transform.position);
         newMoveTo = true;
@@ -86,9 +89,12 @@ class ShooterScript : Enemy
 
     public override void Shoot()
     {
-        this.audioSource.PlayOneShot(this.shooterBulletSound);
-        GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
-        b.GetComponent<BulletScript>().setDirection(transform.rotation);
+        if(shotActive)
+        {
+            this.audioSource.PlayOneShot(this.shooterBulletSound);
+            GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
+            b.GetComponent<BulletScript>().setDirection(transform.rotation);
+        }
     }
     public override void MoveToSpawnPoint()
     {
@@ -100,7 +106,7 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
-    
+        shotActive = false;
         this.audioSource.PlayOneShot(this.shooterDieSound);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
