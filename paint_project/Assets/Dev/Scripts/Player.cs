@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public AudioClip bulletShotSound;
     private AudioSource audioSource;
     private int health = 3;
-    private float cooldownTime = 20;
+    private float cooldownTime = 2;
     private float nextFireTime = 0;
 
   
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [Range(0.1f, 3f)]
     [SerializeField] private float fireRate = 0.8f;
     private float fireTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
         // Application.Quit();
     }
 
-    public void Hit() {}
+        public void Hit() {}
 
 
  
