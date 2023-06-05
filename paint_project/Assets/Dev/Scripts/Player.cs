@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private int health = 3;
     private float cooldownTime = 2;
     private float nextFireTime = 0;
+    private float timeLastHit = 0;
+    private bool isOnCooldown;
 
   
     // variables bullet
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
         this.audioSource = this.GetComponent<AudioSource>();
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;
+        isOnCooldown = false;
 
         // rb = GetComponent<Rigidbody2D>();
     }
@@ -41,7 +44,13 @@ public class Player : MonoBehaviour
         } else {
             fireTimer -= Time.deltaTime;
         }
-        
+        StopCooldown();
+    }
+
+    private void StopCooldown() {
+        if (((Time.time - timeLastHit) > 2)) {
+            isOnCooldown = false;
+        }
     }
 
     private void Shoot(){
@@ -53,13 +62,14 @@ public class Player : MonoBehaviour
         if (VerifyCooldown()) {
             ReduceHealth();
             nextFireTime = Time.time + cooldownTime;
+            timeLastHit = Time.time;
+            isOnCooldown = true;
         }
     }
 
     public bool VerifyCooldown() {
         bool result = false;
         if  (Time.time > nextFireTime) {
-            nextFireTime = Time.time + cooldownTime;
             result = true;
         }
         return result;
@@ -83,7 +93,7 @@ public class Player : MonoBehaviour
         // Application.Quit();
     }
 
-        public void Hit() {}
+    public void Hit() {}
 
 
  
