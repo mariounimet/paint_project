@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public AudioClip bulletShotSound;
     private AudioSource audioSource;
     private int health = 3;
+    private float cooldownTime = 20;
+    private float nextFireTime = 0;
 
   
     // variables bullet
@@ -30,9 +32,6 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
- 
-
-    public void Hit() {}
     void Update()
     {
         if (fireTimer <= 0f){
@@ -43,11 +42,29 @@ public class Player : MonoBehaviour
         }
         
     }
+
     private void Shoot(){
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
         this.audioSource.PlayOneShot(this.bulletShotSound);
     }
+
     public void HitBullet() {
+        if (VerifyCooldown()) {
+            ReduceHealth();
+            nextFireTime = Time.time + cooldownTime;
+        }
+    }
+
+    public bool VerifyCooldown() {
+        bool result = false;
+        if  (Time.time > nextFireTime) {
+            nextFireTime = Time.time + cooldownTime;
+            result = true;
+        }
+        return result;
+    }
+
+    public void ReduceHealth() {
         health--;
         this.audioSource.PlayOneShot(this.shipHitSound);
         if (health == 2) {
@@ -62,10 +79,10 @@ public class Player : MonoBehaviour
     }
 
     public void HitShip() {
-        Debug.Log("EndGame");
         // Application.Quit();
     }
 
+    public void Hit() {}
 
 
  
