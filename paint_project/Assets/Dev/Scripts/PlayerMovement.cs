@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private Rigidbody2D player;
   [SerializeField] public float speed;
   [SerializeField] private FixedJoystick _joystick;
-  private double angle;
+  private double angle = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +25,18 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("vertical: " + _joystick.Vertical);
 
         if (_joystick.Horizontal > 0 && _joystick.Vertical > 0) {
-          angle = Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI + 270;
+          angle = Math.Abs(Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI) - 90;
         } 
         
           else if (_joystick.Horizontal < 0 && _joystick.Vertical > 0) {
-          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI);
+          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI) ;
         } 
         
           else if (_joystick.Horizontal < 0 && _joystick.Vertical < 0){
-          angle = (Math.Atan(_joystick.Vertical / _joystick.Horizontal))  * 180/Math.PI + 90;
+          angle = Math.Abs(Math.Atan(_joystick.Vertical / _joystick.Horizontal)  * 180/Math.PI) -270;
         } 
         
-          else {
+          else  if (_joystick.Horizontal > 0 && _joystick.Vertical < 0) {
           angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI) + 180;
         }
 
