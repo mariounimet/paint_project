@@ -7,23 +7,10 @@ public class Player : MonoBehaviour
     Color presetColor = new Color(0, 255, 0);
     Color life2Color = new Color(207, 255, 0);
     Color life1Color = new Color(255, 0, 0);
+    public AudioClip shipHitSound;
+    public AudioClip bulletShotSound;
+    private AudioSource audioSource;
     private int health = 3;
-
-        // [SerializeField] private float speed = 5f;
-
-    //Gun variables
-    // [SerializeField] private GameObject bulletPrefab;
-    // [SerializeField] private Transform firingPoint;
-    // [Range(0.1f, 2f)]
-    // [SerializeField] private float fireRate = 0.5f;
-
-    // private Rigidbody2D rb;
-    // private float mx;
-    // private float my;
-
-    // private float fireTimer;
-
-    // private Vector2 mousePos;
 
   
     // variables bullet
@@ -35,6 +22,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.audioSource = this.GetComponent<AudioSource>();
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;
 
@@ -57,9 +45,11 @@ public class Player : MonoBehaviour
     }
     private void Shoot(){
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+        this.audioSource.PlayOneShot(this.bulletShotSound);
     }
     public void HitBullet() {
         health--;
+        this.audioSource.PlayOneShot(this.shipHitSound);
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;

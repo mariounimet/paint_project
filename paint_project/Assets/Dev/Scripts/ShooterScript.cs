@@ -14,6 +14,9 @@ class ShooterScript : Enemy
     private float speed;
     private float distanceToNew;
     private float rotationModifier;
+    private AudioSource audioSource;
+    public AudioClip shooterDieSound;
+    public AudioClip shooterBulletSound;
     // Start is called before the first frame update
 
     public ShooterScript(GameObject c, GameObject p)
@@ -24,6 +27,7 @@ class ShooterScript : Enemy
 
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         player =  GameObject.Find("Ship");
         cam = GameObject.Find("Main Camera");
@@ -82,6 +86,7 @@ class ShooterScript : Enemy
 
     public override void Shoot()
     {
+        this.audioSource.PlayOneShot(this.shooterBulletSound);
         GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
         b.GetComponent<BulletScript>().setDirection(transform.rotation);
     }
@@ -95,6 +100,8 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
+    
+        this.audioSource.PlayOneShot(this.shooterDieSound);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
     }
