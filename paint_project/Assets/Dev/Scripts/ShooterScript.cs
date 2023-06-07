@@ -42,36 +42,33 @@ class ShooterScript : Enemy
         moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
     }
     void Update() {
-        if(!this.GetComponent<EnemyStatesScript>().paused)
-        {
-            if(transform.position.x == moveTo.x && transform.position.y == moveTo.y){
-                if(newMoveTo)
-                {
-                    speed = 0;
-                    newMoveTo = false;
-                    Invoke("move", 3);
-                    Invoke("Shoot", 1);
-                    Invoke("Shoot", 2);
-                }
-                else
-                {
-                    ChageRotation(player.transform.position);
-                }
-                
-            }else{
-                moveTo = new Vector3(cam.transform.position.x +  moveToX, cam.transform.position.y +  moveToY, 0);
-                distanceToNew = Vector3.Distance(moveTo, transform.position);
-                if(Vector3.Distance(moveTo, transform.position) >= distanceToNew/2)
-                {
-                    speed += (float)0.002;
-                }
-                else if(speed > 0.5)
-                {
-                    speed -= (float)0.002;
-                }
-                ChageRotation(moveTo);
-                transform.position = Vector2.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
+        if(transform.position.x == moveTo.x && transform.position.y == moveTo.y){
+            if(newMoveTo)
+            {
+                speed = 0;
+                newMoveTo = false;
+                Invoke("move", 3);
+                Invoke("Shoot", 1);
+                Invoke("Shoot", 2);
             }
+            else
+            {
+                ChageRotation(player.transform.position);
+            }
+            
+        }else{
+            moveTo = new Vector3(cam.transform.position.x +  moveToX, cam.transform.position.y +  moveToY, 0);
+            distanceToNew = Vector3.Distance(moveTo, transform.position);
+            if(Vector3.Distance(moveTo, transform.position) >= distanceToNew/2)
+            {
+                speed += (float)0.002;
+            }
+            else if(speed > 0.5)
+            {
+                speed -= (float)0.002;
+            }
+            ChageRotation(moveTo);
+            transform.position = Vector2.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
         }
     }
     void FixedUpdate() {

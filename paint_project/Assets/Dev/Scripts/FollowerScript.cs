@@ -28,32 +28,24 @@ class FollowerScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(!this.GetComponent<EnemyStatesScript>().paused)
+        Rigidbody2D.angularVelocity = 300;
+        if(speed < 2 && acelerate)
         {
-            Rigidbody2D.angularVelocity = 300;
-            if(speed < 2 && acelerate)
-            {
-                speed += (float)0.001;
+            speed += (float)0.001;
+        }
+        else
+        {
+            acelerate = false;
+            speed -= (float)0.001;
+            if (speed <= 0){
+                acelerate = true;
             }
-            else
-            {
-                acelerate = false;
-                speed -= (float)0.001;
-                if (speed <= 0){
-                    acelerate = true;
-                }
-            }
-        }else{
-            Rigidbody2D.angularVelocity = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        if(!this.GetComponent<EnemyStatesScript>().paused)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime); 
     }
 
     public override void Shoot()
