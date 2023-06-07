@@ -42,7 +42,8 @@ public class ObjectPooler : MonoBehaviour
 
             poolDictionary.Add(pool.tag, objectPool);
         }
-        Invoke("StageChange", 3);
+        Invoke("PauseEnemys", 10);
+        Invoke("ResumeEnemys", 20);
     }
     
     public GameObject SpawnFromPool (string tag, Vector3 position, Quaternion rotation)
@@ -70,13 +71,30 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
-    public void StageChange()
+    public void PauseEnemys()
     {
         foreach (Pool pool in pools)
         {
-            
-                Debug.Log(pool.tag);
-            
+            // Debug.Log(pool.tag);
+            // Debug.Log(poolDictionary[pool.tag].Dequeue());
+
+            foreach (GameObject enemy in poolDictionary[pool.tag])
+            {
+                enemy.GetComponent<EnemyStatesScript>().pause();
+            }
+        }
+    }
+    public void ResumeEnemys()
+    {
+        foreach (Pool pool in pools)
+        {
+            // Debug.Log(pool.tag);
+            // Debug.Log(poolDictionary[pool.tag].Dequeue());
+
+            foreach (GameObject enemy in poolDictionary[pool.tag])
+            {
+                enemy.GetComponent<EnemyStatesScript>().resume();
+            }
         }
     }
 
