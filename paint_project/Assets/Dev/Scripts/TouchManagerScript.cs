@@ -41,23 +41,6 @@ public class TouchManagerScript : MonoBehaviour
       //this.currentAngleZ = 0;
     }
 
-    // private void OnEnable() {
-    //   touchPressAction.performed += TouchPressed;
-    // }
-
-    // private void OnDisable() {
-    //   touchPressAction.performed -= TouchPressed;
-    // }
-
-    // private void TouchPressed(InputAction.CallbackContext context) {
-    //   Vector3 tapPosition = Camera.main.ScreenToWorldPoint(touchPositionAction.ReadValue<Vector2>());
-    //   // Log(tapPosition);
-    //   float value = context.ReadValue<float>();
-    //   
-    //   tapPosition.z = player.transform.position.z;
-    //   player.transform.position = tapPosition;
-      
-    // }
 
     private void Accelerate() {
       
