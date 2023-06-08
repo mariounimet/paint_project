@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private float nextFireTime = 0;
     private float timeLastHit = 0;
     private bool isOnCooldown;
+    private float timeForRun;
 
   
     // variables bullet
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
             nextFireTime = Time.time + cooldownTime;
             timeLastHit = Time.time;
             isOnCooldown = true;
+            StartCoroutine(CooldownEffect());
         }
     }
 
@@ -95,7 +97,76 @@ public class Player : MonoBehaviour
 
     public void Hit() {}
 
+public IEnumerator CooldownEffect()
+{
+    var spriteRenderer = GetComponent<SpriteRenderer>();
+    float firstEffect = 0.4f * cooldownTime;
+    float secondEffect = 0.3f * cooldownTime;
+    float thirdEffect = 0.2f * cooldownTime;
+    float fourthEffect = 0.1f * cooldownTime;
 
+    int runNumber = 0;
+
+    while (runNumber < 4)
+    {
+        float timeForRun;
+        if (runNumber == 0)
+        {
+            timeForRun = firstEffect;
+        }
+        else if (runNumber == 1)
+        {
+            timeForRun = secondEffect;
+        }
+        else if (runNumber == 2)
+        {
+            timeForRun = thirdEffect;
+        }
+        else if (runNumber == 3)
+        {
+            timeForRun = fourthEffect;
+        }
+        else
+        {
+            timeForRun = 0;
+        }
+
+        int i = 0;
+        float timeForSleep = timeForRun / 8;
+        bool whiteOn = false;
+
+        while (i < 10)
+        {
+            if (whiteOn)
+            {
+                if (health == 3)
+                {
+                    spriteRenderer.color = presetColor;
+                }
+                else if (health == 2)
+                {
+                    spriteRenderer.color = life2Color;
+                }
+                else if (health == 1)
+                {
+                    spriteRenderer.color = life1Color;
+                }
+            }
+            else
+            {
+                spriteRenderer.color = Color.black;
+            }
+
+            whiteOn = !whiteOn;
+            i++;
+
+            yield return new WaitForSeconds(timeForSleep);
+            yield return null;
+        }
+
+        runNumber++;
+    }
+}
  
 
     // private void FixedUpdate() {
