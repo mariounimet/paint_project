@@ -29,7 +29,7 @@ class FollowerScript : Enemy
     void Update()
     {
         Rigidbody2D.angularVelocity = 300;
-        if(speed < 2 && acelerate)
+        if(speed < 1 && acelerate)
         {
             speed += (float)0.001;
         }

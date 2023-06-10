@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class EnemyStatesScript : MonoBehaviour
 {
-    public bool paused;
-
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    public void pause()
+    public void DeSpawn()
     {
-        paused = true;
-    }
-
-    public void resume()
-    {
-        paused = false;
+        gameObject.SetActive(false);
     }
 }

@@ -68,4 +68,15 @@ public class ObjectPooler : MonoBehaviour
 
         return objectToSpawn;
     }
+
+    public void changeStage()
+    {
+        foreach (Pool pool in pools)
+        {
+            foreach (GameObject enemy in poolDictionary[pool.tag])
+            {
+                enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+            }
+        }
+    }
 }

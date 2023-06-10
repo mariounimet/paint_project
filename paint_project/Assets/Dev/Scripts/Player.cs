@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         } else {
             fireTimer -= Time.deltaTime;
         }
-        
     }
     private void Shoot(){
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);

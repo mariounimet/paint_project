@@ -11,7 +11,7 @@ class ShooterScript : Enemy
     private PaintManagerScript PaintManager;
 
     private bool newMoveTo;
-    private bool shotActive;
+    private float shotActive;
     private float speed;
     private float distanceToNew;
     private float rotationModifier;
@@ -38,7 +38,7 @@ class ShooterScript : Enemy
         speed = 0;
         rotationModifier = 90;
         newMoveTo = true;
-        shotActive = true;
+        shotActive = 0.0f;
         moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
     }
     void Update() {
@@ -84,7 +84,6 @@ class ShooterScript : Enemy
     }
     private void move()
     {
-        shotActive = true;
         moveToX = Random.Range(-2.0f, 2.0f);
         moveToY = Random.Range(-3.5f, 3.5f);
         moveTo = new Vector3(cam.transform.position.x + moveToX, cam.transform.position.y + moveToY, 0);
@@ -94,7 +93,7 @@ class ShooterScript : Enemy
 
     public override void Shoot()
     {
-        if(shotActive)
+        if(Time.time >= shotActive + 3.0f)
         {
             this.audioSource.PlayOneShot(this.shooterBulletSound);
             GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
@@ -111,7 +110,7 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
-        shotActive = false;
+        shotActive = Time.time;
         this.audioSource.PlayOneShot(this.shooterDieSound);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
@@ -121,7 +120,7 @@ class ShooterScript : Enemy
     {
         if(other.CompareTag("Player"))
         {
-            shotActive = false;
+            shotActive = Time.time;
             other.GetComponent<Player>().HitBullet();
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
