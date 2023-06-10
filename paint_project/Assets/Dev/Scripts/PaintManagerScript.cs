@@ -121,10 +121,12 @@ public class PaintManagerScript : MonoBehaviour
             }
          
             // print(progressPerBlock.ToString());
-            print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
+            // print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
             this.textPercentage = Mathf.Round(this.progressPercent);
             this.textValue = this.textPercentage.ToString()+"%";
             textElement.text = textValue;
+            Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+            silderHealthBar.value = this.progressPercent/100;
         } 
         
     }
