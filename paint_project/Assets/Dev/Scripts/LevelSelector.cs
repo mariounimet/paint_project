@@ -12,6 +12,7 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+        
     }
     // Update is called once per frame
     void Update()
@@ -22,5 +23,6 @@ public class LevelSelector : MonoBehaviour
     public void lvlSelector(){
         print("Soy un nivel "+level);
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
+
     }
 }
