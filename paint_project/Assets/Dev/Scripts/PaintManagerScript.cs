@@ -9,7 +9,8 @@ public class PaintManagerScript : MonoBehaviour
     private Camera mainCamera;
     private Texture2D currentMask;
     private Texture2D newMask;
-    public Texture2D backgroundImage;
+    public Texture2D[] backgroundImage;
+    public int curreentImage;
     private Renderer crenderer;
     private SpriteRenderer spriteRenderer;
     private float progressPercent;
@@ -228,24 +229,8 @@ public class PaintManagerScript : MonoBehaviour
     }
 
     public void PaintMask(int x, int y, int width, int height){
-        // int xCentered = x;
-        // int yCentered = y;
-        // xCentered -= splashTextures[0].width/2;
-        // yCentered-= splashTextures[0].height/2;
-        //Color[] cArray = new Color[width*height];
-        //Color[] currentPixels = this.newMask.GetPixels(xCentered, yCentered, width, height, 0);
-        Color[] imagePixels = this.backgroundImage.GetPixels(x, y, width, height, 0);
-        //Color[] splash = this.splashTextures[Random.Range(0,this.splashTextures.Length)].GetPixels();
-        // for(int i = 0; i < cArray.Length; i++) {
- 
-        //     if(splash[i].r >= 0.1) {
-        //         cArray[i]=imagePixels[i];
-        //     } else {
-               
-        //         cArray[i] = currentPixels[i];
-        //     }
-          
-        //  }
+        Color[] imagePixels = this.backgroundImage[curreentImage].GetPixels(x, y, width, height, 0);
+       
         this.newMask.SetPixels(x,y,width,height,imagePixels, 0);
  
 
