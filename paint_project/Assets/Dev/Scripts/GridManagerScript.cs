@@ -13,6 +13,7 @@ public class GridManagerScript : MonoBehaviour
     private Camera mainCamera;
     public float ratioThreshold;
     public int resolutionOffset;
+    public Vector3 gridInicial;
     void Start()
     {
         mainCamera = Camera.main;
@@ -67,7 +68,7 @@ public class GridManagerScript : MonoBehaviour
 
     public Vector2Int getLowerLeftCoords(){
        //TODO revisar para dimensiones distintas a 9:16
-        Vector3 pos = this.mainCamera.ViewportToWorldPoint(new Vector3(0,0,mainCamera.nearClipPlane));
+        Vector3 pos = this.gridInicial;
         Sprite sprite = spriteRenderer.sprite;
         Rect rect =  sprite.textureRect;
         float x = pos.x-gameObject.transform.position.x;

@@ -20,7 +20,6 @@ class FollowerScript : Enemy
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         player =  GameObject.Find("Ship");
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        Rigidbody2D.angularVelocity = 300;
 
         speed = 0;
         acelerate = true;
@@ -29,7 +28,8 @@ class FollowerScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(speed < 2 && acelerate)
+        Rigidbody2D.angularVelocity = 300;
+        if(speed < 1 && acelerate)
         {
             speed += (float)0.001;
         }
@@ -45,7 +45,7 @@ class FollowerScript : Enemy
 
     private void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime); 
     }
 
     public override void Shoot()
