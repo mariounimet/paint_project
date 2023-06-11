@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LevelSelector : MonoBehaviour
 {
-    public int level;
+    public int imgIndex;
     public string img;
     public Vector3 LevelMenuCords;
+    public PaintManagerScript paintManager;
     private Camera mainCamera;
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,9 @@ public class LevelSelector : MonoBehaviour
     }
 
     public void lvlSelector(){
-        print("Soy un nivel "+level);
+        print("Soy un nivel ");
+        paintManager.curreentImage = imgIndex;
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
-
+        
     }
 }
