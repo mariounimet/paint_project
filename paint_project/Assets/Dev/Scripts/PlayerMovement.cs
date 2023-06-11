@@ -21,8 +21,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         player.velocity = new Vector3(_joystick.Horizontal * speed, _joystick.Vertical * speed, 0);
-        Debug.Log("horizontal: " + _joystick.Horizontal);
-        Debug.Log("vertical: " + _joystick.Vertical);
 
         if (_joystick.Horizontal > 0 && _joystick.Vertical > 0) {
           angle = Math.Abs(Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI) - 90;
@@ -42,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
         player.rotation = (float) angle;
         // Debug.Log("angulo: " + angle * 180 / Math.PI);
-        Debug.Log("angulo: " + angle);
         // player.transform.rotation = Quaternion.Euler(0, 0, _joystick.);
     }
 }

@@ -28,7 +28,6 @@ public class ObjectPooler : MonoBehaviour
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start() {
-
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
@@ -70,4 +69,14 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
+    public void changeStage()
+    {
+        foreach (Pool pool in pools)
+        {
+            foreach (GameObject enemy in poolDictionary[pool.tag])
+            {
+                enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+            }
+        }
+    }
 }
