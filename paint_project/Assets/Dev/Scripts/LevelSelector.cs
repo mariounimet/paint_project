@@ -21,6 +21,7 @@ public class LevelSelector : MonoBehaviour
         text.gameObject.SetActive(false);
         pauseBotton.gameObject.SetActive(false);
         mainCamera = Camera.main;
+        Time.timeScale = 0f;
     }
     // Update is called once per frame
     void Update()

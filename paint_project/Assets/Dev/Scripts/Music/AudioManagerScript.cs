@@ -11,6 +11,7 @@ public class AudioManagerScript : MonoBehaviour
     public float audioFadeInDelay;
     public float audioFadeInStep;
     private float audioTimer = 0;
+    public float maxVolume;
 
     void Start()
     {
@@ -43,10 +44,10 @@ public class AudioManagerScript : MonoBehaviour
     public void FadeInMusic(){
 
         float auxVolume = this.musicLayers[this.layerIndex].volume+ audioFadeInStep;
-        auxVolume = (auxVolume >= 1) ? 1 : auxVolume;
+        auxVolume = (auxVolume >= maxVolume) ? maxVolume : auxVolume;
         this.musicLayers[this.layerIndex].volume = auxVolume;
 
-        if (this.musicLayers[this.layerIndex].volume == 1) {
+        if (this.musicLayers[this.layerIndex].volume == maxVolume) {
                 
                 this.fadingIn = false;
                 this.layerIndex++;
