@@ -57,7 +57,7 @@ class ShooterScript : Enemy
                 ChageRotation(player.transform.position);
             }
             
-        }else{
+        }else if (!PauseMenu.GameIsPaused){
             moveTo = new Vector3(cam.transform.position.x +  moveToX, cam.transform.position.y +  moveToY, 0);
             distanceToNew = Vector3.Distance(moveTo, transform.position);
             if(Vector3.Distance(moveTo, transform.position) >= distanceToNew/2)
