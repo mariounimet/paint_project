@@ -18,9 +18,10 @@ public class LevelSelector : MonoBehaviour
         joystick.gameObject.SetActive(false);
         progressBar.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
-        mainCamera = Camera.main;
 
         
+        Time.timeScale = 0f;
+        mainCamera = Camera.main;
     }
     // Update is called once per frame
     void Update()
