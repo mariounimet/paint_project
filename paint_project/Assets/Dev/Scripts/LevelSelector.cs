@@ -20,9 +20,6 @@ public class LevelSelector : MonoBehaviour
         progressBar.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
         pauseBotton.gameObject.SetActive(false);
-
-        
-        Time.timeScale = 0f;
         mainCamera = Camera.main;
     }
     // Update is called once per frame
@@ -39,6 +36,6 @@ public class LevelSelector : MonoBehaviour
         text.gameObject.SetActive(true);
         pauseBotton.gameObject.SetActive(true);
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
-        
+        Time.timeScale = 1f;
     }
 }
