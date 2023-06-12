@@ -6,18 +6,21 @@ public class AudioManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public AudioSource[] musicLayers; 
+    public AudioSource menuAudioSource;
     public AudioSource enemyDeadAudioSource;
     private int layerIndex;
     private bool fadingIn = false;
+    private bool fadeOut = false;
     public float audioFadeInDelay;
     public float audioFadeInStep;
     private float audioTimer = 0;
+    private float audioFadeOutTime = 0;
     public float maxVolume;
     public AudioClip[] enemyDieSound;
 
     void Start()
     {
-        this.layerIndex = 1;
+        this.layerIndex = 0;
     }
 
     // Update is called once per frame
@@ -29,6 +32,14 @@ public class AudioManagerScript : MonoBehaviour
             if ((audioTimer > audioFadeInDelay)){
                   FadeInMusic();
                   audioTimer = 0;
+            }
+        }
+
+        if(fadeOut){
+            audioFadeOutTime+= Time.deltaTime;
+            if ((audioFadeOutTime > audioFadeInDelay)){
+                  FadeOutMenuMusic();
+                  audioFadeOutTime = 0;
             }
         }
     }
@@ -43,8 +54,19 @@ public class AudioManagerScript : MonoBehaviour
         
     }
 
-    public void FadeInMusic(){
+    public void FadeOutMenuMusic(){
 
+        float auxVolume = this.menuAudioSource.volume - audioFadeInStep;
+        auxVolume = (auxVolume <= 0) ? 0 : auxVolume;
+        this.menuAudioSource.volume = auxVolume;
+
+        if (this.menuAudioSource.volume == 0) {
+                this.fadeOut = false;
+                PlayNextLayer();
+            }
+    }
+
+    public void FadeInMusic(){
         float auxVolume = this.musicLayers[this.layerIndex].volume+ audioFadeInStep;
         auxVolume = (auxVolume >= maxVolume) ? maxVolume : auxVolume;
         this.musicLayers[this.layerIndex].volume = auxVolume;
@@ -58,6 +80,10 @@ public class AudioManagerScript : MonoBehaviour
 
     public void PlayenemyDieSound(int index){
         this.enemyDeadAudioSource.PlayOneShot(this.enemyDieSound[index]);
+    }
+
+    public void StartFadingOutMenuMusic(){
+        this.fadeOut = true;
     }
 
 
