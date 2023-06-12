@@ -616,11 +616,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &445232168 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
-  m_PrefabInstance: {fileID: 1620405595}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &268304252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1170,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397378778}
   m_CullTransparentMesh: 1
+--- !u!1 &445232168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 1620405595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &531103034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,6 +1453,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 445232168}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 
@@ -2417,6 +2421,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 445232168}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 137253330}
@@ -2607,6 +2615,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 445232168}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 
@@ -3257,6 +3269,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 445232168}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 
@@ -4134,6 +4150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 445232168}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 137253330}
@@ -4645,6 +4665,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 445232168}
+    - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
+      propertyPath: pauseBotton
+      value: 
+      objectReference: {fileID: 1424650731}
     - target: {fileID: 6799188720564578453, guid: ae19406b5dc4027419d71fe41fbd27af, type: 3}
       propertyPath: progressBar
       value: 

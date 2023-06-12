@@ -12,12 +12,14 @@ public class LevelSelector : MonoBehaviour
     public GameObject joystick;
     public GameObject progressBar;
     public GameObject text;
+    public GameObject pauseBotton;
     // Start is called before the first frame update
     void Start()
     {
         joystick.gameObject.SetActive(false);
         progressBar.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
+        pauseBotton.gameObject.SetActive(false);
 
         
         Time.timeScale = 0f;
@@ -35,6 +37,7 @@ public class LevelSelector : MonoBehaviour
         joystick.gameObject.SetActive(true);
         progressBar.gameObject.SetActive(true);
         text.gameObject.SetActive(true);
+        pauseBotton.gameObject.SetActive(true);
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
         
     }
