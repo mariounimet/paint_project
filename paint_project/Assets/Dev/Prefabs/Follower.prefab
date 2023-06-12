@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
-  followerDieSound: {fileID: 8300000, guid: 6063287f2ee63b8469f82ebcaf284003, type: 3}
+  audioSource: {fileID: 2852039404869559049}
+  followerDieSound: {fileID: 8300000, guid: 9023c3d9c88abad4ea2fbac22ce58835, type: 3}
 --- !u!82 &2852039404869559049
 AudioSource:
   m_ObjectHideFlags: 0
@@ -163,14 +164,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 14
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

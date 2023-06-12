@@ -6,12 +6,14 @@ public class AudioManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public AudioSource[] musicLayers; 
+    public AudioSource enemyDeadAudioSource;
     private int layerIndex;
     private bool fadingIn = false;
     public float audioFadeInDelay;
     public float audioFadeInStep;
     private float audioTimer = 0;
     public float maxVolume;
+    public AudioClip[] enemyDieSound;
 
     void Start()
     {
@@ -52,6 +54,10 @@ public class AudioManagerScript : MonoBehaviour
                 this.fadingIn = false;
                 this.layerIndex++;
             }
+    }
+
+    public void PlayenemyDieSound(int index){
+        this.enemyDeadAudioSource.PlayOneShot(this.enemyDieSound[index]);
     }
 
 
