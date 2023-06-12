@@ -154,7 +154,7 @@ public class PaintManagerScript : MonoBehaviour
 
             this.currentPaintingRemainingIndexes = new Vector2Int(this.PaintReaminingIndexes[0], this.PaintReaminingIndexes[1]);
             this.isPainting = true;
-           
+            GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
         }
     }
 
