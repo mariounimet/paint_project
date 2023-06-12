@@ -14,6 +14,7 @@ public class LevelSelector : MonoBehaviour
     public GameObject text;
     public GameObject pauseBotton;
     private AudioManagerScript AudioManager;
+    private TutorialManager tutorialManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class LevelSelector : MonoBehaviour
         pauseBotton.gameObject.SetActive(false);
         mainCamera = Camera.main;
         Time.timeScale = 0f;
+        tutorialManager = Camera.main.GetComponent<TutorialManager>();
     }
     // Update is called once per frame
     void Update()
@@ -39,7 +41,12 @@ public class LevelSelector : MonoBehaviour
         text.gameObject.SetActive(true);
         pauseBotton.gameObject.SetActive(true);
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
-        Time.timeScale = 1f;
+        if (imgIndex == 0){
+            tutorialManager.StartRunning();
+            tutorialManager.firstPopUp();
+        }else {
+            Time.timeScale = 1f;
+        }
         AudioManager.StartFadingOutMenuMusic();
     }
 }

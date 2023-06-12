@@ -7,34 +7,37 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] popUps;
     public int popUpIndex = 0;
     private bool isScreenTouched = false;
+    private bool shouldRun = false;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        popUps[0].SetActive(true);
+        popUps[0].SetActive(false);
         popUps[1].SetActive(false);
         popUps[2].SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+        if (shouldRun) {
+            if (Input.touchCount > 0)
             {
-                isScreenTouched = true;
-                UpdatePopUpIndex();
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    isScreenTouched = true;
+                    UpdatePopUpIndex();
+                }
+                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    isScreenTouched = false;
+                }
             }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            else
             {
                 isScreenTouched = false;
             }
-        }
-        else
-        {
-            isScreenTouched = false;
         }
     }
 
@@ -53,6 +56,11 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    public void firstPopUp()
+    {
+        popUps[0].SetActive(true);
+    }
+
     void UpdatePopUpIndex()
     {
         if (popUpIndex == 0)
@@ -65,6 +73,18 @@ public class TutorialManager : MonoBehaviour
         } else if (popUpIndex == 2) {
                 popUpIndex++;
                 UpdatePopUp();
-        }
+                Time.timeScale = 1f;
+                shouldRun = false;
+        } 
+    }
+
+    public void StartRunning()
+    {
+        shouldRun = true;
+    }
+
+    public void StopRunning()
+    {
+        shouldRun = false;
     }
 }

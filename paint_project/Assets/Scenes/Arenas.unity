@@ -2142,6 +2142,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2091636550}
     m_Modifications:
+    - target: {fileID: 5027314320188449098, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314320583472364, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5027314320617278742, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
       propertyPath: m_Name
       value: TutorialPopUps
@@ -2229,6 +2237,30 @@ PrefabInstance:
     - target: {fileID: 5027314320617278745, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314320694299112, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314320769486090, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314320843296596, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314320949925207, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314321551706982, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027314321948683029, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
@@ -3739,7 +3771,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578420169}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ba98c56223a14438a71622776af675, type: 3}
   m_Name: 
