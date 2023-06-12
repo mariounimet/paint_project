@@ -39,7 +39,7 @@ class ShooterScript : Enemy
         rotationModifier = 90;
         newMoveTo = true;
         shotActive = 0.0f;
-        moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
+        move();
     }
     void Update() {
         if(transform.position.x == moveTo.x && transform.position.y == moveTo.y){
