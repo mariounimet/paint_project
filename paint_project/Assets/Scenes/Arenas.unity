@@ -245,7 +245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &37401941
 MonoBehaviour:
@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 121456421}
   - component: {fileID: 121456425}
   - component: {fileID: 121456426}
+  - component: {fileID: 121456428}
   m_Layer: 5
   m_Name: Menus
   m_TagString: Untagged
@@ -544,6 +545,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelsMenuUI: {fileID: 1065170061}
   mainMenuUI: {fileID: 228213250}
+--- !u!225 &121456428
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121456420}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &137253330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1467,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &657442950
 GameObject:
@@ -1534,7 +1547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &691373766
 PrefabInstance:
@@ -2147,7 +2160,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &755996165
 GameObject:
@@ -3126,7 +3139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697210280440220711, guid: f9e1b8b7a82de3544a6f548c605c7be4, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1697210280440220711, guid: f9e1b8b7a82de3544a6f548c605c7be4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3874,7 +3887,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1767866067
 MonoBehaviour:
@@ -4568,6 +4581,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe91b3258ea0274f83aee5411646b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1946073682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946073684}
+  - component: {fileID: 1946073683}
+  m_Layer: 0
+  m_Name: Fade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1946073683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946073682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca79cc8184da904ba419f8bafd1a5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menus: {fileID: 121456428}
+--- !u!4 &1946073684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946073682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.48836, y: 315.07242, z: 0.11548281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2007440566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4799,7 +4857,7 @@ RectTransform:
   - {fileID: 1424650732}
   - {fileID: 1488289928}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4819,7 +4877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1284343248691151055, guid: e609e1f9a2ce67f448d0dc78c8c26eb4, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1284343248691151055, guid: e609e1f9a2ce67f448d0dc78c8c26eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4904,7 +4962,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3f14be38daa8b4c4d9112c925b806c97, type: 3}
     - target: {fileID: 5506111697679817550, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5506111697679817550, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
       propertyPath: m_LocalPosition.x
