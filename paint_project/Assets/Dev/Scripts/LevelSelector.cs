@@ -12,8 +12,8 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0f;
         mainCamera = Camera.main;
-        
     }
     // Update is called once per frame
     void Update()
