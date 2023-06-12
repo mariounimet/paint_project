@@ -10,14 +10,14 @@ class FollowerScript : Enemy
     private float speed;
     private bool acelerate;
     private PaintManagerScript PaintManager;
-    private AudioSource audioSource;
-    public AudioClip followerDieSound;
+    private AudioManagerScript audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = this.GetComponent<AudioSource>();
+        //audioSource = this.GetComponent<AudioSource>();
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         player =  GameObject.Find("Ship");
         Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -62,7 +62,7 @@ class FollowerScript : Enemy
     }
     public override void Die()
     {
-        this.audioSource.PlayOneShot(this.followerDieSound);
+        this.audioManager.PlayenemyDieSound(0);
          PaintManager.detectPaint(transform.position);
          gameObject.SetActive(false);
     }
@@ -72,7 +72,7 @@ class FollowerScript : Enemy
         if(other.CompareTag("Player"))
         {
    
-            other.GetComponent<Player>().HitBullet();
+           
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }

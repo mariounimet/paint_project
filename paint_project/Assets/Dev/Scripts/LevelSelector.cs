@@ -13,14 +13,17 @@ public class LevelSelector : MonoBehaviour
     public GameObject progressBar;
     public GameObject text;
     public GameObject pauseBotton;
+    private AudioManagerScript AudioManager;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         joystick.gameObject.SetActive(false);
         progressBar.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
         pauseBotton.gameObject.SetActive(false);
         mainCamera = Camera.main;
+        Time.timeScale = 0f;
     }
     // Update is called once per frame
     void Update()
@@ -37,5 +40,6 @@ public class LevelSelector : MonoBehaviour
         pauseBotton.gameObject.SetActive(true);
         this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
         Time.timeScale = 1f;
+        AudioManager.StartFadingOutMenuMusic();
     }
 }
