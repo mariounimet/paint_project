@@ -10,17 +10,16 @@ class FollowerScript : Enemy
     private float speed;
     private bool acelerate;
     private PaintManagerScript PaintManager;
-    private AudioSource audioSource;
-    public AudioClip followerDieSound;
+    private AudioManagerScript audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = this.GetComponent<AudioSource>();
+        //audioSource = this.GetComponent<AudioSource>();
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         player =  GameObject.Find("Ship");
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        Rigidbody2D.angularVelocity = 300;
 
         speed = 0;
         acelerate = true;
@@ -29,7 +28,8 @@ class FollowerScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(speed < 2 && acelerate)
+        Rigidbody2D.angularVelocity = 300;
+        if(speed < 1 && acelerate)
         {
             speed += (float)0.001;
         }
@@ -45,7 +45,7 @@ class FollowerScript : Enemy
 
     private void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime); 
     }
 
     public override void Shoot()
@@ -62,7 +62,7 @@ class FollowerScript : Enemy
     }
     public override void Die()
     {
-        this.audioSource.PlayOneShot(this.followerDieSound);
+        this.audioManager.PlayenemyDieSound(0);
          PaintManager.detectPaint(transform.position);
          gameObject.SetActive(false);
     }

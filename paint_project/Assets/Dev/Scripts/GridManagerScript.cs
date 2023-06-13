@@ -13,12 +13,13 @@ public class GridManagerScript : MonoBehaviour
     private Camera mainCamera;
     public float ratioThreshold;
     public int resolutionOffset;
+    public Vector3 gridInicial;
     void Start()
     {
         mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.coordsMatrix = initializeCoordsMatrix(this.canvasSize, this.blockPixelSize);
-        this.isPaintedMatrix = initializeIsPaintedMatrix(this.canvasSize, this.blockPixelSize);
+        this.isPaintedMatrix = initializeIsPaintedMatrix();
        
 
     }
@@ -27,6 +28,10 @@ public class GridManagerScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void resetIsPaintedMatrix(){
+        this.isPaintedMatrix = initializeIsPaintedMatrix();
     }
 
     public Vector2Int[,] initializeCoordsMatrix(Vector2Int canvasSize, int blockPixelSize){
@@ -60,14 +65,14 @@ public class GridManagerScript : MonoBehaviour
         return auxCoordsMatrix;
     }
 
-    public int[,] initializeIsPaintedMatrix(Vector2Int canvasSize, int blockPixelSize){
-        Vector2Int size = getMatrixDimensions(canvasSize, blockPixelSize);
+    public int[,] initializeIsPaintedMatrix(){
+        Vector2Int size = getMatrixDimensions(this.canvasSize, this.blockPixelSize);
         return new int[size.y,size.x];
     }
 
     public Vector2Int getLowerLeftCoords(){
        //TODO revisar para dimensiones distintas a 9:16
-        Vector3 pos = this.mainCamera.ViewportToWorldPoint(new Vector3(0,0,mainCamera.nearClipPlane));
+        Vector3 pos = this.gridInicial;
         Sprite sprite = spriteRenderer.sprite;
         Rect rect =  sprite.textureRect;
         float x = pos.x-gameObject.transform.position.x;

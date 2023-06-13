@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -9,8 +11,14 @@ public class Player : MonoBehaviour
     Color life1Color = new Color(255, 0, 0);
     public AudioClip shipHitSound;
     public AudioClip bulletShotSound;
-    private AudioSource audioSource;
+    public AudioSource shootAudioSource;
+    public AudioSource getHitAudioSource;
     private int health = 3;
+    private float cooldownTime = 2;
+    private float nextFireTime = 0;
+    private float timeLastHit = 0;
+    private bool isOnCooldown;
+    private float timeForRun;
 
   
     // variables bullet
@@ -19,20 +27,21 @@ public class Player : MonoBehaviour
     [Range(0.1f, 3f)]
     [SerializeField] private float fireRate = 0.8f;
     private float fireTimer;
+    public PauseMenu PauseMenuScript;
+    public Vector3 initialPlayerCoords;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.audioSource = this.GetComponent<AudioSource>();
+      
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;
+        isOnCooldown = false;
 
         // rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
- 
-
-    public void Hit() {}
     void Update()
     {
         if (fireTimer <= 0f){
@@ -41,15 +50,41 @@ public class Player : MonoBehaviour
         } else {
             fireTimer -= Time.deltaTime;
         }
-        
+        StopCooldown();
     }
+
+    private void StopCooldown() {
+        if (((Time.time - timeLastHit) > 2)) {
+            isOnCooldown = false;
+        }
+    }
+
     private void Shoot(){
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        this.audioSource.PlayOneShot(this.bulletShotSound);
+        this.shootAudioSource.PlayOneShot(this.bulletShotSound);
     }
+
     public void HitBullet() {
+        if (VerifyCooldown()) {
+            ReduceHealth();
+            nextFireTime = Time.time + cooldownTime;
+            timeLastHit = Time.time;
+            isOnCooldown = true;
+            StartCoroutine(CooldownEffect());
+        }
+    }
+
+    public bool VerifyCooldown() {
+        bool result = false;
+        if  (Time.time > nextFireTime) {
+            result = true;
+        }
+        return result;
+    }
+
+    public void ReduceHealth() {
         health--;
-        this.audioSource.PlayOneShot(this.shipHitSound);
+        this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
@@ -57,17 +92,103 @@ public class Player : MonoBehaviour
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
-            // Application.Quit();
+            PlayerDie();
+            
         }
     }
 
     public void HitShip() {
-        Debug.Log("EndGame");
         // Application.Quit();
     }
 
+    public void Hit() {}
 
+    public void PlayerDie(){
+       
+        this.transform.position = initialPlayerCoords;
+        GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
+        health = 3;
+        Time.timeScale = 0f;
+        GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().ResetCanvas();
+        GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().resetProgressBar();
+        GameObject.Find("Lienzo").GetComponent<GridManagerScript>().resetIsPaintedMatrix();
+        //TODO resetmusic
+        
+        this.PauseMenuScript.ShowGameOver();
+        
+      
+    }
 
+public IEnumerator CooldownEffect()
+{
+    var spriteRenderer = GetComponent<SpriteRenderer>();
+    float firstEffect = 0.4f * cooldownTime;
+    float secondEffect = 0.3f * cooldownTime;
+    float thirdEffect = 0.2f * cooldownTime;
+    float fourthEffect = 0.1f * cooldownTime;
+
+    int runNumber = 0;
+
+    while (runNumber < 4)
+    {
+        float timeForRun;
+        if (runNumber == 0)
+        {
+            timeForRun = firstEffect;
+        }
+        else if (runNumber == 1)
+        {
+            timeForRun = secondEffect;
+        }
+        else if (runNumber == 2)
+        {
+            timeForRun = thirdEffect;
+        }
+        else if (runNumber == 3)
+        {
+            timeForRun = fourthEffect;
+        }
+        else
+        {
+            timeForRun = 0;
+        }
+
+        int i = 0;
+        float timeForSleep = timeForRun / 8;
+        bool whiteOn = false;
+
+        while (i < 10)
+        {
+            if (whiteOn)
+            {
+                if (health == 3)
+                {
+                    spriteRenderer.color = presetColor;
+                }
+                else if (health == 2)
+                {
+                    spriteRenderer.color = life2Color;
+                }
+                else if (health == 1)
+                {
+                    spriteRenderer.color = life1Color;
+                }
+            }
+            else
+            {
+                spriteRenderer.color = Color.black;
+            }
+
+            whiteOn = !whiteOn;
+            i++;
+
+            yield return new WaitForSeconds(timeForSleep);
+            yield return null;
+        }
+
+        runNumber++;
+    }
+}
  
 
     // private void FixedUpdate() {

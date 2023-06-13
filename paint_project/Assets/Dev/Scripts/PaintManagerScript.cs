@@ -9,7 +9,8 @@ public class PaintManagerScript : MonoBehaviour
     private Camera mainCamera;
     private Texture2D currentMask;
     private Texture2D newMask;
-    public Texture2D backgroundImage;
+    public Texture2D[] backgroundImage;
+    public int currentImage;
     private Renderer crenderer;
     private SpriteRenderer spriteRenderer;
     private float progressPercent;
@@ -45,6 +46,7 @@ public class PaintManagerScript : MonoBehaviour
     public GridManagerScript grid;
     void Start()
     {
+       
         crenderer = GetComponent<Renderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMask = (Texture2D) crenderer.material.GetTexture("_PaintMask");
@@ -109,6 +111,11 @@ public class PaintManagerScript : MonoBehaviour
            
         
     }
+    public void resetProgressBar(){
+        this.progressPercent = 0;
+        Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        silderHealthBar.value = 0;
+    }
 
     public void TryPaintGridSquare(int xIndex, int yIndex){
         if(this.grid.getIsPaintedMatrix()[yIndex,xIndex] == 0) {
@@ -121,10 +128,19 @@ public class PaintManagerScript : MonoBehaviour
             }
          
             // print(progressPerBlock.ToString());
-            print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
+            // print("El progreso es: "+this.progressPercent.ToString()+"%"); // aqui es
             this.textPercentage = Mathf.Round(this.progressPercent);
             this.textValue = this.textPercentage.ToString()+"%";
             textElement.text = textValue;
+            GameObject silderHealthBarGameObject = GameObject.Find("Health Bar");
+            if (silderHealthBarGameObject) {
+                Slider slider = silderHealthBarGameObject.GetComponent<Slider>();
+                if (slider){
+                slider.value = this.progressPercent/100;
+            }
+           
+            }
+           
         } 
         
     }
@@ -151,7 +167,7 @@ public class PaintManagerScript : MonoBehaviour
 
             this.currentPaintingRemainingIndexes = new Vector2Int(this.PaintReaminingIndexes[0], this.PaintReaminingIndexes[1]);
             this.isPainting = true;
-           
+            GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
         }
     }
 
@@ -226,24 +242,8 @@ public class PaintManagerScript : MonoBehaviour
     }
 
     public void PaintMask(int x, int y, int width, int height){
-        // int xCentered = x;
-        // int yCentered = y;
-        // xCentered -= splashTextures[0].width/2;
-        // yCentered-= splashTextures[0].height/2;
-        //Color[] cArray = new Color[width*height];
-        //Color[] currentPixels = this.newMask.GetPixels(xCentered, yCentered, width, height, 0);
-        Color[] imagePixels = this.backgroundImage.GetPixels(x, y, width, height, 0);
-        //Color[] splash = this.splashTextures[Random.Range(0,this.splashTextures.Length)].GetPixels();
-        // for(int i = 0; i < cArray.Length; i++) {
- 
-        //     if(splash[i].r >= 0.1) {
-        //         cArray[i]=imagePixels[i];
-        //     } else {
-               
-        //         cArray[i] = currentPixels[i];
-        //     }
-          
-        //  }
+        Color[] imagePixels = this.backgroundImage[currentImage].GetPixels(x, y, width, height, 0);
+       
         this.newMask.SetPixels(x,y,width,height,imagePixels, 0);
  
 

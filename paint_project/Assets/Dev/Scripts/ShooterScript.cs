@@ -11,12 +11,15 @@ class ShooterScript : Enemy
     private PaintManagerScript PaintManager;
 
     private bool newMoveTo;
+    private float shotActive;
     private float speed;
     private float distanceToNew;
     private float rotationModifier;
+    private float moveToX;
+    private float moveToY;
     private AudioSource audioSource;
-    public AudioClip shooterDieSound;
     public AudioClip shooterBulletSound;
+    private AudioManagerScript audioManager;
     // Start is called before the first frame update
 
     public ShooterScript(GameObject c, GameObject p)
@@ -28,6 +31,7 @@ class ShooterScript : Enemy
     void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         player =  GameObject.Find("Ship");
         cam = GameObject.Find("Main Camera");
@@ -35,12 +39,10 @@ class ShooterScript : Enemy
         speed = 0;
         rotationModifier = 90;
         newMoveTo = true;
-        moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
+        shotActive = 0.0f;
+        move();
     }
     void Update() {
-        
-    }
-    void FixedUpdate() {
         if(transform.position.x == moveTo.x && transform.position.y == moveTo.y){
             if(newMoveTo)
             {
@@ -55,19 +57,23 @@ class ShooterScript : Enemy
                 ChageRotation(player.transform.position);
             }
             
-        }else{
+        }else if (!PauseMenu.GameIsPaused){
+            moveTo = new Vector3(cam.transform.position.x +  moveToX, cam.transform.position.y +  moveToY, 0);
+            distanceToNew = Vector3.Distance(moveTo, transform.position);
             if(Vector3.Distance(moveTo, transform.position) >= distanceToNew/2)
             {
-                speed += (float)0.005;
+                speed += (float)0.002;
             }
             else if(speed > 0.5)
             {
-                speed -= (float)0.005;
+                speed -= (float)0.002;
             }
             ChageRotation(moveTo);
             transform.position = Vector2.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
-
         }
+    }
+    void FixedUpdate() {
+        
     }
     // Update is called once per frame
     private void ChageRotation(Vector3 direction)
@@ -79,16 +85,21 @@ class ShooterScript : Enemy
     }
     private void move()
     {
-        moveTo = new Vector3(cam.transform.position.x +  Random.Range(-2.0f, 2.0f), cam.transform.position.y +  Random.Range(-3.5f, 3.5f), 0);
+        moveToX = Random.Range(-2.0f, 2.0f);
+        moveToY = Random.Range(-3.5f, 3.5f);
+        moveTo = new Vector3(cam.transform.position.x + moveToX, cam.transform.position.y + moveToY, 0);
         distanceToNew = Vector3.Distance(moveTo, transform.position);
         newMoveTo = true;
     }
 
     public override void Shoot()
     {
-        this.audioSource.PlayOneShot(this.shooterBulletSound);
-        GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
-        b.GetComponent<BulletScript>().setDirection(transform.rotation);
+        if(Time.time >= shotActive + 3.0f)
+        {
+            this.audioSource.PlayOneShot(this.shooterBulletSound);
+            GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
+            b.GetComponent<BulletScript>().setDirection(transform.rotation);
+        }
     }
     public override void MoveToSpawnPoint()
     {
@@ -100,8 +111,9 @@ class ShooterScript : Enemy
     }
     public override void Die()
     {
-    
-        this.audioSource.PlayOneShot(this.shooterDieSound);
+        shotActive = Time.time;
+        this.audioManager.PlayenemyDieSound(1);
+        
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
     }
@@ -110,6 +122,7 @@ class ShooterScript : Enemy
     {
         if(other.CompareTag("Player"))
         {
+            shotActive = Time.time;
             other.GetComponent<Player>().HitBullet();
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
