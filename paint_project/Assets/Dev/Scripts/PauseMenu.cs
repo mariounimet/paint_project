@@ -45,6 +45,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         levelsMenuUI.SetActive(true);
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;        
     }
 
     public void QuitGame()

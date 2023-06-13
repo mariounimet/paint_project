@@ -1403,6 +1403,7 @@ MonoBehaviour:
   enemyDieSound:
   - {fileID: 8300000, guid: 9023c3d9c88abad4ea2fbac22ce58835, type: 3}
   - {fileID: 8300000, guid: 63003ffe64d3dca4aaff9a448fe02f53, type: 3}
+  failSound: {fileID: 8300000, guid: 66f872e7e46fc884381cb991c0ccbf76, type: 3}
 --- !u!4 &726512832
 Transform:
   m_ObjectHideFlags: 0
@@ -1639,7 +1640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5027314320617278745, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5027314320617278745, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3704,6 +3705,7 @@ MonoBehaviour:
   player: {fileID: 1816793679}
   speed: 2
   _joystick: {fileID: 925644901}
+  drag: 0.5
 --- !u!82 &1816793688
 AudioSource:
   m_ObjectHideFlags: 0
