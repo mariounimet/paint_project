@@ -2374,6 +2374,18 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7669718455764931529, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669718455764931529, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669718455764931529, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 185
+      objectReference: {fileID: 0}
     - target: {fileID: 7669718455764931531, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_Name
       value: Menus
