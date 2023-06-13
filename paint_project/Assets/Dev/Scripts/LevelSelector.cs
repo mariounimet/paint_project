@@ -6,7 +6,7 @@ public class LevelSelector : MonoBehaviour
 {
     public int imgIndex;
     public Vector3 LevelCords;
-    public PaintManagerScript paintManager;
+    private PaintManagerScript paintManager;
     private Camera mainCamera;
     // public GameObject joystick;
     // public GameObject progressBar;
@@ -20,7 +20,7 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
-        //this.paintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
+        this.paintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         if (layerUI) {
             layerUI.gameObject.SetActive(false);
         }
@@ -52,7 +52,6 @@ public class LevelSelector : MonoBehaviour
 
     public void lvlSelector(){
         //print("Soy un nivel ");
-        print(paintManager);
         if(paintManager) {
         paintManager.currentImage = imgIndex;
 
