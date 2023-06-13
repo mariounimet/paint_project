@@ -8,6 +8,7 @@ public class AudioManagerScript : MonoBehaviour
     public AudioSource[] musicLayers; 
     public AudioSource menuAudioSource;
     public AudioSource enemyDeadAudioSource;
+    public AudioSource jingleAudioSource;
     private int layerIndex;
     private bool fadingIn = false;
     private bool fadeOut = false;
@@ -97,12 +98,14 @@ public class AudioManagerScript : MonoBehaviour
     }
 
     public void playEndSound(bool die){
+
         this.layerIndex = 0;
         if (die) {
-             this.enemyDeadAudioSource.PlayOneShot(this.failSound);
+             this.jingleAudioSource.PlayOneShot(this.failSound);
         } else {
-            this.enemyDeadAudioSource.PlayOneShot(this.winSound);
+            this.jingleAudioSource.PlayOneShot(this.winSound);
         }
+       
        
     }
 

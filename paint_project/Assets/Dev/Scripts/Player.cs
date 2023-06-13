@@ -83,13 +83,15 @@ public class Player : MonoBehaviour
 
     public void ReduceHealth() {
         health--;
-        this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+        
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
+            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health == 1) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
+            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health <= 0) {
             PlayerDie(true);
             
