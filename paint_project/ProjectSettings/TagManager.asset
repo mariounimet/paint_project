@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - ShooterScript
   - Follower
+  - bar
   layers:
   - Default
   - TransparentFX

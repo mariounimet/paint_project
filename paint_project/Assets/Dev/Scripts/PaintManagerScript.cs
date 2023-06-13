@@ -46,6 +46,7 @@ public class PaintManagerScript : MonoBehaviour
     public GridManagerScript grid;
     void Start()
     {
+       
         crenderer = GetComponent<Renderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMask = (Texture2D) crenderer.material.GetTexture("_PaintMask");
@@ -110,6 +111,11 @@ public class PaintManagerScript : MonoBehaviour
            
         
     }
+    public void resetProgressBar(){
+        this.progressPercent = 0;
+        Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        silderHealthBar.value = 0;
+    }
 
     public void TryPaintGridSquare(int xIndex, int yIndex){
         if(this.grid.getIsPaintedMatrix()[yIndex,xIndex] == 0) {
@@ -126,8 +132,15 @@ public class PaintManagerScript : MonoBehaviour
             this.textPercentage = Mathf.Round(this.progressPercent);
             this.textValue = this.textPercentage.ToString()+"%";
             textElement.text = textValue;
-            Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
-            silderHealthBar.value = this.progressPercent/100;
+            GameObject silderHealthBarGameObject = GameObject.Find("Health Bar");
+            if (silderHealthBarGameObject) {
+                Slider slider = silderHealthBarGameObject.GetComponent<Slider>();
+                if (slider){
+                slider.value = this.progressPercent/100;
+            }
+           
+            }
+           
         } 
         
     }

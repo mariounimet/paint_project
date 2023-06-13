@@ -86,5 +86,9 @@ public class AudioManagerScript : MonoBehaviour
         this.fadeOut = true;
     }
 
+    public void resetMusic(){
+        //TODO
+    }
+
 
 }

@@ -19,7 +19,7 @@ public class GridManagerScript : MonoBehaviour
         mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.coordsMatrix = initializeCoordsMatrix(this.canvasSize, this.blockPixelSize);
-        this.isPaintedMatrix = initializeIsPaintedMatrix(this.canvasSize, this.blockPixelSize);
+        this.isPaintedMatrix = initializeIsPaintedMatrix();
        
 
     }
@@ -28,6 +28,10 @@ public class GridManagerScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void resetIsPaintedMatrix(){
+        this.isPaintedMatrix = initializeIsPaintedMatrix();
     }
 
     public Vector2Int[,] initializeCoordsMatrix(Vector2Int canvasSize, int blockPixelSize){
@@ -61,8 +65,8 @@ public class GridManagerScript : MonoBehaviour
         return auxCoordsMatrix;
     }
 
-    public int[,] initializeIsPaintedMatrix(Vector2Int canvasSize, int blockPixelSize){
-        Vector2Int size = getMatrixDimensions(canvasSize, blockPixelSize);
+    public int[,] initializeIsPaintedMatrix(){
+        Vector2Int size = getMatrixDimensions(this.canvasSize, this.blockPixelSize);
         return new int[size.y,size.x];
     }
 

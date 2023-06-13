@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
     [Range(0.1f, 3f)]
     [SerializeField] private float fireRate = 0.8f;
     private float fireTimer;
+    public PauseMenu PauseMenuScript;
+    public Vector3 initialPlayerCoords;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +92,8 @@ public class Player : MonoBehaviour
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
-            // Application.Quit();
+            PlayerDie();
+            
         }
     }
 
@@ -97,6 +102,22 @@ public class Player : MonoBehaviour
     }
 
     public void Hit() {}
+
+    public void PlayerDie(){
+       
+        this.transform.position = initialPlayerCoords;
+        GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
+        health = 3;
+        Time.timeScale = 0f;
+        GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().ResetCanvas();
+        GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().resetProgressBar();
+        GameObject.Find("Lienzo").GetComponent<GridManagerScript>().resetIsPaintedMatrix();
+        //TODO resetmusic
+        
+        this.PauseMenuScript.ShowGameOver();
+        
+      
+    }
 
 public IEnumerator CooldownEffect()
 {

@@ -72,7 +72,7 @@ class FollowerScript : Enemy
         if(other.CompareTag("Player"))
         {
    
-           
+            other.GetComponent<Player>().HitBullet();
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }

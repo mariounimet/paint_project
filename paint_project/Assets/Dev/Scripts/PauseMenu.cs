@@ -9,8 +9,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject mainMenuUI;
     public GameObject levelsMenuUI;
+    public GameObject gameOverUI;
+    private Camera mainCamera;
+    public GameObject layerUI;
+    public Vector3 uiMenuPos;
 
     // Update is called once per frame
+    void Start(){
+        mainCamera = Camera.main;
+    }
+
     void Update()
     {
         
@@ -32,7 +40,10 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+        print("trigger");
+        //this.mainCamera.transform.position = uiMenuPos;
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
         levelsMenuUI.SetActive(true);
     }
 
@@ -41,4 +52,12 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         mainMenuUI.SetActive(true);
     }
+
+    public void ShowGameOver(){
+        this.mainCamera.transform.position = uiMenuPos;
+        this.layerUI.SetActive(false);
+        this.gameOverUI.SetActive(true);
+    }
+
+    
 }
