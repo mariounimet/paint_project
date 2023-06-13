@@ -54,6 +54,7 @@ public class LevelSelector : MonoBehaviour
         //print("Soy un nivel ");
         if(paintManager) {
         paintManager.currentImage = imgIndex;
+        paintManager.ResetCanvas();
 
         }
         //this.paintManager.currentImage = imgIndex;

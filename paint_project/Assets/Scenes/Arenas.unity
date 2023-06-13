@@ -3610,7 +3610,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -3728,7 +3728,7 @@ MonoBehaviour:
   player: {fileID: 1816793679}
   speed: 2
   _joystick: {fileID: 925644901}
-  drag: 0.5
+  drag: 0.04
 --- !u!82 &1816793688
 AudioSource:
   m_ObjectHideFlags: 0
