@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     public void Update()
     {
         if (shouldRun) {
+          
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
