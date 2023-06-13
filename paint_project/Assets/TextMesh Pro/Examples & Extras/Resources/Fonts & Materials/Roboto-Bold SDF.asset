@@ -118,6 +118,18 @@ MonoBehaviour:
     m_Y: 0
     m_Width: 1023
     m_Height: 1023
+  - m_X: 0
+    m_Y: 285
+    m_Width: 1023
+    m_Height: 738
+  - m_X: 61
+    m_Y: 216
+    m_Width: 962
+    m_Height: 807
+  - m_X: 61
+    m_Y: 202
+    m_Width: 2
+    m_Height: 821
   m_fontInfo:
     Name: Roboto
     PointSize: 146
