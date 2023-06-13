@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         Camera.main.orthographicSize = 4.5f;
         //TODO resetmusic
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().resetMusic();
-        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playFailSound();
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playEndSound(isDie);
         
         if (isDie) {
             this.PauseMenuScript.ShowGameOver();

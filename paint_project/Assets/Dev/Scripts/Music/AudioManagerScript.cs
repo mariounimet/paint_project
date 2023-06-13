@@ -18,6 +18,7 @@ public class AudioManagerScript : MonoBehaviour
     public float maxVolume;
     public AudioClip[] enemyDieSound;
     public AudioClip failSound;
+    public AudioClip winSound;
 
     void Start()
     {
@@ -88,15 +89,21 @@ public class AudioManagerScript : MonoBehaviour
     }
 
     public void resetMusic(){
-        //TODO
+
         foreach (var layer in musicLayers)
         {
           layer.mute = true;
         }
     }
 
-    public void playFailSound(){
-        this.enemyDeadAudioSource.PlayOneShot(this.failSound);
+    public void playEndSound(bool die){
+        this.layerIndex = 0;
+        if (die) {
+             this.enemyDeadAudioSource.PlayOneShot(this.failSound);
+        } else {
+            this.enemyDeadAudioSource.PlayOneShot(this.winSound);
+        }
+       
     }
 
 
