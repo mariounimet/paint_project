@@ -5,14 +5,13 @@ using UnityEngine;
 public class LevelSelector : MonoBehaviour
 {
     public int imgIndex;
-    public string img;
-    public Vector3 LevelMenuCords;
-    //public PaintManagerScript paintManager;
+    public Vector3 LevelCords;
+    public PaintManagerScript paintManager;
     private Camera mainCamera;
-    public GameObject joystick;
-    public GameObject progressBar;
-    public GameObject text;
-    public GameObject pauseBotton;
+    // public GameObject joystick;
+    // public GameObject progressBar;
+    // public GameObject text;
+    // public GameObject pauseBotton;
     private AudioManagerScript AudioManager;
     private TutorialManager tutorialManager;
     // Start is called before the first frame update
@@ -21,7 +20,11 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
-        layerUI.gameObject.SetActive(false);
+        //this.paintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
+        if (layerUI) {
+            layerUI.gameObject.SetActive(false);
+        }
+       
         tutorialManager = Camera.main.GetComponent<TutorialManager>();
         // joystick.gameObject.SetActive(false);
         // progressBar.gameObject.SetActive(false);
@@ -49,10 +52,21 @@ public class LevelSelector : MonoBehaviour
 
     public void lvlSelector(){
         //print("Soy un nivel ");
-        //paintManager.curreentImage = imgIndex;
-        levelsMenuUI.gameObject.SetActive(false);
-        layerUI.gameObject.SetActive(true);
-        this.mainCamera.transform.position = new Vector3(this.LevelMenuCords.x,this.LevelMenuCords.y,this.LevelMenuCords.z);
+        print(paintManager);
+        if(paintManager) {
+        paintManager.currentImage = imgIndex;
+
+        }
+        //this.paintManager.currentImage = imgIndex;
+        if(levelsMenuUI) {
+            levelsMenuUI.gameObject.SetActive(false);
+           
+        }
+        if(layerUI){
+            layerUI.gameObject.SetActive(true);
+        }
+        
+        this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
         if (imgIndex == 0){
             tutorialManager.StartRunning();
             tutorialManager.firstPopUp();
