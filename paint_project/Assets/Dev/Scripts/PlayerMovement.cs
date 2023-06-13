@@ -9,37 +9,33 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] private Rigidbody2D player;
   [SerializeField] public float speed;
   [SerializeField] private FixedJoystick _joystick;
+  [SerializeField] private float drag;
   private double angle = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  Vector2 currentInput = Vector2.zero;
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-        player.velocity = new Vector3(_joystick.Horizontal * speed, _joystick.Vertical * speed, 0);
-
-        if (_joystick.Horizontal > 0 && _joystick.Vertical > 0) {
-          angle = Math.Abs(Math.Atan(_joystick.Vertical / _joystick.Horizontal) * 180/Math.PI) - 90;
-        } 
-        
-          else if (_joystick.Horizontal < 0 && _joystick.Vertical > 0) {
-          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI) ;
-        } 
-        
-          else if (_joystick.Horizontal < 0 && _joystick.Vertical < 0){
-          angle = Math.Abs(Math.Atan(_joystick.Vertical / _joystick.Horizontal)  * 180/Math.PI) -270;
-        } 
-        
-          else  if (_joystick.Horizontal > 0 && _joystick.Vertical < 0) {
-          angle = Math.Abs((Math.Atan(_joystick.Horizontal / _joystick.Vertical))  * 180/Math.PI) + 180;
+    void Update() {
+      Vector2 input = new Vector2(_joystick.Horizontal, _joystick.Vertical);
+      if (input.magnitude > 0.1f)
+        {
+          player.velocity = new Vector3(input.x * speed, input.y * speed, 0);
+          currentInput = input;
+          float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg - 90f;
+          player.rotation = angle;
+          
         }
-
-        player.rotation = (float) angle;
-        // Debug.Log("angulo: " + angle * 180 / Math.PI);
-        // player.transform.rotation = Quaternion.Euler(0, 0, _joystick.);
+        else {
+          if (player.velocity.magnitude > 0.1f) {
+            Vector2 newVelocity = player.velocity - new Vector2(currentInput.x * drag, currentInput.y * drag);
+            Debug.Log("newVelocity: " + newVelocity.x + ", " + newVelocity.y);
+            if (newVelocity.magnitude > 0.5f) {
+              player.velocity = newVelocity;
+            } else {
+              player.velocity = Vector3.zero;
+            }
+          } else {
+            player.velocity = Vector3.zero;
+          }
+        }
+      
     }
 }

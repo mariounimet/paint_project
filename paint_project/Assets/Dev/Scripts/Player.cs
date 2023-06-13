@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     private bool isOnCooldown;
     private float timeForRun;
 
-  
     // variables bullet
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
@@ -116,6 +115,8 @@ public class Player : MonoBehaviour
         GameObject.Find("Lienzo").GetComponent<GridManagerScript>().resetIsPaintedMatrix();
         Camera.main.orthographicSize = 4.5f;
         //TODO resetmusic
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().resetMusic();
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playFailSound();
         
         if (isDie) {
             this.PauseMenuScript.ShowGameOver();

@@ -47,12 +47,15 @@ public class PauseMenu : MonoBehaviour
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
         levelsMenuUI.SetActive(true);
-        
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;        
     }
 
     public void QuitGame()
     {
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        victoryUI.SetActive(false);
         mainMenuUI.SetActive(true);
     }
 

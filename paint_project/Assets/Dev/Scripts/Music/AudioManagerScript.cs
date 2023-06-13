@@ -17,6 +17,7 @@ public class AudioManagerScript : MonoBehaviour
     private float audioFadeOutTime = 0;
     public float maxVolume;
     public AudioClip[] enemyDieSound;
+    public AudioClip failSound;
 
     void Start()
     {
@@ -88,6 +89,14 @@ public class AudioManagerScript : MonoBehaviour
 
     public void resetMusic(){
         //TODO
+        foreach (var layer in musicLayers)
+        {
+          layer.mute = true;
+        }
+    }
+
+    public void playFailSound(){
+        this.enemyDeadAudioSource.PlayOneShot(this.failSound);
     }
 
 
