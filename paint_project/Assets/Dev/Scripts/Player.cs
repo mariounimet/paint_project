@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
         } else if (health <= 0) {
-            PlayerDie();
+            PlayerDie(true);
             
         }
     }
@@ -103,18 +103,26 @@ public class Player : MonoBehaviour
 
     public void Hit() {}
 
-    public void PlayerDie(){
+    public void PlayerDie(bool isDie){
        
         this.transform.position = initialPlayerCoords;
         GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
         health = 3;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = presetColor;
         Time.timeScale = 0f;
         GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().ResetCanvas();
         GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().resetProgressBar();
         GameObject.Find("Lienzo").GetComponent<GridManagerScript>().resetIsPaintedMatrix();
+        Camera.main.orthographicSize = 4.5f;
         //TODO resetmusic
         
-        this.PauseMenuScript.ShowGameOver();
+        if (isDie) {
+            this.PauseMenuScript.ShowGameOver();
+        } else {
+            this.PauseMenuScript.ShowVictory();
+        }
+      
         
       
     }

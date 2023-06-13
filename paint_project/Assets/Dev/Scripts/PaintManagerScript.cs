@@ -39,6 +39,7 @@ public class PaintManagerScript : MonoBehaviour
     public Text textElement;
     private float textPercentage;
     public AudioManagerScript AudioManager;
+    public PauseMenu pauseMenu;
 
 
    
@@ -113,8 +114,11 @@ public class PaintManagerScript : MonoBehaviour
     }
     public void resetProgressBar(){
         this.progressPercent = 0;
-        Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
-        silderHealthBar.value = 0;
+        this.currentPaintingRemainingIndexes.x = 0;
+        this.currentPaintingRemainingIndexes.y = 0;
+        setInitialProgress(this.grid.getMatrixDimensions(this.grid.canvasSize,this.grid.blockPixelSize));
+        // Slider silderHealthBar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        // silderHealthBar.value = 0;
     }
 
     public void TryPaintGridSquare(int xIndex, int yIndex){
@@ -223,6 +227,10 @@ public class PaintManagerScript : MonoBehaviour
                   if (this.mainCamera.orthographicSize >= 8.9f) {
                      this.mainCamera.orthographicSize = 8.9f;
                      this.isMovingCamera= false;
+                    
+                     
+                     
+                     this.player.GetComponent<Player>().PlayerDie(false);
                   }
             }
     }

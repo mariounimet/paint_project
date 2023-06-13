@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject levelsMenuUI;
     public GameObject gameOverUI;
+    public GameObject victoryUI;
     private Camera mainCamera;
     public GameObject layerUI;
     public Vector3 uiMenuPos;
@@ -44,7 +45,9 @@ public class PauseMenu : MonoBehaviour
         //this.mainCamera.transform.position = uiMenuPos;
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
+        victoryUI.SetActive(false);
         levelsMenuUI.SetActive(true);
+        
     }
 
     public void QuitGame()
@@ -57,6 +60,12 @@ public class PauseMenu : MonoBehaviour
         this.mainCamera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.gameOverUI.SetActive(true);
+    }
+
+    public void ShowVictory(){
+        this.mainCamera.transform.position = uiMenuPos;
+        this.layerUI.SetActive(false);
+        this.victoryUI.SetActive(true);
     }
 
     
