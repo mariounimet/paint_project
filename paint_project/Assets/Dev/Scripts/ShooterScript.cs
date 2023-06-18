@@ -20,6 +20,7 @@ class ShooterScript : Enemy
     private AudioSource audioSource;
     public AudioClip shooterBulletSound;
     private AudioManagerScript audioManager;
+    public GameObject deathParticles;
     // Start is called before the first frame update
 
     public ShooterScript(GameObject c, GameObject p)
@@ -113,6 +114,7 @@ class ShooterScript : Enemy
     {
         shotActive = Time.time;
         this.audioManager.PlayenemyDieSound(1);
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);

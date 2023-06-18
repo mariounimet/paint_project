@@ -1068,8 +1068,8 @@ MonoBehaviour:
   bullet: {fileID: 1143012164119763823, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
   cam: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
-  shooterDieSound: {fileID: 8300000, guid: 63003ffe64d3dca4aaff9a448fe02f53, type: 3}
   shooterBulletSound: {fileID: 8300000, guid: b23ad9d820ced5944ba766aef06772d9, type: 3}
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
 --- !u!58 &5520874712786567289
 CircleCollider2D:
   m_ObjectHideFlags: 0
