@@ -97,6 +97,13 @@ public class AudioManagerScript : MonoBehaviour
         }
     }
 
+    public void continueMusic(){
+       foreach (var layer in musicLayers)
+        {
+          layer.mute = false;
+        } 
+    }
+
     public void playEndSound(bool die){
 
         this.layerIndex = 0;

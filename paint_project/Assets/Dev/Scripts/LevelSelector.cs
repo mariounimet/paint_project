@@ -17,6 +17,7 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     public GameObject layerUI;
     public GameObject levelsMenuUI;
+
     void Start()
     {
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
@@ -65,7 +66,7 @@ public class LevelSelector : MonoBehaviour
         if(layerUI){
             layerUI.gameObject.SetActive(true);
         }
-        
+      
         this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
         if (imgIndex == 0){
             tutorialManager.StartRunning();
@@ -73,6 +74,7 @@ public class LevelSelector : MonoBehaviour
         }else {
             Time.timeScale = 1f;
         }
+        
         AudioManager.StartFadingOutMenuMusic();
     }
 }

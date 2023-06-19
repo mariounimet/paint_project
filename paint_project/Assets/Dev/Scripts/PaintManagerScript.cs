@@ -229,8 +229,8 @@ public class PaintManagerScript : MonoBehaviour
                      this.isMovingCamera= false;
                     
                      
-                     
-                     this.player.GetComponent<Player>().PlayerDie(false);
+                     //WIN LEVEL
+                     this.player.GetComponent<Player>().resetPlayer(false);
                   }
             }
     }

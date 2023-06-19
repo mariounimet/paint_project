@@ -1961,6 +1961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _showAdButton: {fileID: 844283568}
   _androidAdUnitId: Rewarded_Android
+  shipScript: {fileID: 1816793693}
 --- !u!224 &925644900 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
@@ -1988,6 +1989,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1816793693}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: resetPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634110885879460575, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3431954149444680193, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1998,7 +2031,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4850670765733351658, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1816793693}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: resetPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Player, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726633713562307327, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6761498903837357440, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_fontSize
@@ -2258,11 +2323,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669718455813165314, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7669718455872345837, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7669718456057131859, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: m_CullTransparentMesh
@@ -3430,6 +3495,17 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &1816793693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5506111697679817545, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
+  m_PrefabInstance: {fileID: 5506111699219777796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816793672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64242a84eab2d364c90321a9aed9fd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1888266368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7669718455291210107, guid: 1736e6a4127714b45b46d293db32839e, type: 3}

@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     private Camera mainCamera;
     public GameObject layerUI;
     public Vector3 uiMenuPos;
+    private Vector3 lastCameraCoords;
 
     // Update is called once per frame
     void Start(){
@@ -65,6 +66,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void ShowGameOver(){
+        this.lastCameraCoords = this.mainCamera.transform.position;
         this.mainCamera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.gameOverUI.SetActive(true);
@@ -74,6 +76,14 @@ public class PauseMenu : MonoBehaviour
         this.mainCamera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.victoryUI.SetActive(true);
+    }
+
+    public void ContinueGame(){
+        this.mainCamera.transform.position = this.lastCameraCoords;
+        pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        victoryUI.SetActive(false);
+        layerUI.SetActive(true);
     }
 
     
