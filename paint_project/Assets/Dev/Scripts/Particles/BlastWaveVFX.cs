@@ -42,7 +42,7 @@ public class BlastWaveVFX : MonoBehaviour
            
            // "7" es la layer enemies
             bool isValid = (enemy.layer.ToString() == "7");
-            if (!enemy)
+            if (!enemy || !isValid)
                 continue;
 
             if (enemy.CompareTag("Follower")){
