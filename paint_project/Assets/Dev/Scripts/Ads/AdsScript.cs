@@ -22,6 +22,8 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
         //Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
+
+        LoadAd();
     }
 
     // Load content to the Ad Unit:
@@ -63,6 +65,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
             //TODO REVIVE
+            print("completado");
             //Spawner.SpawnRandomDuck();
 
             // Load another ad:
