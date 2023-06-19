@@ -30,12 +30,12 @@ public class PlayerBullet : MonoBehaviour
         // } 
         if(other.CompareTag("ShooterScript")) {
             destroyBulletPlayer();
-            other.GetComponent<ShooterScript>().Die(); 
+            other.GetComponent<ShooterScript>().Die(true); 
             }
 
             if(other.CompareTag("Follower")) {
             destroyBulletPlayer();
-            other.GetComponent<FollowerScript>().Die(); 
+            other.GetComponent<FollowerScript>().Die(true); 
             }
     
        

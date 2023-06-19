@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         else {
           if (player.velocity.magnitude > 0.1f) {
             Vector2 newVelocity = player.velocity - new Vector2(currentInput.x * drag, currentInput.y * drag);
-            Debug.Log("newVelocity: " + newVelocity.x + ", " + newVelocity.y);
+          
             if (newVelocity.magnitude > 0.5f) {
               player.velocity = newVelocity;
             } else {

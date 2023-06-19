@@ -61,9 +61,12 @@ class FollowerScript : Enemy
     {
 
     }
-    public override void Die()
+    public override void Die(bool hasSound)
     {
-        this.audioManager.PlayenemyDieSound(0);
+        if (hasSound) {
+            this.audioManager.PlayenemyDieSound(0);
+        }
+       
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);

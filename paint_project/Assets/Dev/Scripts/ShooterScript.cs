@@ -110,10 +110,13 @@ class ShooterScript : Enemy
     {
 
     }
-    public override void Die()
+    public override void Die(bool hasSound)
     {
         shotActive = Time.time;
+        if(hasSound){
         this.audioManager.PlayenemyDieSound(1);
+
+        }
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         
         PaintManager.detectPaint(transform.position);

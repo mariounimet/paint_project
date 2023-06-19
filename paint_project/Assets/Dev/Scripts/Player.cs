@@ -28,11 +28,13 @@ public class Player : MonoBehaviour
     private float fireTimer;
     public PauseMenu PauseMenuScript;
     public Vector3 initialPlayerCoords;
+    private BlastWaveVFX blastWave;
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        blastWave = GetComponent<BlastWaveVFX>();
+
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;
         isOnCooldown = false;
@@ -87,10 +89,12 @@ public class Player : MonoBehaviour
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
+            blastWave.createWave(life2Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health == 1) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
+            blastWave.createWave(life1Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health <= 0) {
             PlayerDie(true);
