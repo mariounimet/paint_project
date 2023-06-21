@@ -8,6 +8,7 @@ public class LevelSelector : MonoBehaviour
     public Vector3 LevelCords;
     private PaintManagerScript paintManager;
     private Camera mainCamera;
+    private ObjectPooler objectPooler;
     // public GameObject joystick;
     // public GameObject progressBar;
     // public GameObject text;
@@ -17,8 +18,12 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     public GameObject layerUI;
     public GameObject levelsMenuUI;
+
+    
+
     void Start()
     {
+        objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         this.paintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
         if (layerUI) {
@@ -67,6 +72,9 @@ public class LevelSelector : MonoBehaviour
         }
         
         this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
+
+        ObjectPooler.setEnemyDictionary(levelWave[imgIndex]);
+
         if (imgIndex == 0){
             tutorialManager.StartRunning();
             tutorialManager.firstPopUp();
