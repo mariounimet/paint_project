@@ -19,8 +19,6 @@ public class LevelSelector : MonoBehaviour
     public GameObject layerUI;
     public GameObject levelsMenuUI;
 
-    
-
     void Start()
     {
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
@@ -70,7 +68,7 @@ public class LevelSelector : MonoBehaviour
         if(layerUI){
             layerUI.gameObject.SetActive(true);
         }
-        
+      
         this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
 
         ObjectPooler.setEnemyDictionary(levelWave[imgIndex]);
@@ -81,6 +79,7 @@ public class LevelSelector : MonoBehaviour
         }else {
             Time.timeScale = 1f;
         }
+        
         AudioManager.StartFadingOutMenuMusic();
     }
 }

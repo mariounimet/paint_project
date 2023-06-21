@@ -11,6 +11,7 @@ class FollowerScript : Enemy
     private bool acelerate;
     private PaintManagerScript PaintManager;
     private AudioManagerScript audioManager;
+    public GameObject deathParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +61,15 @@ class FollowerScript : Enemy
     {
 
     }
-    public override void Die()
+    public override void Die(bool hasSound)
     {
-        this.audioManager.PlayenemyDieSound(0);
-         PaintManager.detectPaint(transform.position);
-         gameObject.SetActive(false);
+        if (hasSound) {
+            this.audioManager.PlayenemyDieSound(0);
+        }
+       
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
+        PaintManager.detectPaint(transform.position);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

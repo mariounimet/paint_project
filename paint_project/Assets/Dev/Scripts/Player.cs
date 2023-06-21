@@ -28,11 +28,13 @@ public class Player : MonoBehaviour
     private float fireTimer;
     public PauseMenu PauseMenuScript;
     public Vector3 initialPlayerCoords;
+    private BlastWaveVFX blastWave;
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        blastWave = GetComponent<BlastWaveVFX>();
+
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;
         isOnCooldown = false;
@@ -87,24 +89,24 @@ public class Player : MonoBehaviour
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
+            blastWave.createWave(life2Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health == 1) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
+            blastWave.createWave(life1Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health <= 0) {
-            PlayerDie(true);
+            //PlayerDie(true);
+            showGameOverDecision();
             
         }
     }
 
-    public void HitShip() {
-        // Application.Quit();
-    }
 
     public void Hit() {}
 
-    public void PlayerDie(bool isDie){
+    public void resetPlayer(bool isDie){
        
         this.transform.position = initialPlayerCoords;
         GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
@@ -116,18 +118,30 @@ public class Player : MonoBehaviour
         GameObject.Find("Lienzo").GetComponent<PaintManagerScript>().resetProgressBar();
         GameObject.Find("Lienzo").GetComponent<GridManagerScript>().resetIsPaintedMatrix();
         Camera.main.orthographicSize = 4.5f;
-        //TODO resetmusic
-        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().resetMusic();
-        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playEndSound(isDie);
-        
-        if (isDie) {
-            this.PauseMenuScript.ShowGameOver();
-        } else {
+
+       
+        if (!isDie) {
+             GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().resetMusic();
+            GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playEndSound(isDie);
             this.PauseMenuScript.ShowVictory();
-        }
-      
-        
-      
+        } 
+
+    }
+
+    public void showGameOverDecision(){
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().resetMusic();
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().playEndSound(true);
+        this.PauseMenuScript.ShowGameOver();
+        Time.timeScale = 0f;
+    }
+
+    public void revivePlayer(){
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().continueMusic();
+        this.PauseMenuScript.ContinueGame();
+        Time.timeScale = 1f;
+        health = 3;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = presetColor;
     }
 
 public IEnumerator CooldownEffect()
