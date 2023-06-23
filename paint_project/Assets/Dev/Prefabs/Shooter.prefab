@@ -1070,6 +1070,7 @@ MonoBehaviour:
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
   shooterBulletSound: {fileID: 8300000, guid: b23ad9d820ced5944ba766aef06772d9, type: 3}
   deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
+  HpPUPrefab: {fileID: 8535783436691569489, guid: 3d7ce043e96c9a9459b16950f240685d, type: 3}
 --- !u!58 &5520874712786567289
 CircleCollider2D:
   m_ObjectHideFlags: 0

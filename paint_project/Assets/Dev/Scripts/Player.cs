@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     Color presetColor = new Color(0, 255, 0);
+    Color life3Color = new Color(0, 191, 0);
     Color life2Color = new Color(207, 255, 0);
     Color life1Color = new Color(255, 0, 0);
     public AudioClip shipHitSound;
     public AudioClip bulletShotSound;
     public AudioSource shootAudioSource;
     public AudioSource getHitAudioSource;
-    private int health = 3;
+    public int health = 3;
     private float cooldownTime = 2;
     private float nextFireTime = 0;
     private float timeLastHit = 0;
@@ -65,6 +66,16 @@ public class Player : MonoBehaviour
         this.shootAudioSource.PlayOneShot(this.bulletShotSound);
     }
 
+    public float GetFireRate() 
+    {
+        return this.fireRate;
+    }
+
+    public void SetFireRate(float fireRate)
+    {
+        this.fireRate = fireRate;
+    }
+
     public void HitBullet() {
         if (VerifyCooldown()) {
             ReduceHealth();
@@ -83,25 +94,52 @@ public class Player : MonoBehaviour
         return result;
     }
 
+    public void AddHealth()
+    {
+        if (health < 3)
+        {
+            health++;
+            Debug.Log("Added 1 hp");
+            ChangeSpriteColor();
+        }
+    }
     public void ReduceHealth() {
         health--;
-        
-        if (health == 2) {
+        ChangeSpriteColor();
+
+    }
+
+    public void ChangeSpriteColor()
+    {
+        if (health == 3)
+        {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = presetColor;
+            blastWave.createWave(presetColor);
+            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+        }
+        else if (health == 2)
+        {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
             blastWave.createWave(life2Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
-        } else if (health == 1) {
+        }
+        else if (health == 1)
+        {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
             blastWave.createWave(life1Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
-        } else if (health <= 0) {
+        }
+        else if (health <= 0)
+        {
             //PlayerDie(true);
             showGameOverDecision();
-            
         }
     }
+
+   
 
 
     public void Hit() {}
