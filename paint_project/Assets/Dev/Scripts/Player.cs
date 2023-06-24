@@ -31,9 +31,12 @@ public class Player : MonoBehaviour
     public Vector3 initialPlayerCoords;
     private BlastWaveVFX blastWave;
 
+    private Shake shake;
+
     // Start is called before the first frame update
     void Start()
     {
+        shake = GameObject.FindGameObjectWithTag("ShakeManager").GetComponent<Shake>();
         blastWave = GetComponent<BlastWaveVFX>();
 
         var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
         }
     }
     public void ReduceHealth() {
+        shake.CamShake();
         health--;
         ChangeSpriteColor();
 
