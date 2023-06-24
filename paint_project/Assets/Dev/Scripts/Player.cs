@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CameraShake;
 
 
 public class Player : MonoBehaviour
@@ -31,12 +32,10 @@ public class Player : MonoBehaviour
     public Vector3 initialPlayerCoords;
     private BlastWaveVFX blastWave;
 
-    private Shake shake;
 
     // Start is called before the first frame update
     void Start()
     {
-        shake = GameObject.FindGameObjectWithTag("ShakeManager").GetComponent<Shake>();
         blastWave = GetComponent<BlastWaveVFX>();
 
         var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -107,7 +106,8 @@ public class Player : MonoBehaviour
         }
     }
     public void ReduceHealth() {
-        shake.CamShake();
+        // Shakes the screen when the player gets hit
+        CameraShaker.Presets.Explosion2D(positionStrength: 10f, rotationStrength: 10f, duration: 2f);
         health--;
         ChangeSpriteColor();
 

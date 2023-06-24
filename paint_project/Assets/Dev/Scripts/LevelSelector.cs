@@ -7,7 +7,7 @@ public class LevelSelector : MonoBehaviour
     public int imgIndex;
     public Vector3 LevelCords;
     private PaintManagerScript paintManager;
-    private Camera mainCamera;
+    public GameObject camera;
     // public GameObject joystick;
     // public GameObject progressBar;
     // public GameObject text;
@@ -32,7 +32,7 @@ public class LevelSelector : MonoBehaviour
         // text.gameObject.SetActive(false);
         // pauseBotton.gameObject.SetActive(false);
 
-        mainCamera = Camera.main;
+        //camera = Camera.main;
 
         Time.timeScale = 0f;
     }
@@ -41,7 +41,7 @@ public class LevelSelector : MonoBehaviour
     // void Start()
     // {
     //     layerUI.gameObject.SetActive(false);
-    //     mainCamera = Camera.main;
+    //     camera = Camera.main;
     //     Time.timeScale = 0f;
     //     tutorialManager = Camera.main.GetComponent<TutorialManager>();
     // }
@@ -67,7 +67,7 @@ public class LevelSelector : MonoBehaviour
             layerUI.gameObject.SetActive(true);
         }
       
-        this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
+        this.camera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
         if (imgIndex == 0){
             tutorialManager.StartRunning();
             tutorialManager.firstPopUp();
