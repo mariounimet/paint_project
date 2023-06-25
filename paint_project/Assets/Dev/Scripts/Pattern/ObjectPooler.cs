@@ -24,24 +24,14 @@ public class ObjectPooler : MonoBehaviour
 
     #endregion
     
+    public int stageNumber;
+    private List<List<int>> levelWaves;
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start() {
+        stageNumber = 0;
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-        foreach (Pool pool in pools)
-        {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
-
-            for (int i = 0; i < pool.size; i++) {
-                GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
-            }
-
-            poolDictionary.Add(pool.tag, objectPool);
-        }
     }
     
     public GameObject SpawnFromPool (string tag, Vector3 position, Quaternion rotation)
@@ -53,6 +43,12 @@ public class ObjectPooler : MonoBehaviour
         }
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
+        if(objectToSpawn.activeInHierarchy)
+        {
+            poolDictionary[tag].Enqueue(objectToSpawn);
+            return null;
+        }
+
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -62,21 +58,71 @@ public class ObjectPooler : MonoBehaviour
         if (pooledObj != null)
         {
             pooledObj.OnObjectSpawn();
-        } 
-        
+        }
+
         poolDictionary[tag].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
 
-    public void changeStage()
+    public void setEnemyDictionary(List<List<int>> waves)
     {
+        levelWaves = waves;
+        poolDictionary.Clear();
+        List<int> wave = waves[stageNumber];
+        int cont = 0;
         foreach (Pool pool in pools)
         {
-            foreach (GameObject enemy in poolDictionary[pool.tag])
+            if(wave.Contains(cont))
             {
-                enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                Queue<GameObject> objectPool = new Queue<GameObject>();
+
+                for (int i = 0; i < pool.size; i++) {
+                    GameObject obj = Instantiate(pool.prefab);
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
+                }
+
+                poolDictionary.Add(pool.tag, objectPool);
+            }
+            cont += 1;
+        }
+    }
+
+    public void changeStage()
+    {
+        if(stageNumber < 3)
+        {
+            stageNumber += 1;
+        }
+        else{
+            stageNumber = 0;
+        }
+            foreach (Pool pool in pools)
+            {
+                if(poolDictionary.ContainsKey(pool.tag))
+                {
+                    foreach (GameObject enemy in poolDictionary[pool.tag])
+                    {
+                        enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                    }
+                }
+            }
+        setEnemyDictionary(levelWaves);
+    }
+
+    public void resetStageNumber()
+    {
+    foreach (Pool pool in pools)
+        {
+            if(poolDictionary.ContainsKey(pool.tag))
+            {
+                foreach (GameObject enemy in poolDictionary[pool.tag])
+                {
+                    enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                }
             }
         }
+        stageNumber = 0;
     }
 }
