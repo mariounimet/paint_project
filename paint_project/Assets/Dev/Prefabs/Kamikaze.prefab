@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 472354647619533872}
   - component: {fileID: -4575996624435335275}
   - component: {fileID: -8380900979229100268}
+  - component: {fileID: 7160512967640047007}
   m_Layer: 7
   m_Name: Kamikaze
   m_TagString: Kamikaze
@@ -332,3 +333,15 @@ MonoBehaviour:
   cam: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
   shooterBulletSound: {fileID: 0}
+--- !u!114 &7160512967640047007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866484242836737589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50890dfee61ed954cafc4f8178ceeb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

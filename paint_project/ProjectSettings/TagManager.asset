@@ -10,6 +10,7 @@ TagManager:
   - Follower
   - bar
   - Kamikaze
+  - Tank
   layers:
   - Default
   - TransparentFX

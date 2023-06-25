@@ -41,6 +41,10 @@ public class PlayerBullet : MonoBehaviour
             destroyBulletPlayer();
             other.GetComponent<KamikazeScript>().Die(true); 
             }
+        if(other.CompareTag("Tank")){
+            destroyBulletPlayer();
+            other.GetComponent<TankScript>().ReduceHealth(); 
+            }
 
         // if (other.CompareTag("Boundary")) {
         //     print("entro");
