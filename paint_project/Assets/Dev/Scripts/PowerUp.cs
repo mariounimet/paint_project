@@ -32,8 +32,12 @@ public class PowerUp : MonoBehaviour
         {
             case PowerUpsAvailable.HealthBoost:
 
+                Debug.Log("Llegue aqui 1");
+
                 // Adds 1 HP
                 stats.AddHealth();
+
+                Debug.Log("Llegue aqui 2");
 
                 //TODO: Add effect onCollide
                 Destroy(gameObject);

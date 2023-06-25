@@ -1065,6 +1065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2248ba52c8937d14293b9f0dfa552ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpPrefabs:
+  - {fileID: 8535783436691569489, guid: 3d7ce043e96c9a9459b16950f240685d, type: 3}
+  - {fileID: 6352602838943713438, guid: cb7309ed36802a34d87e65541e6ccaec, type: 3}
+  - {fileID: 4985717923426559620, guid: 8a9963ff7f0bedc41ab3a3fd0794d6d6, type: 3}
   bullet: {fileID: 1143012164119763823, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
   cam: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}

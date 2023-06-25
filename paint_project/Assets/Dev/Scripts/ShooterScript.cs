@@ -123,8 +123,7 @@ class ShooterScript : Enemy
         
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
-
-        GameObject pu = Instantiate(HpPUPrefab);
+        InstantiatePowerUp();
     }
     
     private void OnTriggerEnter2D(Collider2D other)
