@@ -44,6 +44,10 @@ public class PlayerBullet : MonoBehaviour
         if(other.CompareTag("Tank")){
             destroyBulletPlayer();
             other.GetComponent<TankScript>().ReduceHealth(); 
+        }
+        if(other.CompareTag("Dasher")){
+            destroyBulletPlayer();
+            other.GetComponent<DasherScript>().Die(true); 
             }
 
         // if (other.CompareTag("Boundary")) {

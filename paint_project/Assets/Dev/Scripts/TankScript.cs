@@ -36,7 +36,7 @@ class TankScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        print(speed);
+
         Rigidbody2D.angularVelocity = 10;
         if(speed <= 0 && acelerate)
         {
