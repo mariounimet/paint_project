@@ -13,6 +13,15 @@ class FollowerScript : Enemy
     private AudioManagerScript audioManager;
     public GameObject deathParticles;
 
+    [System.Serializable]
+    public class PowerUp
+    {
+        public string tag;
+        [SerializeField] public GameObject prefab;
+    }
+
+    public List<PowerUp> powerUps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +77,7 @@ class FollowerScript : Enemy
         }
        
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
+        Instantiate(powerUps[0].prefab, this.transform.position, Quaternion.identity);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
     }
