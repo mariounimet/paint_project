@@ -171,6 +171,7 @@ public class PaintManagerScript : MonoBehaviour
 
             this.currentPaintingRemainingIndexes = new Vector2Int(this.PaintReaminingIndexes[0], this.PaintReaminingIndexes[1]);
             this.isPainting = true;
+            GameObject.Find("Spawner").GetComponent<Spawner>().canSpawnChange(false);
             GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
         }
     }
@@ -233,6 +234,7 @@ public class PaintManagerScript : MonoBehaviour
                      this.player.GetComponent<Player>().resetPlayer(false);
                   }
             }
+        GameObject.Find("Spawner").GetComponent<Spawner>().canSpawnChange(true);
     }
 
     public void PaintRemainingInSector(){

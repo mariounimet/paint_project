@@ -19,8 +19,43 @@ public class LevelSelector : MonoBehaviour
     public GameObject layerUI;
     public GameObject levelsMenuUI;
 
+    private List<List<int>>[] levelWaves = new List<List<int>>[6];
+    
+
+
     void Start()
     {
+        levelWaves[0] = new List<List<int>>(){
+            new List<int>(){0},
+            new List<int>(){1},
+            new List<int>(){0, 1},
+            new List<int>(){0, 1}};
+        levelWaves[1] = new List<List<int>>(){
+            new List<int>(){1},
+            new List<int>(){0},
+            new List<int>(){0, 1},
+            new List<int>(){0, 1}};
+        levelWaves[2] = new List<List<int>>(){
+            new List<int>(){0},
+            new List<int>(){0},
+            new List<int>(){1},
+            new List<int>(){0, 1}};
+        levelWaves[3] = new List<List<int>>(){
+            new List<int>(){0},
+            new List<int>(){1},
+            new List<int>(){0, 1},
+            new List<int>(){0, 1}};
+        levelWaves[4] = new List<List<int>>(){
+            new List<int>(){0},
+            new List<int>(){1},
+            new List<int>(){0, 1},
+            new List<int>(){0, 1}};
+        levelWaves[5] = new List<List<int>>(){
+            new List<int>(){0},
+            new List<int>(){1},
+            new List<int>(){0, 1},
+            new List<int>(){0, 1}};
+
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         this.paintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
@@ -71,7 +106,8 @@ public class LevelSelector : MonoBehaviour
       
         this.mainCamera.transform.position = new Vector3(this.LevelCords.x,this.LevelCords.y,this.LevelCords.z);
 
-        ObjectPooler.setEnemyDictionary(levelWave[imgIndex]);
+        objectPooler.resetStageNumber();
+        objectPooler.setEnemyDictionary(levelWaves[imgIndex]);
 
         if (imgIndex == 0){
             tutorialManager.StartRunning();
@@ -80,6 +116,7 @@ public class LevelSelector : MonoBehaviour
             Time.timeScale = 1f;
         }
         
+        GameObject.Find("Spawner").GetComponent<Spawner>().canSpawnChange(true);
         AudioManager.StartFadingOutMenuMusic();
     }
 }

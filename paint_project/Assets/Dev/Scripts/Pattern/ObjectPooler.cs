@@ -25,6 +25,7 @@ public class ObjectPooler : MonoBehaviour
     #endregion
     
     public int stageNumber;
+    private List<List<int>> levelWaves;
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -64,13 +65,15 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
-    public void setEnemyDictionary(List<int> poolsToUse)
+    public void setEnemyDictionary(List<List<int>> waves)
     {
+        levelWaves = waves;
         poolDictionary.Clear();
+        List<int> wave = waves[stageNumber];
         int cont = 0;
         foreach (Pool pool in pools)
         {
-            if(poolsToUse[stageNumber].find(cont))
+            if(wave.Contains(cont))
             {
                 Queue<GameObject> objectPool = new Queue<GameObject>();
 
@@ -88,12 +91,38 @@ public class ObjectPooler : MonoBehaviour
 
     public void changeStage()
     {
-        foreach (Pool pool in pools)
+        if(stageNumber < 3)
         {
-            foreach (GameObject enemy in poolDictionary[pool.tag])
+            stageNumber += 1;
+        }
+        else{
+            stageNumber = 0;
+        }
+            foreach (Pool pool in pools)
             {
-                enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                if(poolDictionary.ContainsKey(pool.tag))
+                {
+                    foreach (GameObject enemy in poolDictionary[pool.tag])
+                    {
+                        enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                    }
+                }
+            }
+        setEnemyDictionary(levelWaves);
+    }
+
+    public void resetStageNumber()
+    {
+    foreach (Pool pool in pools)
+        {
+            if(poolDictionary.ContainsKey(pool.tag))
+            {
+                foreach (GameObject enemy in poolDictionary[pool.tag])
+                {
+                    enemy.GetComponent<EnemyStatesScript>().DeSpawn();
+                }
             }
         }
+        stageNumber = 0;
     }
 }

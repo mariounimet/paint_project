@@ -9,25 +9,30 @@ public class Spawner : MonoBehaviour
     public float offSetY;
     ObjectPooler objectPooler;
     [SerializeField] private float spawnRate = 3f;
-    [SerializeField] private bool canSpawn = true;
+    [SerializeField] public bool canSpawn;
+    private bool a;
 
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
+        canSpawn = false;
+        a = true;
         StartCoroutine(Factory());
     }
 
     private IEnumerator Factory () {
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
         
-        while (canSpawn) {
+        while (a) {
             yield return wait;
-            
-            int index = Random.Range(0, objectPooler.poolDictionary.Count);
-            string enemyToSpawn = objectPooler.poolDictionary.ElementAt(index).Key;
+            if(canSpawn)
+            {
+                int index = Random.Range(0, objectPooler.poolDictionary.Count);
+                string enemyToSpawn = objectPooler.poolDictionary.ElementAt(index).Key;
 
-            Vector3 spawnPoint =  PickRandomSpawnPoint();
-            objectPooler.SpawnFromPool(enemyToSpawn, spawnPoint, Quaternion.identity);
+                Vector3 spawnPoint =  PickRandomSpawnPoint();
+                objectPooler.SpawnFromPool(enemyToSpawn, spawnPoint, Quaternion.identity);
+            }
         }
     }
 
@@ -46,8 +51,13 @@ public class Spawner : MonoBehaviour
         }
 
         return spawn;
+    }
 
+    public void canSpawnChange(bool b)
+    {
+        Debug.Log("cambio");
+        Debug.Log(b);
 
-       
+        canSpawn = b;
     }
 }
