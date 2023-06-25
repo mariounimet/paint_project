@@ -33,12 +33,14 @@ public class PlayerBullet : MonoBehaviour
             other.GetComponent<ShooterScript>().Die(true); 
             }
 
-            if(other.CompareTag("Follower")) {
+        if(other.CompareTag("Follower")) {
             destroyBulletPlayer();
             other.GetComponent<FollowerScript>().Die(true); 
             }
-    
-       
+        if(other.CompareTag("Kamikaze")){
+            destroyBulletPlayer();
+            other.GetComponent<KamikazeScript>().Die(true); 
+            }
 
         // if (other.CompareTag("Boundary")) {
         //     print("entro");
