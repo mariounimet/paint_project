@@ -9,7 +9,7 @@ class KamikazeScript : Enemy
     public GameObject player;
     private Vector3 moveTo;
     private PaintManagerScript PaintManager;
-
+    private Rigidbody2D Rigidbody2D;
     private bool newMoveTo;
     private float shotActive;
     private float speed;
@@ -26,6 +26,7 @@ class KamikazeScript : Enemy
         audioSource = this.GetComponent<AudioSource>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
         PaintManager = GameObject.Find("Lienzo").GetComponent<PaintManagerScript>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
         player =  GameObject.Find("Ship");
         cam = GameObject.Find("Main Camera");
         MoveToSpawnPoint();
@@ -38,6 +39,7 @@ class KamikazeScript : Enemy
     // Update is called once per frame
     void Update()
     {
+        Rigidbody2D.angularVelocity = 500;
         if(transform.position.x == moveTo.x && transform.position.y == moveTo.y){
             if(newMoveTo)
             {
@@ -47,7 +49,7 @@ class KamikazeScript : Enemy
             }
             else
             {
-                ChageRotation(player.transform.position);
+                //ChageRotation(player.transform.position);
             }
             
         }else if (!PauseMenu.GameIsPaused){
@@ -61,7 +63,7 @@ class KamikazeScript : Enemy
             {
                 speed -= (float)0.002;
             }
-            ChageRotation(moveTo);
+            //ChageRotation(moveTo);
             transform.position = Vector2.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
         }
     }
@@ -100,41 +102,39 @@ class KamikazeScript : Enemy
 
         }
         this.audioSource.PlayOneShot(this.shooterBulletSound);
+        
         GameObject b1 = Instantiate(bullet, transform.position, Quaternion.identity);
-        Quaternion angulob1 = transform.rotation;
-        angulob1.y += (float)(0);
-        transform.rotation = angulob1;
-        b1.GetComponent<BulletScript>().setDirection(transform.rotation);
-
         GameObject b2 = Instantiate(bullet, transform.position, Quaternion.identity);
-        Quaternion angulob2 = transform.rotation;
-        angulob2.y += (float)(0.5);
-        transform.rotation = angulob2;
-        b2.GetComponent<BulletScript>().setDirection(transform.rotation);
-
         GameObject b3 = Instantiate(bullet, transform.position, Quaternion.identity);
-        Quaternion angulog = transform.rotation;
-        angulog.y += (float)(1);
-        transform.rotation = angulog;
-        b3.GetComponent<BulletScript>().setDirection(transform.rotation);
-
         GameObject b4 = Instantiate(bullet, transform.position, Quaternion.identity);
-        Quaternion anguloh = transform.rotation;
-        anguloh.x += (float)(1.5);
-        transform.rotation = anguloh;
-        b4.GetComponent<BulletScript>().setDirection(transform.rotation);
-
         GameObject b5 = Instantiate(bullet, transform.position, Quaternion.identity);
-        Quaternion anguloi = transform.rotation;
-        anguloi.x += (float)(2);
-        transform.rotation = anguloi;
-        b5.GetComponent<BulletScript>().setDirection(transform.rotation);
-
         GameObject b6 = Instantiate(bullet, transform.position, Quaternion.identity);
+
+        Quaternion angulob1 = transform.rotation;
+        Quaternion angulob2 = transform.rotation;
+        Quaternion angulob3 = transform.rotation;
+        Quaternion angulob4 = transform.rotation;
+        Quaternion angulob5= transform.rotation;
         Quaternion angulob6 = transform.rotation;
-        angulob6.x += (float)(2);
-        transform.rotation = angulob6;
-        b6.GetComponent<BulletScript>().setDirection(transform.rotation);
+
+        angulob1.z += (float)(0);
+        b1.GetComponent<BulletScript>().setDirection(angulob1);
+
+        angulob2.z += (float)(0.5);
+        b2.GetComponent<BulletScript>().setDirection(angulob2);
+
+        angulob3.z += (float)(-0.5);
+        b3.GetComponent<BulletScript>().setDirection(angulob3);
+
+        
+        angulob4.z += (float)(150);
+        b4.GetComponent<BulletScript>().setDirection(angulob4);
+        
+        angulob5.z += (float)(1.5);
+        b5.GetComponent<BulletScript>().setDirection(angulob5);
+
+        angulob6.z += (float)(-1.5);
+        b6.GetComponent<BulletScript>().setDirection(angulob6);
 
 
         PaintManager.detectPaint(transform.position);
