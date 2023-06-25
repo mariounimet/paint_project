@@ -5,7 +5,7 @@ using UnityEngine;
 class TankScript : Enemy
 {
     
-    Color presetColor = new Color(0, 255, 0);
+    Color presetColor = new Color(0, 255, 10);
     Color life2Color = new Color(207, 255, 0);
     Color life1Color = new Color(255, 0, 0);  
     private Rigidbody2D Rigidbody2D;
@@ -99,6 +99,9 @@ class TankScript : Enemy
         } else if (health <= 0) {
             //PlayerDie(true);
             Die(true);
+            health = 3;
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = presetColor;
             
         }
     }

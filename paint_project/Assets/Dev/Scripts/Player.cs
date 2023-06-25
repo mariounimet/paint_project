@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public AudioClip bulletShotSound;
     public AudioSource shootAudioSource;
     public AudioSource getHitAudioSource;
-    private int health = 3;
+    private int health = 100;
     private float cooldownTime = 2;
     private float nextFireTime = 0;
     private float timeLastHit = 0;
