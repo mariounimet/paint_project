@@ -16,20 +16,16 @@ abstract class Enemy : MonoBehaviour
         if (hasPowerUp())
         {
             System.Random rand = new System.Random();
-            var n = Convert.ToInt32(rand.Next(0, 3));
+            var n = Convert.ToInt32(rand.Next(0, 3)); // Decides which powerup to instantiate
             Instantiate(powerUpPrefabs[n], this.transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Debug.Log("no");
         }
     }
 
+    //Function that returns True 10% of the times
     public bool hasPowerUp()
     {
         System.Random rand = new System.Random();
         int chances = Convert.ToInt32(rand.Next(0, 101));
-        Debug.Log(chances);
         return chances < 10;
     }
 }
