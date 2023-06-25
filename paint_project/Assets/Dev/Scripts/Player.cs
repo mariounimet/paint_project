@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     }
 
     private void StopCooldown() {
-        if (((Time.time - timeLastHit) > 2)) {
+        if ((Time.time - timeLastHit) > 2) {
             isOnCooldown = false;
         }
     }
@@ -142,9 +142,6 @@ public class Player : MonoBehaviour
             showGameOverDecision();
         }
     }
-
-   
-
 
     public void Hit() {}
 

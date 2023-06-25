@@ -40,17 +40,16 @@ public class PowerUp : MonoBehaviour
                 break;
 
             case PowerUpsAvailable.Invulnerable:
-                Debug.Log("Probando ando jajaja");
+                player.GetComponent<CircleCollider2D>().enabled = false; // Disables player collider so it's "invulnerable"
+                yield return StartCoroutine(stats.CooldownEffect()); // Applies effect of invulnerable, and the yield is so it awaits it
+                player.GetComponent<CircleCollider2D>().enabled = true; // Enables the collider once again
                 break;
 
             case PowerUpsAvailable.FireRate:
-                Debug.Log("Entre en el fireRate");
                 // Store default fire rate
                 defaultFireRate = stats.GetFireRate();
                 stats.SetFireRate(newFireRate);
-
                 yield return new WaitForSeconds(duration);
-
                 stats.SetFireRate(defaultFireRate);
 
                 break;
