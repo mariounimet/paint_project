@@ -26,6 +26,6 @@ abstract class Enemy : MonoBehaviour
     {
         System.Random rand = new System.Random();
         int chances = Convert.ToInt32(rand.Next(0, 101));
-        return chances < 10;
+        return chances < 100;
     }
 }
