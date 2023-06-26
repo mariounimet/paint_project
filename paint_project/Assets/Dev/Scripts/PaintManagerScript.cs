@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PaintManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Camera mainCamera;
+    public GameObject camera;
     private Texture2D currentMask;
     private Texture2D newMask;
     public Texture2D[] backgroundImage;
@@ -52,7 +52,6 @@ public class PaintManagerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentMask = (Texture2D) crenderer.material.GetTexture("_PaintMask");
         newMask = currentMask;
-        mainCamera = Camera.main;
         setInitialProgress(this.grid.getMatrixDimensions(this.grid.canvasSize,this.grid.blockPixelSize));
         ResetCanvas();
 
@@ -180,21 +179,21 @@ public class PaintManagerScript : MonoBehaviour
                 //this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x*-1,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
                
                 this.player.transform.position = new Vector3(this.player.transform.position.x+cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
-                if (this.mainCamera.transform.position.x> Mathf.Abs(this.initialCamaraCoords.x)) {
-                    this.mainCamera.transform.position = new Vector3(Mathf.Abs(this.initialCamaraCoords.x),this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                this.camera.transform.position = new Vector3(this.camera.transform.position.x+cameraStepX,this.camera.transform.position.y,this.camera.transform.position.z);
+                if (this.camera.transform.position.x> Mathf.Abs(this.initialCamaraCoords.x)) {
+                    this.camera.transform.position = new Vector3(Mathf.Abs(this.initialCamaraCoords.x),this.camera.transform.position.y,this.camera.transform.position.z);
                     this.currentSector.x = 1;
                     this.isMovingCamera = false;
-                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
+                    this.touchManager.setMiddleOfScreen(this.camera.transform.position.x);
                     this.AudioManager.PlayNextLayer();
                 }
                 
                 
             } else if ((currentSector.x == 1) && (currentSector.y == 0)) {
                 this.player.transform.position = new Vector3(this.player.transform.position.x,this.player.transform.position.y +cameraStepY,this.player.transform.position.z);
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,this.mainCamera.transform.position.y+cameraStepY,this.mainCamera.transform.position.z);
-                if (this.mainCamera.transform.position.y> Mathf.Abs(this.initialCamaraCoords.y)) {
-                    this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.mainCamera.transform.position.z);
+                this.camera.transform.position = new Vector3(this.camera.transform.position.x,this.camera.transform.position.y+cameraStepY,this.camera.transform.position.z);
+                if (this.camera.transform.position.y> Mathf.Abs(this.initialCamaraCoords.y)) {
+                    this.camera.transform.position = new Vector3(this.camera.transform.position.x,Mathf.Abs(this.initialCamaraCoords.y),this.camera.transform.position.z);
                     this.currentSector.y = 1;
                     this.isMovingCamera = false;
                     this.AudioManager.PlayNextLayer();
@@ -204,28 +203,28 @@ public class PaintManagerScript : MonoBehaviour
             } else if ((currentSector.x == 1) && (currentSector.y == 1)) {
                 this.player.transform.position = new Vector3(this.player.transform.position.x-cameraStepX,this.player.transform.position.y,this.player.transform.position.z);
                 
-                this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x-cameraStepX,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+                this.camera.transform.position = new Vector3(this.camera.transform.position.x-cameraStepX,this.camera.transform.position.y,this.camera.transform.position.z);
                
-               if (this.mainCamera.transform.position.x< this.initialCamaraCoords.x) {
-                    this.mainCamera.transform.position = new Vector3(this.initialCamaraCoords.x+0.18f,this.mainCamera.transform.position.y,this.mainCamera.transform.position.z);
+               if (this.camera.transform.position.x< this.initialCamaraCoords.x) {
+                    this.camera.transform.position = new Vector3(this.initialCamaraCoords.x+0.18f,this.camera.transform.position.y,this.camera.transform.position.z);
                     this.currentSector.x = 0;
                     this.isMovingCamera = false;
-                    this.touchManager.setMiddleOfScreen(this.mainCamera.transform.position.x);
+                    this.touchManager.setMiddleOfScreen(this.camera.transform.position.x);
                     this.AudioManager.PlayNextLayer();
                 }
                 
                 
             } else if ((currentSector.x == 0) && (currentSector.y == 1)) {
-                  this.mainCamera.transform.position = new Vector3(this.mainCamera.transform.position.x+cameraStepX,this.mainCamera.transform.position.y-cameraStepY,this.mainCamera.transform.position.z);
-                  if ( this.mainCamera.transform.position.x > 0f) {
-                    this.mainCamera.transform.position = new Vector3(0,0-cameraStepY,this.mainCamera.transform.position.z);
+                  this.camera.transform.position = new Vector3(this.camera.transform.position.x+cameraStepX,this.camera.transform.position.y-cameraStepY,this.camera.transform.position.z);
+                  if ( this.camera.transform.position.x > 0f) {
+                    this.camera.transform.position = new Vector3(0,0-cameraStepY,this.camera.transform.position.z);
                     this.cameraStepX=0;
                     this.cameraStepY=0;
                   }
-
-                  this.mainCamera.orthographicSize += 0.03f;
-                  if (this.mainCamera.orthographicSize >= 8.9f) {
-                     this.mainCamera.orthographicSize = 8.9f;
+                  Camera mainCamera = this.camera.GetComponentInChildren<Camera>();
+                  mainCamera.orthographicSize += 0.03f;
+                  if (mainCamera.orthographicSize >= 8.9f) {
+                     mainCamera.orthographicSize = 8.9f;
                      this.isMovingCamera= false;
                     
                      

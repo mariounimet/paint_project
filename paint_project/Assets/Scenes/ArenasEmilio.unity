@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56820c0684d3e341a027fdd7ac3f15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 1060122338}
   backgroundImage:
   - {fileID: 2800000, guid: 9cd5c892b6f6c50439f62b2d158bc491, type: 3}
   - {fileID: 2800000, guid: 7cc48c3329e95c9459f05b0b4706beb2, type: 3}
@@ -442,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasSize: {x: 1028, y: 1792}
   blockPixelSize: 128
+  camera: {fileID: 1060122338}
   ratioThreshold: 0.56
   resolutionOffset: 32
   gridInicial: {x: -5.184026, y: -8.9, z: -4.700012}
@@ -2201,6 +2203,10 @@ PrefabInstance:
       propertyPath: LevelCords.z
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 7669718455764931526, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1060122338}
     - target: {fileID: 7669718455764931526, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
       propertyPath: layerUI
       value: 
