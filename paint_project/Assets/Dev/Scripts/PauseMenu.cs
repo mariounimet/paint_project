@@ -29,6 +29,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        layerUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -38,6 +39,7 @@ public class PauseMenu : MonoBehaviour
         if (GameIsPaused) {
             Resume();
         }else {
+        layerUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -67,13 +69,13 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowGameOver(){
         this.lastCameraCoords = this.mainCamera.transform.position;
-        this.mainCamera.transform.position = uiMenuPos;
+        //this.mainCamera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.gameOverUI.SetActive(true);
     }
 
     public void ShowVictory(){
-        this.mainCamera.transform.position = uiMenuPos;
+        //this.mainCamera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.victoryUI.SetActive(true);
     }
