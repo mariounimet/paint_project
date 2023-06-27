@@ -44,7 +44,7 @@ class DasherScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        print(speed);
+     
         
         if(speed <= 0)
         {   
@@ -98,6 +98,7 @@ class DasherScript : Enemy
         if(hasSound) {
             this.audioManager.PlayenemyDieSound(0);
         }
+        InstantiatePowerUp();
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
      
         gameObject.SetActive(false);

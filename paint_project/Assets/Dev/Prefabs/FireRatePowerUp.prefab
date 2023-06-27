@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp: 2
-  newFireRate: 0.02
+  newFireRate: 0.04
   duration: 2

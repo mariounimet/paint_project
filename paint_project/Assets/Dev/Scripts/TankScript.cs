@@ -75,6 +75,7 @@ class TankScript : Enemy
         PaintManager.detectPaint(transform.position);
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
+        InstantiatePowerUp();
         this.audioManager.PlayenemyDieSound(1);
     }
 

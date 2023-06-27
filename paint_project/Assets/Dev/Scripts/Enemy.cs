@@ -13,8 +13,10 @@ abstract class Enemy : MonoBehaviour
 
     public void InstantiatePowerUp()
     {
+        print("before spawn");
         if (hasPowerUp())
         {
+            print("should spawn");
             System.Random rand = new System.Random();
             var n = Convert.ToInt32(rand.Next(0, 3)); // Decides which powerup to instantiate
             Instantiate(powerUpPrefabs[n], this.transform.position, Quaternion.identity);

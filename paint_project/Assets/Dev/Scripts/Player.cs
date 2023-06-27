@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public PauseMenu PauseMenuScript;
     public Vector3 initialPlayerCoords;
     private BlastWaveVFX blastWave;
+    public float originalFireRate;
 
 
     // Start is called before the first frame update
@@ -70,7 +71,8 @@ public class Player : MonoBehaviour
 
     public float GetFireRate() 
     {
-        return this.fireRate;
+        // return this.fireRate;
+        return originalFireRate;
     }
 
     public void SetFireRate(float fireRate)
@@ -102,7 +104,7 @@ public class Player : MonoBehaviour
         {
             health++;
             Debug.Log("Added 1 hp");
-            ChangeSpriteColor();
+            ChangeSpriteColor(isFromHit: false);
         }
     }
     public void ReduceHealth() {
@@ -113,28 +115,36 @@ public class Player : MonoBehaviour
 
     }
 
-    public void ChangeSpriteColor()
+    public void ChangeSpriteColor(bool isFromHit = true)
     {
         if (health == 3)
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = presetColor;
             blastWave.createWave(presetColor);
-            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+            if (isFromHit){
+                this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+            }
+            
         }
         else if (health == 2)
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
             blastWave.createWave(life2Color);
-            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+            if (isFromHit) {
+                this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+            }
         }
         else if (health == 1)
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
             blastWave.createWave(life1Color);
+            if (isFromHit) {
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+
+            }
         }
         else if (health <= 0)
         {

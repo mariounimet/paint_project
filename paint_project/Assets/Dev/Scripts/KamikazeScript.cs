@@ -98,12 +98,13 @@ class KamikazeScript : Enemy
     public override void Die(bool hasSound)
     {
         shotActive = Time.time;
-        if(hasSound){
-        this.audioManager.PlayenemyDieSound(1);
+        InstantiatePowerUp();
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
+        if(hasSound){
+        this.audioManager.PlayenemyDieSound(2);
 
         }
-        this.audioSource.PlayOneShot(this.shooterBulletSound);
+        // this.audioSource.PlayOneShot(this.shooterBulletSound);
         
         GameObject b1 = Instantiate(bullet, transform.position, Quaternion.identity);
         GameObject b2 = Instantiate(bullet, transform.position, Quaternion.identity);
