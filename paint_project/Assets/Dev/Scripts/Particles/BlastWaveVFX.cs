@@ -49,6 +49,12 @@ public class BlastWaveVFX : MonoBehaviour
                 enemy.GetComponent<FollowerScript>().Die(false);
             } else if(enemy.CompareTag("ShooterScript")) {
                 enemy.GetComponent<ShooterScript>().Die(false);
+            } else if(enemy.CompareTag("Kamikaze")) {
+                enemy.GetComponent<KamikazeScript>().Die(false);
+            } else if(enemy.CompareTag("Tank")) {
+                enemy.GetComponent<TankScript>().Die(false);
+            } else if(enemy.CompareTag("Dasher")) {
+                enemy.GetComponent<DasherScript>().Die(false);
             }
             //Vector3 direction = (hittingObjects[i].transform.position - transform.position).normalized;
 

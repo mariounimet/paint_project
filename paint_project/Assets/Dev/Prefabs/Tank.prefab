@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 513716190626754634}
   - component: {fileID: -4379972064189405305}
   - component: {fileID: 4685668330599041674}
-  m_Layer: 0
+  - component: {fileID: 3888591223349052427}
+  m_Layer: 7
   m_Name: Tank
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -148,8 +149,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  deathParticles: {fileID: 0}
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
   playerPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &3888591223349052427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842573214134204712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50890dfee61ed954cafc4f8178ceeb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
 --- !u!1 &4540953643892742006
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2699510347668323291}
   - component: {fileID: 6266408796884990358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tank2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

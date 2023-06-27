@@ -332,6 +332,7 @@ MonoBehaviour:
   bullet: {fileID: 1143012164119763823, guid: 24536f3dadee8eb478b1b1fce4106532, type: 3}
   cam: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
   shooterBulletSound: {fileID: 0}
 --- !u!114 &7160512967640047007
 MonoBehaviour:
@@ -345,3 +346,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50890dfee61ed954cafc4f8178ceeb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}

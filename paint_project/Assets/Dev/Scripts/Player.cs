@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public AudioClip bulletShotSound;
     public AudioSource shootAudioSource;
     public AudioSource getHitAudioSource;
-    private int health = 100;
+    private int health = 3;
     private float cooldownTime = 2;
     private float nextFireTime = 0;
     private float timeLastHit = 0;
@@ -89,12 +89,12 @@ public class Player : MonoBehaviour
         if (health == 2) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
-            //blastWave.createWave(life2Color);
+            blastWave.createWave(life2Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health == 1) {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
-            //blastWave.createWave(life1Color);
+            blastWave.createWave(life1Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
         } else if (health <= 0) {
             //PlayerDie(true);

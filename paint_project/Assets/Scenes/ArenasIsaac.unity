@@ -277,6 +277,37 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &89842878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89842879}
+  m_Layer: 0
+  m_Name: Dash3
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89842879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89842878}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4089985, y: -0.171, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515288668512051198}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &94120674 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5027314321648306450, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
@@ -517,6 +548,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5027314321276821022, guid: 4b7e11e12a9a72346b40172e35ba79c0, type: 3}
   m_PrefabInstance: {fileID: 754251066}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &294172183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 294172184}
+  m_Layer: 0
+  m_Name: Dash5
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &294172184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294172183}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.7709999, y: -4.1210003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515288668512051198}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &297864470
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e097a60b04308a488796f38def9338a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageNumber: 0
   pools:
   - tag: Follower
     prefab: {fileID: 1461882140268713235, guid: 2e85e97db833fde4dbceb60877ba6095, type: 3}
@@ -698,6 +761,15 @@ MonoBehaviour:
   - tag: Shooter
     prefab: {fileID: 4545051042056429113, guid: c5326370011601e45ad3eb16c3977501, type: 3}
     size: 10
+  - tag: Kamikaze
+    prefab: {fileID: 7866484242836737589, guid: 6bf05551c9faad14d9dbf03ce0850d29, type: 3}
+    size: 3
+  - tag: Tank
+    prefab: {fileID: 3842573214134204712, guid: 7a3e02b5384e9524a90a119e2ed389fe, type: 3}
+    size: 2
+  - tag: Dasher
+    prefab: {fileID: 1855833267595177194, guid: ad0c1fb3a4a87fa43b118d4dd5e1ac9e, type: 3}
+    size: 3
 --- !u!4 &531103036
 Transform:
   m_ObjectHideFlags: 0
@@ -1962,6 +2034,37 @@ MonoBehaviour:
   _showAdButton: {fileID: 844283568}
   _androidAdUnitId: Rewarded_Android
   shipScript: {fileID: 1816793693}
+--- !u!1 &921070083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921070084}
+  m_Layer: 0
+  m_Name: Dash4
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921070084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921070083}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4189987, y: -4.0410004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515288668512051198}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &925644900 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
@@ -1978,6 +2081,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &929734176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929734177}
+  m_Layer: 0
+  m_Name: Dash1
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929734177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929734176}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.821001, y: 4.059, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515288668512051198}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110882546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2977,6 +3111,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 180587303245184011, guid: 1736e6a4127714b45b46d293db32839e, type: 3}
   m_PrefabInstance: {fileID: 1110882546}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1669772361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1669772362}
+  m_Layer: 0
+  m_Name: Dash2
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1669772362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669772361}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.308998, y: 4.119, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5515288668512051198}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686360831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,3 +4046,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
+--- !u!4 &5515288668512051198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5515288669650007456, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
+  m_PrefabInstance: {fileID: 5515288668512051197}
+  m_PrefabAsset: {fileID: 0}

@@ -18,6 +18,7 @@ class KamikazeScript : Enemy
     private float moveToX;
     private float moveToY;
     private AudioSource audioSource;
+    public GameObject deathParticles;
     public AudioClip shooterBulletSound;
     private AudioManagerScript audioManager;
     // Start is called before the first frame update
@@ -99,6 +100,7 @@ class KamikazeScript : Enemy
         shotActive = Time.time;
         if(hasSound){
         this.audioManager.PlayenemyDieSound(1);
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
 
         }
         this.audioSource.PlayOneShot(this.shooterBulletSound);
@@ -147,6 +149,7 @@ class KamikazeScript : Enemy
         {
             shotActive = Time.time;
             other.GetComponent<Player>().HitBullet();
+            Instantiate(deathParticles, this.transform.position, Quaternion.identity);
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }

@@ -117,7 +117,7 @@ class ShooterScript : Enemy
         this.audioManager.PlayenemyDieSound(1);
 
         }
-        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
+       
         
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
@@ -129,6 +129,7 @@ class ShooterScript : Enemy
         {
             shotActive = Time.time;
             other.GetComponent<Player>().HitBullet();
+            Instantiate(deathParticles, this.transform.position, Quaternion.identity);
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }

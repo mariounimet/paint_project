@@ -73,14 +73,16 @@ class TankScript : Enemy
     public override void Die(bool hasSound)
     {
         PaintManager.detectPaint(transform.position);
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
+        this.audioManager.PlayenemyDieSound(1);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
        
         if(other.CompareTag("Player"))
         {
-   
+            Instantiate(deathParticles, this.transform.position, Quaternion.identity);
             other.GetComponent<Player>().HitBullet();
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool

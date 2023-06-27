@@ -6,12 +6,12 @@ class DasherScript : Enemy
 {
      
     private Rigidbody2D Rigidbody2D;
-    public GameObject player;
-    public GameObject Dash1;
-    public GameObject Dash2;
-    public GameObject Dash3;
-    public GameObject Dash4;
-    public GameObject Dash5;
+    private GameObject player;
+    private GameObject Dash1;
+    private GameObject Dash2;
+    private GameObject Dash3;
+    private GameObject Dash4;
+    private GameObject Dash5;
     private float speed;
     private bool acelerate;
     private float rotationModifier;
@@ -95,6 +95,11 @@ class DasherScript : Enemy
     public override void Die(bool hasSound)
     {
         PaintManager.detectPaint(transform.position);
+        if(hasSound) {
+            this.audioManager.PlayenemyDieSound(0);
+        }
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
+     
         gameObject.SetActive(false);
     }
 
@@ -104,6 +109,7 @@ class DasherScript : Enemy
         {
    
             other.GetComponent<Player>().HitBullet();
+            Instantiate(deathParticles, this.transform.position, Quaternion.identity);
             PaintManager.detectPaint(transform.position);
             gameObject.SetActive(false); //Este destroy realmente va a ser una llamada a la funcion de object pool
         }

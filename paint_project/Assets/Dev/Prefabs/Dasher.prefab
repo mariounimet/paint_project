@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: -6253927133187839299}
   - component: {fileID: 2020985056130265545}
   - component: {fileID: -9002109303957197638}
-  m_Layer: 0
+  - component: {fileID: -9169212931989039102}
+  m_Layer: 7
   m_Name: Dasher
   m_TagString: Dasher
   m_Icon: {fileID: 0}
@@ -148,12 +149,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9385c2c2df7fe042b97192efbfba69d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  Dash1: {fileID: 0}
-  Dash2: {fileID: 0}
-  Dash3: {fileID: 0}
-  Dash4: {fileID: 0}
-  Dash5: {fileID: 0}
-  deathParticles: {fileID: 0}
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
   DashPosition: {x: 0, y: 0, z: 0}
   position: {x: 0, y: 0, z: 0}
+--- !u!114 &-9169212931989039102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855833267595177194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50890dfee61ed954cafc4f8178ceeb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}

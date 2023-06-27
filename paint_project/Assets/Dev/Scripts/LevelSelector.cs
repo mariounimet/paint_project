@@ -31,7 +31,7 @@ public class LevelSelector : MonoBehaviour
             new List<int>(){0, 1},
             new List<int>(){0, 1}};
         levelWaves[1] = new List<List<int>>(){
-            new List<int>(){0, 1, 3},
+            new List<int>(){2, 4, 3},
             new List<int>(){2, 3},
             new List<int>(){1, 2},
             new List<int>(){1, 2, 3}};
