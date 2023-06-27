@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CameraShake;
 
 
 public class Player : MonoBehaviour
 {
     Color presetColor = new Color(0, 255, 0);
+    Color life3Color = new Color(0, 191, 0);
     Color life2Color = new Color(207, 255, 0);
     Color life1Color = new Color(255, 0, 0);
     public AudioClip shipHitSound;
     public AudioClip bulletShotSound;
     public AudioSource shootAudioSource;
     public AudioSource getHitAudioSource;
-    private int health = 3;
+    public int health = 3;
     private float cooldownTime = 2;
     private float nextFireTime = 0;
     private float timeLastHit = 0;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     public PauseMenu PauseMenuScript;
     public Vector3 initialPlayerCoords;
     private BlastWaveVFX blastWave;
+
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
     }
 
     private void StopCooldown() {
-        if (((Time.time - timeLastHit) > 2)) {
+        if ((Time.time - timeLastHit) > 2) {
             isOnCooldown = false;
         }
     }
@@ -63,6 +66,16 @@ public class Player : MonoBehaviour
     private void Shoot(){
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
         this.shootAudioSource.PlayOneShot(this.bulletShotSound);
+    }
+
+    public float GetFireRate() 
+    {
+        return this.fireRate;
+    }
+
+    public void SetFireRate(float fireRate)
+    {
+        this.fireRate = fireRate;
     }
 
     public void HitBullet() {
@@ -83,26 +96,52 @@ public class Player : MonoBehaviour
         return result;
     }
 
+    public void AddHealth()
+    {
+        if (health < 3)
+        {
+            health++;
+            Debug.Log("Added 1 hp");
+            ChangeSpriteColor();
+        }
+    }
     public void ReduceHealth() {
+        // Shakes the screen when the player gets hit
+        CameraShaker.Presets.Explosion2D(positionStrength: 10f, rotationStrength: 10f, duration: 2f);
         health--;
-        
-        if (health == 2) {
+        ChangeSpriteColor();
+
+    }
+
+    public void ChangeSpriteColor()
+    {
+        if (health == 3)
+        {
+            var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = presetColor;
+            blastWave.createWave(presetColor);
+            this.getHitAudioSource.PlayOneShot(this.shipHitSound);
+        }
+        else if (health == 2)
+        {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life2Color;
             blastWave.createWave(life2Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
-        } else if (health == 1) {
+        }
+        else if (health == 1)
+        {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = life1Color;
             blastWave.createWave(life1Color);
             this.getHitAudioSource.PlayOneShot(this.shipHitSound);
-        } else if (health <= 0) {
+        }
+        else if (health <= 0)
+        {
             //PlayerDie(true);
             showGameOverDecision();
-            
         }
     }
-
 
     public void Hit() {}
 

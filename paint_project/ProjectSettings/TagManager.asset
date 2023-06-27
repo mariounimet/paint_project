@@ -12,6 +12,7 @@ TagManager:
   - Kamikaze
   - Tank
   - Dasher
+  - ShakeManager
   layers:
   - Default
   - TransparentFX

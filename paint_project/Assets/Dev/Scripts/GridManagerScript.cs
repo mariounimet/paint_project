@@ -10,13 +10,12 @@ public class GridManagerScript : MonoBehaviour
     public Vector2Int canvasSize;
     public int blockPixelSize;//potencia de 2
     private SpriteRenderer spriteRenderer;
-    private Camera mainCamera;
+    public GameObject camera;
     public float ratioThreshold;
     public int resolutionOffset;
     public Vector3 gridInicial;
     void Start()
     {
-        mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.coordsMatrix = initializeCoordsMatrix(this.canvasSize, this.blockPixelSize);
         this.isPaintedMatrix = initializeIsPaintedMatrix();

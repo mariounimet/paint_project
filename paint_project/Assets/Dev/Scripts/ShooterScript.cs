@@ -21,6 +21,8 @@ class ShooterScript : Enemy
     public AudioClip shooterBulletSound;
     private AudioManagerScript audioManager;
     public GameObject deathParticles;
+
+    public GameObject HpPUPrefab;
     // Start is called before the first frame update
 
     public ShooterScript(GameObject c, GameObject p)
@@ -121,6 +123,7 @@ class ShooterScript : Enemy
         
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
+        InstantiatePowerUp();
     }
     
     private void OnTriggerEnter2D(Collider2D other)

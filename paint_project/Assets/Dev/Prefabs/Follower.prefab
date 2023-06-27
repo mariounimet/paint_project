@@ -150,6 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c19dc1a2a6707469993efe4860009f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpPrefabs:
+  - {fileID: 8535783436691569489, guid: 3d7ce043e96c9a9459b16950f240685d, type: 3}
+  - {fileID: 6352602838943713438, guid: cb7309ed36802a34d87e65541e6ccaec, type: 3}
+  - {fileID: 4985717923426559620, guid: 8a9963ff7f0bedc41ab3a3fd0794d6d6, type: 3}
   player: {fileID: 5506111697679817548, guid: 43697e2ff97d4d14fbeb44745a803fbf, type: 3}
   deathParticles: {fileID: 599501458122512299, guid: f823deddc83a2834e8f16b2e5309eba0, type: 3}
 --- !u!82 &2852039404869559049
