@@ -21,22 +21,16 @@ public class TutorialManager : MonoBehaviour
     public void Update()
     {
         if (shouldRun) {
-          
             if (Input.touchCount > 0)
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    isScreenTouched = true;
-                    UpdatePopUpIndex();
-                }
-                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-                {
-                    isScreenTouched = false;
-                }
+                isScreenTouched = true;
             }
             else
             {
+                if (isScreenTouched) 
+                {
+                    UpdatePopUpIndex();
+                }
                 isScreenTouched = false;
             }
         }
@@ -76,6 +70,7 @@ public class TutorialManager : MonoBehaviour
                 UpdatePopUp();
                 Time.timeScale = 1f;
                 shouldRun = false;
+                popUpIndex = 0;
         } 
     }
 
