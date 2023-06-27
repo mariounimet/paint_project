@@ -120,7 +120,7 @@ class ShooterScript : Enemy
 
         }
        
-        
+        Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         PaintManager.detectPaint(transform.position);
         gameObject.SetActive(false);
         InstantiatePowerUp();

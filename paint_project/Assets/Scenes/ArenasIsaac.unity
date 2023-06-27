@@ -759,10 +759,10 @@ MonoBehaviour:
   pools:
   - tag: Follower
     prefab: {fileID: 1461882140268713235, guid: 2e85e97db833fde4dbceb60877ba6095, type: 3}
-    size: 10
+    size: 5
   - tag: Shooter
     prefab: {fileID: 4545051042056429113, guid: c5326370011601e45ad3eb16c3977501, type: 3}
-    size: 10
+    size: 5
   - tag: Kamikaze
     prefab: {fileID: 7866484242836737589, guid: 6bf05551c9faad14d9dbf03ce0850d29, type: 3}
     size: 3
@@ -1453,6 +1453,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9023c3d9c88abad4ea2fbac22ce58835, type: 3}
   - {fileID: 8300000, guid: 63003ffe64d3dca4aaff9a448fe02f53, type: 3}
   - {fileID: 8300000, guid: 6063287f2ee63b8469f82ebcaf284003, type: 3}
+  - {fileID: 8300000, guid: b23ad9d820ced5944ba766aef06772d9, type: 3}
   failSound: {fileID: 8300000, guid: 66f872e7e46fc884381cb991c0ccbf76, type: 3}
   winSound: {fileID: 8300000, guid: 07a557f8f2507eb429ce7cdac30cad08, type: 3}
 --- !u!4 &726512832
@@ -3854,6 +3855,10 @@ PrefabInstance:
     - target: {fileID: 1284343248691151048, guid: e609e1f9a2ce67f448d0dc78c8c26eb4, type: 3}
       propertyPath: m_Name
       value: PlayerBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284343248691151048, guid: e609e1f9a2ce67f448d0dc78c8c26eb4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1284343248691151055, guid: e609e1f9a2ce67f448d0dc78c8c26eb4, type: 3}
       propertyPath: m_RootOrder

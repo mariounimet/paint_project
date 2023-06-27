@@ -26,36 +26,37 @@ public class LevelSelector : MonoBehaviour
 
     void Start()
     {
+        // 0 follower, 1 shooter, 2 Kamikaze, 3 tank, 4 dasher
         levelWaves[0] = new List<List<int>>(){
-            new List<int>(){0},
-            new List<int>(){1},
-            new List<int>(){0, 1},
-            new List<int>(){0, 1}};
-        levelWaves[1] = new List<List<int>>(){
-            new List<int>(){2, 4, 3},
-            new List<int>(){2, 3},
+            new List<int>(){0,3},
             new List<int>(){1, 2},
-            new List<int>(){1, 2, 3}};
+            new List<int>(){0, 1},
+            new List<int>(){0, 1, 3}};
+        levelWaves[1] = new List<List<int>>(){
+            new List<int>(){0,4},
+            new List<int>(){0, 4, 1},
+            new List<int>(){4, 2, 3},
+            new List<int>(){0, 1, 2, 4}};
         levelWaves[2] = new List<List<int>>(){
-            new List<int>(){0},
-            new List<int>(){0},
-            new List<int>(){1},
-            new List<int>(){0, 1}};
+            new List<int>(){2, 0},
+            new List<int>(){2, 1},
+            new List<int>(){2, 0, 3},
+            new List<int>(){3, 0, 1, 4}};
         levelWaves[3] = new List<List<int>>(){
-            new List<int>(){0},
-            new List<int>(){1},
-            new List<int>(){0, 1},
-            new List<int>(){0, 1}};
+            new List<int>(){0,3},
+            new List<int>(){3,0,1},
+            new List<int>(){3,2,4},
+            new List<int>(){0,1,2,3,4}};
         levelWaves[4] = new List<List<int>>(){
-            new List<int>(){0},
-            new List<int>(){1},
-            new List<int>(){0, 1},
-            new List<int>(){0, 1}};
+            new List<int>(){0,1,2},
+            new List<int>(){1,2,3},
+            new List<int>(){2,3,4},
+            new List<int>(){0,1,2,3,4}};
         levelWaves[5] = new List<List<int>>(){
             new List<int>(){0},
-            new List<int>(){1},
-            new List<int>(){0, 1},
-            new List<int>(){0, 1}};
+            new List<int>(){1,2,3,4},
+            new List<int>(){0, 1,2,3},
+            new List<int>(){0, 1,2,3,4}};
 
         objectPooler = GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>();
         AudioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();

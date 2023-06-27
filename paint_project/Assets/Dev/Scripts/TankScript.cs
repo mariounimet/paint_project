@@ -76,6 +76,8 @@ class TankScript : Enemy
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         gameObject.SetActive(false);
         InstantiatePowerUp();
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.color = presetColor;
         this.audioManager.PlayenemyDieSound(1);
     }
 

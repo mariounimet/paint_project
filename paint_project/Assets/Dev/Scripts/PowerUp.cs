@@ -15,6 +15,11 @@ public class PowerUp : MonoBehaviour
     public float newFireRate = 0.2f;
     public float duration = 2f;
     private float defaultFireRate = 0f;
+    private AudioManagerScript audioManager;
+
+    private void Start() {
+        this.audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
+    }
     void OnTriggerEnter2D (Collider2D other)
     {
         // Check if the other collider is the player ship
@@ -27,6 +32,7 @@ public class PowerUp : MonoBehaviour
     IEnumerator Pickup(Collider2D player)
     {
         // Store all the player settings and properties in a "Player" component
+        this.audioManager.PlayenemyDieSound(3);
         Player stats = player.GetComponent<Player>();
         switch (powerUp)
         {
