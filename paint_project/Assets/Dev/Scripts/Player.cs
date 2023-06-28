@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
     public void resetPlayer(bool isDie){
        
         this.transform.position = initialPlayerCoords;
-        GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().changeStage();
+        GameObject.Find("ObjectPooler").GetComponent<ObjectPooler>().resetStageNumber();
         health = 3;
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = presetColor;

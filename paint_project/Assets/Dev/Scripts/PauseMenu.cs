@@ -36,25 +36,25 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (GameIsPaused) {
-            Resume();
-        }else {
+        // if (GameIsPaused) {
+        //     Resume();
+        // }else {
         layerUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        }
+        // }
        
     }
 
     public void LoadMenu()
     {
-        print("trigger");
         //this.mainCamera.transform.position = uiMenuPos;
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
         levelsMenuUI.SetActive(true);
+        GameIsPaused=false;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;        
     }
@@ -65,6 +65,9 @@ public class PauseMenu : MonoBehaviour
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
         mainMenuUI.SetActive(true);
+        GameIsPaused = false;
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
+        GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;   
     }
 
     public void ShowGameOver(){

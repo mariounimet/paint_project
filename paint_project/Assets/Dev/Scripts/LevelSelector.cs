@@ -120,6 +120,7 @@ public class LevelSelector : MonoBehaviour
         }
         
         GameObject.Find("Spawner").GetComponent<Spawner>().canSpawnChange(true);
+        AudioManager.resetLayerIndex();
         AudioManager.StartFadingOutMenuMusic();
     }
 }

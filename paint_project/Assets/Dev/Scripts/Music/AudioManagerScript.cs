@@ -95,6 +95,7 @@ public class AudioManagerScript : MonoBehaviour
         {
           layer.mute = true;
         }
+        
     }
 
     public void continueMusic(){
@@ -114,6 +115,10 @@ public class AudioManagerScript : MonoBehaviour
         }
        
        
+    }
+
+    public void resetLayerIndex(){
+        this.layerIndex = 0;
     }
 
 
