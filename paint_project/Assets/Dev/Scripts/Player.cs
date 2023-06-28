@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private float timeLastHit = 0;
     private bool isOnCooldown;
     private float timeForRun;
+    private bool canTakeDamage;
 
     // variables bullet
     [SerializeField] private GameObject bulletPrefab;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        setCanTakeDamage(true);
         blastWave = GetComponent<BlastWaveVFX>();
 
         var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -80,8 +82,18 @@ public class Player : MonoBehaviour
         this.fireRate = fireRate;
     }
 
+    public void setCanTakeDamage(bool state)
+    {
+        this.canTakeDamage = state;
+    }
+
+    public bool getCanTakeDamage()
+    {
+        return this.canTakeDamage;
+    }
+
     public void HitBullet() {
-        if (VerifyCooldown()) {
+        if (VerifyCooldown() && canTakeDamage) {
             ReduceHealth();
             nextFireTime = Time.time + cooldownTime;
             timeLastHit = Time.time;

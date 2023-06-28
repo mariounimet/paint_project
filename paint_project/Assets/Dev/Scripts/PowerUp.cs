@@ -50,9 +50,11 @@ public class PowerUp : MonoBehaviour
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<CircleCollider2D>().enabled = false;
 
-                player.GetComponent<CircleCollider2D>().enabled = false; // Disables player collider so it's "invulnerable"
+                //player.GetComponent<CircleCollider2D>().enabled = false; // Disables player collider so it's "invulnerable"
+                stats.setCanTakeDamage(false);
                 yield return StartCoroutine(stats.CooldownEffect()); // Applies effect of invulnerable, and the yield is so it awaits it
-                player.GetComponent<CircleCollider2D>().enabled = true; // Enables the collider once again
+                //player.GetComponent<CircleCollider2D>().enabled = true; // Enables the collider once again
+                stats.setCanTakeDamage(true);
                 Destroy(gameObject);
                 break;
 
