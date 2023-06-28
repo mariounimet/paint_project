@@ -7684,7 +7684,7 @@ MonoBehaviour:
   player: {fileID: 1816793679}
   speed: 2
   _joystick: {fileID: 925644901}
-  drag: 0.04
+  drag: 0.09
 --- !u!82 &1816793688
 AudioSource:
   m_ObjectHideFlags: 0
