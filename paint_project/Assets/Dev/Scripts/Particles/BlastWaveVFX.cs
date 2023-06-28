@@ -56,7 +56,7 @@ public class BlastWaveVFX : MonoBehaviour
             } else if(enemy.CompareTag("Dasher")) {
                 enemy.GetComponent<DasherScript>().Die(false);
             }
-            //Vector3 direction = (hittingObjects[i].transform.position - transform.position).normalized;
+            
 
           
         }
