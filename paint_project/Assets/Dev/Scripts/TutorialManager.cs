@@ -23,7 +23,14 @@ public class TutorialManager : MonoBehaviour
         if (shouldRun) {
             if (Input.touchCount > 0)
             {
-                isScreenTouched = true;
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    isScreenTouched = true;
+                    UpdatePopUpIndex();
+                } else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
+                    isScreenTouched = false;
+                }
             }
             else
             {
