@@ -98,6 +98,7 @@ class KamikazeScript : Enemy
     public override void Die(bool hasSound)
     {
         shotActive = Time.time;
+        transform.rotation = Quaternion.identity;
         InstantiatePowerUp();
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
         if(hasSound){
@@ -117,7 +118,7 @@ class KamikazeScript : Enemy
         Quaternion angulob2 = transform.rotation;
         Quaternion angulob3 = transform.rotation;
         Quaternion angulob4 = transform.rotation;
-        Quaternion angulob5= transform.rotation;
+        Quaternion angulob5 = transform.rotation;
         Quaternion angulob6 = transform.rotation;
 
         angulob1.z += (float)(0);

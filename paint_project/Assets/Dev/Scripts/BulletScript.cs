@@ -17,6 +17,10 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.up * speed * Time.deltaTime);
+        if(!Spawner.canSpawn)
+        {
+            destroyBullet();
+        }
     }
 
     public void setDirection(Quaternion rot)
