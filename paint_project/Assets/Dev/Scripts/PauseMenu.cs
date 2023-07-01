@@ -23,7 +23,13 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if(Time.timeScale != 0)
+            {
+                this.Pause();
+            }}
     }
 
     public void Resume()

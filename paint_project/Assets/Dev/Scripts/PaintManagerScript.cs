@@ -47,6 +47,7 @@ public class PaintManagerScript : MonoBehaviour
     public GridManagerScript grid;
     void Start()
     {
+        Debug.Log("Paint manager started");
        
         crenderer = GetComponent<Renderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,10 +65,12 @@ public class PaintManagerScript : MonoBehaviour
     void Update()
     {
         // Check if Back was pressed this frame
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("ESCAPE");
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if(levelMenuUI)
+        //    Debug.Log("Jugando ESC");
+        //    pauseMenu.Pause();
+        //}
 
 
         CameraTimer += Time.deltaTime;
