@@ -23,13 +23,11 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) && Time.timeScale == 1f)
         {
-
-            if(Time.timeScale != 0)
-            {
-                this.Pause();
-            }}
+            print("pause");
+            this.Pause();
+        }        
     }
 
     public void Resume()
@@ -45,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         // if (GameIsPaused) {
         //     Resume();
         // }else {
+        levelsMenuUI.SetActive(false);
         layerUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
