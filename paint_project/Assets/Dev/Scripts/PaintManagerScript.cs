@@ -63,10 +63,12 @@ public class PaintManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //   if(Input.GetMouseButtonDown(0)){
-    //         detectPaint(Camera.main.ScreenToWorldPoint);
-    //   }
-       
+        // Check if Back was pressed this frame
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("ESCAPE");
+        }
+
 
         CameraTimer += Time.deltaTime;
        if (isMovingCamera && (CameraTimer > CameraMoveDelay)) {
