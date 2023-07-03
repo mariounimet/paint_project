@@ -90,4 +90,18 @@ public class TutorialManager : MonoBehaviour
     {
         shouldRun = false;
     }
+
+    public void ResetTutorial()
+    {
+        popUpIndex = 0;
+        popUps[0].SetActive(false);
+        popUps[1].SetActive(false);
+        popUps[2].SetActive(false);
+        StopRunning();
+    }
+
+    public bool TutorialIsActive()
+    {
+        return shouldRun;
+    }
 }

@@ -30,7 +30,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         layerUI.SetActive(true);
-        Time.timeScale = 1f;
+        if (!Camera.main.GetComponent<TutorialManager>().TutorialIsActive()) {
+            Time.timeScale = 1f;
+        }
         GameIsPaused = false;
     }
 
@@ -50,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         //this.mainCamera.transform.position = uiMenuPos;
+        ResetTutorial();
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -61,6 +64,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        ResetTutorial();
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
@@ -91,5 +95,7 @@ public class PauseMenu : MonoBehaviour
         layerUI.SetActive(true);
     }
 
-    
+    public void ResetTutorial() {
+        Camera.main.GetComponent<TutorialManager>().ResetTutorial();
+    }
 }

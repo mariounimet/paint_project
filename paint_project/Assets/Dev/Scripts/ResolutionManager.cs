@@ -25,7 +25,7 @@ public class ResolutionManager : MonoBehaviour
         string msg = "Portrait " + ((float)Screen.width/(float)Screen.height).ToString();
         var lowerRightScreen = new Vector3(Screen.width, 0, mainCamera.transform.position.y);
         var lowerRight = mainCamera.ScreenToWorldPoint(lowerRightScreen);
-        print(msg);
+        // print(msg);
     }
 
     // public void setAspectRatio(){

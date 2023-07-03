@@ -55,8 +55,8 @@ public class Spawner : MonoBehaviour
 
     public void canSpawnChange(bool b)
     {
-        Debug.Log("cambio");
-        Debug.Log(b);
+        // Debug.Log("cambio");
+        // Debug.Log(b);
 
         canSpawn = b;
     }

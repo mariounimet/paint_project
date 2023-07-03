@@ -104,7 +104,7 @@ public class PaintManagerScript : MonoBehaviour
                 
             } else {
                 
-                print("Se intentó pintar fuera del grid en x="+pos.x.ToString() + " y=" +pos.y.ToString());
+                // print("Se intentó pintar fuera del grid en x="+pos.x.ToString() + " y=" +pos.y.ToString());
             }
            
            

@@ -66,7 +66,7 @@ public class EnemyMoveGrid : MonoBehaviour, IPooledObject
 
     void delay()
     {
-        print("aaaa");
+        // print("aaaa");
     }
 
     public void OnCollisionEnter2D(Collision2D other) {
