@@ -58,6 +58,7 @@ public class PauseMenu : MonoBehaviour
         victoryUI.SetActive(false);
         levelsMenuUI.SetActive(true);
         GameIsPaused=false;
+        Spawner.canSpawn = false;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;        
     }
@@ -70,6 +71,7 @@ public class PauseMenu : MonoBehaviour
         victoryUI.SetActive(false);
         mainMenuUI.SetActive(true);
         GameIsPaused = false;
+        Spawner.canSpawn = false;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.volume = 0.5f;
         GameObject.Find("AudioManager").GetComponent<AudioManagerScript>().menuAudioSource.mute = false;   
     }
@@ -79,12 +81,14 @@ public class PauseMenu : MonoBehaviour
         this.camera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.gameOverUI.SetActive(true);
+        Spawner.canSpawn = false;
     }
 
     public void ShowVictory(){
         this.camera.transform.position = uiMenuPos;
         this.layerUI.SetActive(false);
         this.victoryUI.SetActive(true);
+        Spawner.canSpawn = false;
     }
 
     public void ContinueGame(){

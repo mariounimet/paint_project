@@ -5,7 +5,7 @@ using UnityEngine;
 class TankScript : Enemy
 {
     
-    Color presetColor = new Color(0, 255, 10);
+    Color presetColor = new Color(0, 255, 0);
     Color life2Color = new Color(207, 255, 0);
     Color life1Color = new Color(255, 0, 0);  
     private Rigidbody2D Rigidbody2D;
@@ -31,6 +31,7 @@ class TankScript : Enemy
         playerPosition = player.transform.position;
         speed = 0;
         acelerate = true;
+        spriteRenderer.color = presetColor;
     }
 
     // Update is called once per frame

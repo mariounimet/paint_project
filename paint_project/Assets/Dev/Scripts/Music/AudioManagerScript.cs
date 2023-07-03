@@ -94,20 +94,28 @@ public class AudioManagerScript : MonoBehaviour
         foreach (var layer in musicLayers)
         {
           layer.mute = true;
+            layer.volume = 0;
         }
         
     }
 
     public void continueMusic(){
+        int counter = 0;
        foreach (var layer in musicLayers)
         {
           layer.mute = false;
+          if (counter < this.layerIndex) {
+            layer.volume = 0.5f;
+          }
+          counter++;
+           
+         
         } 
     }
 
     public void playEndSound(bool die){
 
-        this.layerIndex = 0;
+        // this.layerIndex = 0;
         if (die) {
              this.jingleAudioSource.PlayOneShot(this.failSound);
         } else {

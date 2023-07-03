@@ -62,7 +62,7 @@ class DasherScript : Enemy
                 DashPosition = Dash5.transform.position;
             }
             
-            Invoke("MaxVelocity", 2);
+            Invoke("MaxVelocity", 1);
         }else if(speed > 0)
         {
             speed -= (float)0.01;
@@ -102,6 +102,7 @@ class DasherScript : Enemy
         Instantiate(deathParticles, this.transform.position, Quaternion.identity);
      
         gameObject.SetActive(false);
+        speed = 5;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

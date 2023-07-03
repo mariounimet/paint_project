@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
     public float offSetY;
     ObjectPooler objectPooler;
     [SerializeField] private float spawnRate = 3f;
-    [SerializeField] public bool canSpawn;
+    [SerializeField] public static bool canSpawn;
     private bool a;
 
     private void Start()

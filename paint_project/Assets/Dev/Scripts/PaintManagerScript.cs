@@ -121,10 +121,50 @@ public class PaintManagerScript : MonoBehaviour
     }
 
     public void TryPaintGridSquare(int xIndex, int yIndex){
-        if(this.grid.getIsPaintedMatrix()[yIndex,xIndex] == 0) {
-            Vector2Int finalPos =  mapIndexToCoord(xIndex,yIndex);
+        bool alreadyPainted = false;
+        for(int i = 0; i<9; i++) {
+        int xIndexAux = xIndex;
+        int yIndexAux = yIndex;
+        if(i == 1) {
+            xIndexAux = xIndex-1;
+        } else if(i==2){
+            xIndexAux = xIndex+1;
+        } else if(i==3){
+            yIndexAux = yIndex+1;
+        } else if (i==4) {
+            yIndexAux = yIndex-1;
+        } else if (i==5) {
+            yIndexAux = yIndex-1;
+            xIndexAux = xIndex-1;
+        } else if (i==6) {
+            xIndexAux = xIndex+1;
+            yIndexAux = yIndex-1;
+        } else if (i==7){
+            xIndexAux = xIndex-1;
+            yIndexAux = yIndex+1;
+        } else if (i==8) {
+            yIndexAux = yIndex+1;
+            xIndexAux = xIndex+1;
+        }
+
+       
+
+        Vector2Int maxMatrixSize = this.grid.getMatrixDimensions(this.grid.canvasSize, this.grid.blockPixelSize);
+        bool areIndexesValid = (xIndexAux >= 0) && (yIndexAux >= 0) && (xIndexAux <maxMatrixSize.x) && (yIndexAux < maxMatrixSize.y);
+
+        if (!areIndexesValid){
+            continue;
+        }
+        if (alreadyPainted) {
+            break;
+        }
+
+
+        if(this.grid.getIsPaintedMatrix()[yIndexAux,xIndexAux] == 0) {
+            Vector2Int finalPos =  mapIndexToCoord(xIndexAux,yIndexAux);
             PaintMask(finalPos.x,finalPos.y,this.grid.blockPixelSize,this.grid.blockPixelSize );
-            this.grid.updateIsPaintedMatrix(xIndex,yIndex, 1);
+            alreadyPainted = true;
+            this.grid.updateIsPaintedMatrix(xIndexAux,yIndexAux, 1);
             this.progressPercent += this.progressPerBlock;
             if (!this.isPainting) {
                 TryMoveSector(this.progressPercent, this.currentSector);
@@ -144,7 +184,8 @@ public class PaintManagerScript : MonoBehaviour
            
             }
            
-        } 
+            } 
+        }
         
     }
 
