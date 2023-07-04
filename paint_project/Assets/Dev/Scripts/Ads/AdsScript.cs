@@ -6,6 +6,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 {
     [SerializeField] Button _showAdButton;
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
+    public Spawner spawner;
     public Player shipScript;
     //TODO IF IMPLEMENTED ON IOS UNCOMMENT BELOW CODE
     // [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
@@ -66,6 +67,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
             //TODO REVIVE
+            spawner.canSpawnChange(true);
             shipScript.revivePlayer();
             //Spawner.SpawnRandomDuck();
 
