@@ -116,7 +116,7 @@ public class LevelSelector : MonoBehaviour
             tutorialManager.StartRunning();
             tutorialManager.firstPopUp();
         }else {
-            
+            Time.timeScale = 1f;
         }
         
         GameObject.Find("Spawner").GetComponent<Spawner>().canSpawnChange(true);

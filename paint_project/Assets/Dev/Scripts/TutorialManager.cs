@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     public int popUpIndex = 0;
     private bool isScreenTouched = false;
     private bool shouldRun = false;
+    public GameObject ButtonTutorial;
 
     // Start is called before the first frame update
     public void Start()
@@ -20,27 +21,27 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (shouldRun) {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
-                {
-                    isScreenTouched = true;
-                    UpdatePopUpIndex();
-                } else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
-                    isScreenTouched = false;
-                }
-            }
-            else
-            {
-                if (isScreenTouched) 
-                {
-                    UpdatePopUpIndex();
-                }
-                isScreenTouched = false;
-            }
-        }
+        // if (shouldRun) {
+        //     if (Input.touchCount > 0)
+        //     {
+        //         Touch touch = Input.GetTouch(0);
+        //         if (touch.phase == TouchPhase.Began)
+        //         {
+        //             isScreenTouched = true;
+        //             UpdatePopUpIndex();
+        //         } else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
+        //             isScreenTouched = false;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (isScreenTouched) 
+        //         {
+        //             UpdatePopUpIndex();
+        //         }
+        //         isScreenTouched = false;
+        //     }
+        // }
     }
 
     void UpdatePopUp()
@@ -77,6 +78,7 @@ public class TutorialManager : MonoBehaviour
                 UpdatePopUp();
                 Time.timeScale = 1f;
                 shouldRun = false;
+                ButtonTutorial.SetActive(false);
                 popUpIndex = 0;
         } 
     }
@@ -84,6 +86,7 @@ public class TutorialManager : MonoBehaviour
     public void StartRunning()
     {
         shouldRun = true;
+        ButtonTutorial.SetActive(true);
     }
 
     public void StopRunning()
@@ -103,5 +106,11 @@ public class TutorialManager : MonoBehaviour
     public bool TutorialIsActive()
     {
         return shouldRun;
+    }
+
+    public void ButtonClicked() {
+        if (shouldRun) {
+            UpdatePopUpIndex();
+        }
     }
 }
