@@ -19,6 +19,7 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     public GameObject layerUI;
     public GameObject levelsMenuUI;
+    public GameObject mainMenuUI;
 
     private List<List<int>>[] levelWaves = new List<List<int>>[6];
     

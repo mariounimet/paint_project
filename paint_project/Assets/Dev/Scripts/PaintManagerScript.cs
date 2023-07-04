@@ -47,6 +47,7 @@ public class PaintManagerScript : MonoBehaviour
     public GridManagerScript grid;
     void Start()
     {
+        Debug.Log("Paint manager started");
        
         crenderer = GetComponent<Renderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,10 +64,14 @@ public class PaintManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    //   if(Input.GetMouseButtonDown(0)){
-    //         detectPaint(Camera.main.ScreenToWorldPoint);
-    //   }
-       
+        // Check if Back was pressed this frame
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if(levelMenuUI)
+        //    Debug.Log("Jugando ESC");
+        //    pauseMenu.Pause();
+        //}
+
 
         CameraTimer += Time.deltaTime;
        if (isMovingCamera && (CameraTimer > CameraMoveDelay)) {

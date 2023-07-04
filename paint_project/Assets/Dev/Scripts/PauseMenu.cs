@@ -16,14 +16,12 @@ public class PauseMenu : MonoBehaviour
     public Vector3 uiMenuPos;
     private Vector3 lastCameraCoords;
 
-    // Update is called once per frame
-    //void Start(){
-    //    camera = Camera.main;
-    //}
-
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Escape) && Time.timeScale == 1f)
+        {
+            this.Pause();
+        }        
     }
 
     public void Resume()
@@ -36,20 +34,15 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        // if (GameIsPaused) {
-        //     Resume();
-        // }else {
+        levelsMenuUI.SetActive(false);
         layerUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        // }
-       
     }
 
     public void LoadMenu()
     {
-        //this.mainCamera.transform.position = uiMenuPos;
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
         victoryUI.SetActive(false);
