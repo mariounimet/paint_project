@@ -876,7 +876,7 @@ MonoBehaviour:
   currentImage: 0
   xOffset: 518
   yOffset: 98
-  completeSectorThreshold: 24
+  completeSectorThreshold: 20
   Paintdelay: 0.01
   CameraMoveDelay: 0.01
   CameraTransitionMaxDuration: 1
