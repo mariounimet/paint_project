@@ -13,10 +13,16 @@ public class PlayerMovement : MonoBehaviour
   Vector2 currentInput = Vector2.zero;
   Vector2 input = Vector2.zero;
 
+  
+  Vector2 inputangle = Vector2.zero;
+  
+  
+
 
     void Update() {
       //Vector2 input = new Vector2(_joystick.Horizontal, _joystick.Vertical);
       float auxspeed = 0.1f;
+      inputangle = Vector2.zero;
       input.x -= (input.x)/100;
       input.y -= (input.y)/100;
 
@@ -44,6 +50,16 @@ public class PlayerMovement : MonoBehaviour
            if (input.x < 1) {
             input.x += auxspeed;
            }
+        }
+
+
+        //TODO
+        if (Input.GetKey("left")){
+            player.rotation += player.rotation/10;
+        }
+        
+        if (Input.GetKey("right")){
+             player.rotation += -1*(player.rotation/10);
         }
 
       if (input.magnitude > 0.1f)
