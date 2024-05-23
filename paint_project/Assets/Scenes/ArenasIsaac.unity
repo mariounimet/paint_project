@@ -7013,6 +7013,7 @@ MonoBehaviour:
   _androidGameId: 5319238
   _iOSGameId: 5319239
   _testMode: 0
+  adManager: {fileID: 1959828530}
 --- !u!4 &1686360833
 Transform:
   m_ObjectHideFlags: 0
@@ -10882,6 +10883,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5515288669650007456, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515288669650007459, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}
+      propertyPath: m_CameraType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5515288669650007463, guid: 6f3d9dea098142146ac285f9a5f6a1e8, type: 3}

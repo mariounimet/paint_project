@@ -24,6 +24,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
         //Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
+        _adUnitId = _androidAdUnitId;
 
         LoadAd();
     }

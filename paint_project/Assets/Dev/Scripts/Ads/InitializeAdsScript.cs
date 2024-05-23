@@ -7,7 +7,7 @@ public class InitializeAdsScript : MonoBehaviour, IUnityAdsInitializationListene
     [SerializeField] string _iOSGameId;
     [SerializeField] bool _testMode = true;
     private string _gameId;
-    // [SerializeField] RewardedAdsButton adManager;
+    [SerializeField] AdsScript adManager;
  
     void Awake()
     {
