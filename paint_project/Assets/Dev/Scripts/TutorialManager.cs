@@ -21,6 +21,9 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if(Input.anyKeyDown){
+            ButtonClicked();
+        }
         // if (shouldRun) {
         //     if (Input.touchCount > 0)
         //     {

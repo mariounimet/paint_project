@@ -23,7 +23,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 #endif
 
         //Disable the button until the ad is ready to show:
-        _showAdButton.interactable = false;
+        _showAdButton.interactable = true;
         _adUnitId = _androidAdUnitId;
 
         LoadAd();
@@ -45,7 +45,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
         if (adUnitId.Equals(_adUnitId))
         {
             // Configure the button to call the ShowAd() method when clicked:
-            _showAdButton.onClick.AddListener(ShowAd);
+            //_showAdButton.onClick.AddListener(ShowAd);
             // Enable the button for users to click:
             _showAdButton.interactable = true;
         }
@@ -55,9 +55,11 @@ public class AdsScript : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     public void ShowAd()
     {
         // Disable the button:
-        _showAdButton.interactable = false;
+        //_showAdButton.interactable = false;
         // Then show the ad:
-        Advertisement.Show(_adUnitId, this);
+        //Advertisement.Show(_adUnitId, this);
+        spawner.canSpawnChange(true);
+        shipScript.revivePlayer();
     }
 
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
