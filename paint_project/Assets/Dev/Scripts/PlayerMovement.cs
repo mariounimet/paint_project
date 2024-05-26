@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
   
   Vector2 inputangle = Vector2.zero;
   
+  private Vector3 objetivo;
+  [SerializeField] private Camera camera;
   
 
 
@@ -84,6 +86,12 @@ public class PlayerMovement : MonoBehaviour
             player.velocity = Vector3.zero;
           }
         }
+
+    objetivo = camera.ScreenToWorldPoint(Input.mousePosition);
+    float anguloRadianes = Mathf.Atan2(objetivo.y - transform.position.y, objetivo.x - transform.position.x);
+    float anguloGrados = (180/Mathf.PI) * anguloRadianes -90;
+    transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
+
       
     }
 }
